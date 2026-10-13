@@ -33,3 +33,13 @@ test('trend over snapshots', () => {
   const t = trend([snap, { date: '2026-04-30', tools: [{ tool: 'copilot', groups: [{ group: 'FIN', licensed: 40, activated: 40, activeWeekly: 30, avgActiveDays: 3, avgFeatures: 3, powerUsers: 10, retained30d: 35 }] }] }]);
   assert.deepStrictEqual(t.map((x) => [x.date, x.reach]), [['2026-03-31', 52.8], ['2026-04-30', 75]]);
 });
+
+test('missing per-user averages are ignored, not counted as zero', () => {
+  const a = analyzeSnapshot({ tools: [{ tool: 'copilot', groups: [
+    { group: 'A', licensed: 10, activated: 8, activeWeekly: 6, avgActiveDays: null, avgFeatures: 2, powerUsers: 1, retained30d: 6 },
+    { group: 'B', licensed: 10, activated: 8, activeWeekly: 4, avgActiveDays: 3, avgFeatures: null, powerUsers: 1, retained30d: 6 },
+  ] }] });
+  assert.strictEqual(a.overall.frequency, 3);
+  assert.strictEqual(a.overall.depth, 2);
+  assert.strictEqual(a.groups.A.frequency, null);
+});

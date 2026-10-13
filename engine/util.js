@@ -21,6 +21,10 @@ function round(n, d = 2) {
   return Math.round(n * f) / f;
 }
 
+function daysBetween(a, b) {
+  return Math.round((parseDate(b) - parseDate(a)) / DAY);
+}
+
 const sum = (a) => a.reduce((x, y) => x + y, 0);
 const mean = (a) => (a.length ? sum(a) / a.length : null);
 
@@ -32,4 +36,4 @@ function variance(a) {
 
 const pct = (n, d) => (d > 0 ? round((n / d) * 100, 1) : null);
 
-module.exports = { DAY, parseDate, isDate, addDays, round, sum, mean, variance, pct };
+module.exports = { DAY, parseDate, isDate, addDays, daysBetween, round, sum, mean, variance, pct };

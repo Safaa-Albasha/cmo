@@ -8,6 +8,12 @@ const { status, settings, findWave, waveMetrics } = require('./status');
 const adoption = require('./adoption');
 const value = require('./value');
 const { createProject } = require('./init');
+const fs = require('fs');
+const { createWave, generateSurvey } = require('./survey');
+const { importResponses } = require('./responses');
+const { importUsage } = require('./usage');
+const { importSamples } = require('./samples');
+const labels = require('./labels');
 
 function parseArgs(argv) {
   const [cmd, ...rest] = argv;
@@ -38,6 +44,8 @@ function pickWave(d, sel) {
   return findWave(d.waves, sel);
 }
 
+const pickWaveId = (dir, sel) => pickWave(loadProject(dir), sel).id;
+
 const str = (v) => (typeof v === 'string' ? v : undefined);
 
 const COMMANDS = {
@@ -62,6 +70,16 @@ const COMMANDS = {
     const d = loadValid(dir);
     return value.analyze(d.processes, d.samples, d.project);
   },
+  wave: (dir, o) => createWave(dir, { wave: str(o.id), type: str(o.type), date: str(o.date), questions: str(o.questions) ? o.questions.split(',') : undefined }),
+  survey: (dir, o) => generateSurvey(dir, { wave: str(o.wave) }),
+  import: (dir, o) => {
+    const fn = IMPORTS[o.type];
+    if (!fn) throw new CmoError('ENUM_INVALID', { file: 'import', field: 'type', allowed: Object.keys(IMPORTS).join(', ') });
+    return fn(dir, { ...o, from: str(o.from) ? path.resolve(o.from) : undefined });
+  },
+  comments: (dir, o) => labels.comments(dir, pickWaveId(dir, o.wave), { limit: Number(o.limit) || 50, offset: Number(o.offset) || 0 }),
+  label: (dir, o) => labels.addLabels(dir, pickWaveId(dir, o.wave), readJsonArg(o), { reviewed: o.reviewed === true }),
+  review: (dir, o) => labels.reviewQueue(dir, pickWaveId(dir, o.wave)),
   init: (dir, o) =>
     createProject(dir, {
       name: str(o.name),
@@ -74,6 +92,23 @@ const COMMANDS = {
       changeManager: str(o.cm),
       description: str(o.description),
     }),
+};
+
+function readJsonArg(o) {
+  try {
+    if (typeof o.json === 'string') return JSON.parse(o.json);
+    if (typeof o.file === 'string') return JSON.parse(fs.readFileSync(o.file, 'utf8').replace(/^﻿/, ''));
+  } catch (e) {
+    throw new CmoError('JSON_INVALID', { file: o.file || '--json', detail: e.message });
+  }
+  throw new CmoError('ARG_MISSING', { arg: 'file | --json' });
+}
+
+const IMPORTS = {
+  responses: (dir, o) => importResponses(dir, { from: o.from, wave: str(o.wave), sheet: str(o.sheet), write: o.write === true }),
+  usage: (dir, o) =>
+    importUsage(dir, { from: o.from, date: str(o.date), tool: str(o.tool), roster: o.roster ? path.resolve(o.roster) : undefined, sheet: str(o.sheet), write: o.write === true, dateFormat: o['date-format'] === 'mdy' ? 'mdy' : 'dmy' }),
+  samples: (dir, o) => importSamples(dir, { from: o.from, sheet: str(o.sheet), write: o.write === true, replace: o.replace === true, dateFormat: o['date-format'] === 'mdy' ? 'mdy' : 'dmy' }),
 };
 
 function run(argv) {

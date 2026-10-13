@@ -8,7 +8,12 @@ function aggregate(rows) {
   const activated = s('activated');
   const activeWeekly = s('activeWeekly');
   const powerUsers = s('powerUsers');
-  const wavg = (k) => (activeWeekly ? sum(rows.map((r) => (Number(r[k]) || 0) * (Number(r.activeWeekly) || 0))) / activeWeekly : null);
+  // Weighted by weekly active users; rows without the value are left out, never counted as zero.
+  const wavg = (k) => {
+    const rs = rows.filter((r) => r[k] !== null && r[k] !== undefined && Number(r.activeWeekly) > 0);
+    const w = sum(rs.map((r) => Number(r.activeWeekly)));
+    return w ? sum(rs.map((r) => Number(r[k]) * Number(r.activeWeekly))) / w : null;
+  };
   return {
     licensed,
     activated,

@@ -24,6 +24,19 @@ const MESSAGES = {
   NO_PROCESSES: { en: 'No processes registered — business value is not available', ar: 'لا توجد عمليات مسجلة، فلا تتوفر قيمة الأثر على العمل' },
   UNLABELED_COMMENTS: { en: '{count} comment(s) in wave {wave} are not classified yet', ar: '{count} تعليق في الجولة {wave} لم يُصنَّف بعد' },
   PENDING_REVIEW: { en: '{count} low-confidence label(s) in wave {wave} wait for review', ar: '{count} تصنيف منخفض الثقة في الجولة {wave} بانتظار المراجعة' },
+  SALT_MISSING: { en: 'Privacy salt .cmo/.salt is missing — recreate it with init or restore it from backup', ar: 'ملف الخصوصية ‎.cmo/.salt مفقود؛ أعد إنشاءه بـ init أو استرجعه من النسخة الاحتياطية' },
+  IMPORT_FORMAT: { en: 'Cannot import {file}: use .csv, .xlsx or .json (save .xls as .xlsx or .csv)', ar: 'لا يمكن استيراد {file}: استخدم ‎.csv أو ‎.xlsx أو ‎.json (احفظ ‎.xls بصيغة ‎.xlsx أو ‎.csv)' },
+  IMPORT_SHEET: { en: 'Sheet "{sheet}" not found. Sheets: {sheets}', ar: 'الورقة "{sheet}" غير موجودة. الأوراق: {sheets}' },
+  WAVE_EXISTS: { en: 'Survey wave "{wave}" already exists', ar: 'جولة الاستبيان "{wave}" موجودة مسبقًا' },
+  GROUPS_REQUIRED: { en: 'Add impacted groups to groups.json before generating a survey', ar: 'أضف المجموعات المتأثرة في groups.json قبل توليد الاستبيان' },
+  NO_GROUP_COLUMN: { en: 'No department/group column found (expected the [GROUP] question)', ar: 'لم يُعثر على عمود القسم/المجموعة (المتوقع سؤال [GROUP])' },
+  UNMAPPED_GROUP: { en: 'Row {row}: department "{value}" does not match any group', ar: 'الصف {row}: القسم "{value}" لا يطابق أي مجموعة' },
+  UNMAPPED_VALUE: { en: 'Row {row}: value "{value}" for {question} was not recognised', ar: 'الصف {row}: القيمة "{value}" للسؤال {question} غير مفهومة' },
+  LABEL_UNKNOWN_ID: { en: 'Label "{id}" does not match any comment in wave {wave}', ar: 'التصنيف "{id}" لا يطابق أي تعليق في الجولة {wave}' },
+  UNKNOWN_THEME: { en: 'Label "{id}": theme "{theme}" is not in the theme list', ar: 'التصنيف "{id}": المحور "{theme}" غير موجود في قائمة المحاور' },
+  PROCESS_UNKNOWN: { en: 'Row {row}: process "{value}" is not in processes.json', ar: 'الصف {row}: العملية "{value}" غير موجودة في processes.json' },
+  IMPORT_MODE: { en: 'Usage file not recognised: need per-user columns (user + last activity date) or per-group columns (group + licensed)', ar: 'ملف الاستخدام غير مفهوم: يلزم أعمدة لكل مستخدم (المستخدم وتاريخ آخر نشاط) أو لكل مجموعة (المجموعة وعدد المرخّص لهم)' },
+  ROSTER_REQUIRED: { en: 'This usage report has no department column — pass --roster <file with user and department>', ar: 'تقرير الاستخدام لا يحتوي عمود القسم؛ أضف ‎--roster بملف فيه المستخدم والقسم' },
 };
 
 function format(code, params = {}) {
