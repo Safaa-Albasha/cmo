@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "samples": [
+    {
+      "phase": "before",
+      "minutes": 31.38,
+      "errors": 0,
+      "date": "2026-02-02"
+    },
+    {
+      "phase": "before",
+      "minutes": 24.32,
+      "errors": 0,
+      "date": "2026-02-04"
+    },
+    {
+      "phase": "before",
+      "minutes": 25.83,
+      "errors": 0,
+      "date": "2026-02-06"
+    },
+    {
+      "phase": "before",
+      "minutes": 20.14,
+      "errors": 0,
+      "date": "2026-02-08"
+    },
+    {
+      "phase": "before",
+      "minutes": 33.91,
+      "errors": 0,
+      "date": "2026-02-10"
+    },
+    {
+      "phase": "before",
+      "minutes": 27.32,
+      "errors": 0,
+      "date": "2026-02-12"
+    },
+    {
+      "phase": "after",
+      "minutes": 25.49,
+      "errors": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "phase": "after",
+      "minutes": 29.77,
+      "errors": 0,
+      "date": "2026-06-03"
+    },
+    {
+      "phase": "after",
+      "minutes": 33.86,
+      "errors": 0,
+      "date": "2026-06-05"
+    },
+    {
+      "phase": "after",
+      "minutes": 34.25,
+      "errors": 0,
+      "date": "2026-06-07"
+    },
+    {
+      "phase": "after",
+      "minutes": 37.31,
+      "errors": 0,
+      "date": "2026-06-09"
+    },
+    {
+      "phase": "after",
+      "minutes": 28.84,
+      "errors": 0,
+      "date": "2026-06-11"
+    }
+  ]
+}

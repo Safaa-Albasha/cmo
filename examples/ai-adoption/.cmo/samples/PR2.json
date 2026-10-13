@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "samples": [
+    {
+      "phase": "before",
+      "minutes": 29.61,
+      "errors": 1,
+      "date": "2026-02-02"
+    },
+    {
+      "phase": "before",
+      "minutes": 18.55,
+      "errors": 0,
+      "date": "2026-02-04"
+    },
+    {
+      "phase": "before",
+      "minutes": 21.22,
+      "errors": 0,
+      "date": "2026-02-06"
+    },
+    {
+      "phase": "before",
+      "minutes": 30.82,
+      "errors": 1,
+      "date": "2026-02-08"
+    },
+    {
+      "phase": "before",
+      "minutes": 30.67,
+      "errors": 0,
+      "date": "2026-02-10"
+    },
+    {
+      "phase": "before",
+      "minutes": 22.4,
+      "errors": 0,
+      "date": "2026-02-12"
+    },
+    {
+      "phase": "before",
+      "minutes": 28.47,
+      "errors": 0,
+      "date": "2026-02-14"
+    },
+    {
+      "phase": "before",
+      "minutes": 23.37,
+      "errors": 0,
+      "date": "2026-02-16"
+    },
+    {
+      "phase": "before",
+      "minutes": 25.7,
+      "errors": 0,
+      "date": "2026-02-18"
+    },
+    {
+      "phase": "before",
+      "minutes": 21.62,
+      "errors": 0,
+      "date": "2026-02-20"
+    },
+    {
+      "phase": "before",
+      "minutes": 20.94,
+      "errors": 0,
+      "date": "2026-02-22"
+    },
+    {
+      "phase": "before",
+      "minutes": 25.94,
+      "errors": 0,
+      "date": "2026-02-24"
+    },
+    {
+      "phase": "after",
+      "minutes": 7.33,
+      "errors": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "phase": "after",
+      "minutes": 9.66,
+      "errors": 1,
+      "date": "2026-06-03"
+    },
+    {
+      "phase": "after",
+      "minutes": 10.39,
+      "errors": 0,
+      "date": "2026-06-05"
+    },
+    {
+      "phase": "after",
+      "minutes": 6.8,
+      "errors": 0,
+      "date": "2026-06-07"
+    },
+    {
+      "phase": "after",
+      "minutes": 9.19,
+      "errors": 0,
+      "date": "2026-06-09"
+    },
+    {
+      "phase": "after",
+      "minutes": 10.22,
+      "errors": 0,
+      "date": "2026-06-11"
+    },
+    {
+      "phase": "after",
+      "minutes": 6.68,
+      "errors": 0,
+      "date": "2026-06-13"
+    },
+    {
+      "phase": "after",
+      "minutes": 10.44,
+      "errors": 0,
+      "date": "2026-06-15"
+    },
+    {
+      "phase": "after",
+      "minutes": 8.9,
+      "errors": 0,
+      "date": "2026-06-17"
+    },
+    {
+      "phase": "after",
+      "minutes": 9.65,
+      "errors": 0,
+      "date": "2026-06-19"
+    },
+    {
+      "phase": "after",
+      "minutes": 9.05,
+      "errors": 0,
+      "date": "2026-06-21"
+    },
+    {
+      "phase": "after",
+      "minutes": 10.21,
+      "errors": 0,
+      "date": "2026-06-23"
+    }
+  ]
+}

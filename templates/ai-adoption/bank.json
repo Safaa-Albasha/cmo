@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scale": {
+    "1": { "ar": "لا أوافق بشدة", "en": "Strongly disagree" },
+    "2": { "ar": "لا أوافق", "en": "Disagree" },
+    "3": { "ar": "محايد", "en": "Neutral" },
+    "4": { "ar": "أوافق", "en": "Agree" },
+    "5": { "ar": "أوافق بشدة", "en": "Strongly agree" }
+  },
+  "questions": [
+    { "id": "GROUP", "type": "group", "text": { "ar": "القسم", "en": "Department" } },
+    { "id": "ROLE", "type": "choice", "options": ["staff", "manager", "executive"], "text": { "ar": "الدور", "en": "Role" } },
+    { "id": "A1", "type": "likert", "element": "awareness", "text": { "ar": "أفهم لماذا تتبنّى المؤسسة أدوات الذكاء الاصطناعي الآن", "en": "I understand why the organization is adopting AI tools now" } },
+    { "id": "A2", "type": "likert", "element": "awareness", "text": { "ar": "أعرف كيف سيؤثر هذا التغيير على عملي اليومي", "en": "I know how this change will affect my daily work" } },
+    { "id": "D1", "type": "likert", "element": "desire", "text": { "ar": "أريد استخدام أدوات الذكاء الاصطناعي في عملي", "en": "I want to use AI tools in my work" } },
+    { "id": "D2", "type": "likert", "element": "desire", "text": { "ar": "أرى فائدة شخصية لي من هذا التغيير", "en": "I see a personal benefit for me in this change" } },
+    { "id": "K1", "type": "likert", "element": "knowledge", "text": { "ar": "أعرف كيف أستخدم أدوات الذكاء الاصطناعي المعتمدة في مهامي", "en": "I know how to use the approved AI tools for my tasks" } },
+    { "id": "K2", "type": "likert", "element": "knowledge", "text": { "ar": "أعرف ما المسموح وغير المسموح عند استخدام الذكاء الاصطناعي", "en": "I know what is and isn't allowed when using AI" } },
+    { "id": "AB1", "type": "likert", "element": "ability", "text": { "ar": "أستطيع استخدام الذكاء الاصطناعي لإنجاز مهام حقيقية دون مساعدة", "en": "I can use AI to complete real tasks without help" } },
+    { "id": "AB2", "type": "likert", "element": "ability", "text": { "ar": "لدي الوقت والدعم الكافيان لتطبيق ما تعلمته", "en": "I have enough time and support to apply what I learned" } },
+    { "id": "R1", "type": "likert", "element": "reinforcement", "text": { "ar": "يقدّر مديري العمل الذي ننجزه بالذكاء الاصطناعي ويشجعه", "en": "My manager recognizes and encourages work done with AI" } },
+    { "id": "R2", "type": "likert", "element": "reinforcement", "text": { "ar": "أنوي الاستمرار في استخدام الذكاء الاصطناعي حتى دون متابعة", "en": "I intend to keep using AI even without follow-up" } },
+    { "id": "T1", "type": "likert", "category": "trust", "text": { "ar": "أثق بنتائج أدوات الذكاء الاصطناعي بعد مراجعتها", "en": "I trust AI outputs after reviewing them" } },
+    { "id": "P1", "type": "likert", "category": "privacy", "text": { "ar": "أعرف كيف أحمي بيانات العمل الحساسة عند استخدام الذكاء الاصطناعي", "en": "I know how to protect sensitive work data when using AI" } },
+    { "id": "USE", "type": "choice", "options": ["never", "monthly", "weekly", "daily"], "text": { "ar": "كم مرة تستخدم أدوات الذكاء الاصطناعي في عملك؟", "en": "How often do you use AI tools at work?" } },
+    { "id": "O1", "type": "open", "text": { "ar": "ما أكثر ما يقلقك أو يعيقك في استخدام الذكاء الاصطناعي؟", "en": "What concerns or blocks you most about using AI?" } },
+    { "id": "O2", "type": "open", "text": { "ar": "ما الذي سيساعدك أكثر على الاستفادة منه؟", "en": "What would help you most to benefit from it?" } }
+  ],
+  "themes": [
+    { "id": "job-security", "ar": "الخوف على الوظيفة", "en": "Job security" },
+    { "id": "trust", "ar": "الثقة بدقة النتائج", "en": "Trust in accuracy" },
+    { "id": "privacy", "ar": "خصوصية البيانات", "en": "Data privacy" },
+    { "id": "skills-gap", "ar": "نقص المهارات", "en": "Skills gap" },
+    { "id": "workload", "ar": "ضغط العمل والوقت", "en": "Workload / time" },
+    { "id": "manager-support", "ar": "دعم المدير", "en": "Manager support" },
+    { "id": "policy-clarity", "ar": "وضوح الاستخدام المسموح", "en": "Clarity of allowed use" },
+    { "id": "governance", "ar": "الحوكمة والمخاطر", "en": "Governance & risk" },
+    { "id": "productivity", "ar": "الإنتاجية والفائدة", "en": "Productivity & benefit" },
+    { "id": "tool-quality", "ar": "جودة الأداة وسهولتها", "en": "Tool quality & usability" }
+  ]
+}

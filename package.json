@@ -1,0 +1,9 @@
+{
+  "name": "cmo-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Engine and tests for the cmo Claude Code plugin",
+  "engines": { "node": ">=18" },
+  "scripts": { "test": "node --test", "example": "node examples/build-example.js" }
+}

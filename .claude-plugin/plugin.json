@@ -1,0 +1,8 @@
+{
+  "name": "cmo",
+  "version": "0.1.0",
+  "description": "AI-adoption Change Management Office: Prosci + Kotter plans, ADKAR, sentiment, adoption and business-value measurement before/after. Arabic/English.",
+  "author": { "name": "Safaa Albasha" },
+  "license": "MIT",
+  "keywords": ["change-management", "ai-adoption", "adkar", "prosci", "kotter", "sentiment", "roi", "arabic"]
+}

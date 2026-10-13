@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "samples": [
+    {
+      "phase": "before",
+      "minutes": 361.82,
+      "errors": 0,
+      "date": "2026-02-02"
+    },
+    {
+      "phase": "before",
+      "minutes": 331.62,
+      "errors": 1,
+      "date": "2026-02-04"
+    },
+    {
+      "phase": "before",
+      "minutes": 349.99,
+      "errors": 0,
+      "date": "2026-02-06"
+    },
+    {
+      "phase": "before",
+      "minutes": 363.91,
+      "errors": 0,
+      "date": "2026-02-08"
+    },
+    {
+      "phase": "before",
+      "minutes": 321.97,
+      "errors": 0,
+      "date": "2026-02-10"
+    },
+    {
+      "phase": "before",
+      "minutes": 359.93,
+      "errors": 0,
+      "date": "2026-02-12"
+    },
+    {
+      "phase": "before",
+      "minutes": 349.95,
+      "errors": 0,
+      "date": "2026-02-14"
+    },
+    {
+      "phase": "before",
+      "minutes": 352.66,
+      "errors": 0,
+      "date": "2026-02-16"
+    },
+    {
+      "phase": "after",
+      "minutes": 97.64,
+      "errors": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "phase": "after",
+      "minutes": 104.55,
+      "errors": 0,
+      "date": "2026-06-03"
+    },
+    {
+      "phase": "after",
+      "minutes": 100.54,
+      "errors": 0,
+      "date": "2026-06-05"
+    },
+    {
+      "phase": "after",
+      "minutes": 82.79,
+      "errors": 0,
+      "date": "2026-06-07"
+    },
+    {
+      "phase": "after",
+      "minutes": 105.48,
+      "errors": 0,
+      "date": "2026-06-09"
+    },
+    {
+      "phase": "after",
+      "minutes": 91.36,
+      "errors": 0,
+      "date": "2026-06-11"
+    },
+    {
+      "phase": "after",
+      "minutes": 86.92,
+      "errors": 0,
+      "date": "2026-06-13"
+    },
+    {
+      "phase": "after",
+      "minutes": 115.12,
+      "errors": 0,
+      "date": "2026-06-15"
+    }
+  ]
+}

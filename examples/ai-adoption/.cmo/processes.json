@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "processes": [
+    {
+      "id": "PR1",
+      "name": "تقرير المبيعات الشهري / Monthly sales report",
+      "group": "SALES",
+      "owner": "Sales ops",
+      "frequencyPerMonth": 40,
+      "hourlyCost": 120,
+      "baseline": {
+        "minutes": 360,
+        "errorRate": 12
+      },
+      "after": {
+        "minutes": 90,
+        "errorRate": 6
+      }
+    },
+    {
+      "id": "PR2",
+      "name": "الرد على استفسار عميل / Customer inquiry reply",
+      "group": "OPS",
+      "owner": "Service lead",
+      "frequencyPerMonth": 3000,
+      "hourlyCost": 60,
+      "baseline": {
+        "minutes": 25,
+        "errorRate": 8
+      },
+      "after": {
+        "minutes": 9,
+        "errorRate": 5
+      }
+    },
+    {
+      "id": "PR3",
+      "name": "مطابقة الفواتير / Invoice reconciliation",
+      "group": "FIN",
+      "owner": "AP lead",
+      "frequencyPerMonth": 400,
+      "hourlyCost": 110,
+      "baseline": {
+        "minutes": 18,
+        "errorRate": 4
+      },
+      "after": {
+        "minutes": 11,
+        "errorRate": 3
+      }
+    },
+    {
+      "id": "PR4",
+      "name": "صياغة الوصف الوظيفي / Job description drafting",
+      "group": "HR",
+      "owner": "HR BP",
+      "frequencyPerMonth": 15,
+      "hourlyCost": 100,
+      "baseline": {
+        "minutes": 120
+      },
+      "after": {
+        "minutes": 40
+      }
+    },
+    {
+      "id": "PR5",
+      "name": "ملخص مراجعة الكود / Code review summary",
+      "group": "IT",
+      "owner": "Eng manager",
+      "frequencyPerMonth": 200,
+      "hourlyCost": 150,
+      "baseline": {
+        "minutes": 30
+      },
+      "after": {
+        "minutes": 26
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "name": "تبنّي الذكاء الاصطناعي في شركة النخبة / AI Adoption at Al Nukhba Co.",
+  "type": "ai-adoption",
+  "description": "Rollout of Microsoft 365 Copilot and Claude to 400 employees",
+  "language": "ar",
+  "currency": "SAR",
+  "startDate": "2026-02-01",
+  "endDate": "2026-12-31",
+  "sponsor": "الرئيس التنفيذي للعمليات / COO",
+  "changeManager": "سارة / Sara",
+  "privacy": {
+    "minGroupSize": 5
+  },
+  "thresholds": {
+    "barrier": 3,
+    "confidence": 0.7,
+    "readinessGreen": 70,
+    "readinessAmber": 50
+  },
+  "weights": {
+    "adkar": 0.5,
+    "sentiment": 0.2,
+    "adoption": 0.3
+  },
+  "tools": [
+    {
+      "id": "copilot",
+      "name": "Microsoft 365 Copilot",
+      "licenses": 320,
+      "costPerLicensePerMonth": 113
+    },
+    {
+      "id": "claude",
+      "name": "Claude Team",
+      "licenses": 90,
+      "costPerLicensePerMonth": 113
+    }
+  ],
+  "investment": {
+    "oneTime": 180000,
+    "amortizationMonths": 12
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "groups": [
+    {
+      "id": "FIN",
+      "name": "المالية / Finance",
+      "headcount": 60,
+      "impactLevel": 4
+    },
+    {
+      "id": "HR",
+      "name": "الموارد البشرية / Human Resources",
+      "headcount": 40,
+      "impactLevel": 3
+    },
+    {
+      "id": "OPS",
+      "name": "العمليات وخدمة العملاء / Operations & Customer Service",
+      "headcount": 150,
+      "impactLevel": 5
+    },
+    {
+      "id": "SALES",
+      "name": "المبيعات / Sales",
+      "headcount": 100,
+      "impactLevel": 4
+    },
+    {
+      "id": "IT",
+      "name": "تقنية المعلومات / IT",
+      "headcount": 45,
+      "impactLevel": 2
+    },
+    {
+      "id": "LEGAL",
+      "name": "الشؤون القانونية / Legal",
+      "headcount": 4,
+      "impactLevel": 3
+    }
+  ]
+}

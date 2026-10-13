@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "tools": [
+    {
+      "tool": "copilot",
+      "groups": [
+        {
+          "group": "FIN",
+          "licensed": 50,
+          "activated": 22,
+          "activeWeekly": 17,
+          "avgActiveDays": 2.51,
+          "avgFeatures": 2.9,
+          "powerUsers": 4,
+          "retained30d": 15
+        },
+        {
+          "group": "HR",
+          "licensed": 35,
+          "activated": 19,
+          "activeWeekly": 15,
+          "avgActiveDays": 2.34,
+          "avgFeatures": 2.66,
+          "powerUsers": 3,
+          "retained30d": 13
+        },
+        {
+          "group": "OPS",
+          "licensed": 120,
+          "activated": 44,
+          "activeWeekly": 35,
+          "avgActiveDays": 2.44,
+          "avgFeatures": 2.54,
+          "powerUsers": 8,
+          "retained30d": 29
+        },
+        {
+          "group": "SALES",
+          "licensed": 80,
+          "activated": 50,
+          "activeWeekly": 39,
+          "avgActiveDays": 2.49,
+          "avgFeatures": 2.55,
+          "powerUsers": 9,
+          "retained30d": 34
+        },
+        {
+          "group": "IT",
+          "licensed": 30,
+          "activated": 27,
+          "activeWeekly": 21,
+          "avgActiveDays": 2.39,
+          "avgFeatures": 2.83,
+          "powerUsers": 5,
+          "retained30d": 18
+        },
+        {
+          "group": "LEGAL",
+          "licensed": 3,
+          "activated": 1,
+          "activeWeekly": 1,
+          "avgActiveDays": 2.53,
+          "avgFeatures": 2.81,
+          "powerUsers": 0,
+          "retained30d": 1
+        }
+      ]
+    },
+    {
+      "tool": "claude",
+      "groups": [
+        {
+          "group": "FIN",
+          "licensed": 10,
+          "activated": 4,
+          "activeWeekly": 3,
+          "avgActiveDays": 2.42,
+          "avgFeatures": 2.85,
+          "powerUsers": 1,
+          "retained30d": 3
+        },
+        {
+          "group": "SALES",
+          "licensed": 20,
+          "activated": 13,
+          "activeWeekly": 10,
+          "avgActiveDays": 2.34,
+          "avgFeatures": 2.74,
+          "powerUsers": 2,
+          "retained30d": 9
+        },
+        {
+          "group": "IT",
+          "licensed": 45,
+          "activated": 39,
+          "activeWeekly": 31,
+          "avgActiveDays": 2.28,
+          "avgFeatures": 2.7,
+          "powerUsers": 7,
+          "retained30d": 26
+        }
+      ]
+    }
+  ]
+}

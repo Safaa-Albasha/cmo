@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "type": "pulse",
+  "date": "2026-05-01",
+  "questions": [
+    "GROUP",
+    "ROLE",
+    "A1",
+    "A2",
+    "D1",
+    "D2",
+    "K1",
+    "K2",
+    "AB1",
+    "AB2",
+    "R1",
+    "R2",
+    "T1",
+    "P1",
+    "USE",
+    "O1"
+  ]
+}

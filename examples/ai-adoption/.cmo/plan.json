@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "activities": [
+    {
+      "id": "P01",
+      "phase": "prepare",
+      "kotterStep": 1,
+      "adkar": [
+        "awareness"
+      ],
+      "lever": "sponsorship",
+      "status": "planned",
+      "title": {
+        "ar": "صياغة دافع العمل لتبنّي الذكاء الاصطناعي وخلق الإلحاح",
+        "en": "Build the AI business case and create urgency"
+      }
+    },
+    {
+      "id": "P02",
+      "phase": "prepare",
+      "kotterStep": 2,
+      "adkar": [],
+      "lever": "sponsorship",
+      "status": "planned",
+      "title": {
+        "ar": "تشكيل التحالف القيادي للتغيير",
+        "en": "Form the guiding coalition"
+      }
+    },
+    {
+      "id": "P03",
+      "phase": "prepare",
+      "kotterStep": 3,
+      "adkar": [
+        "awareness"
+      ],
+      "lever": "sponsorship",
+      "status": "planned",
+      "title": {
+        "ar": "تحديد الرؤية ومؤشرات النجاح",
+        "en": "Define the vision and success metrics"
+      }
+    },
+    {
+      "id": "P04",
+      "phase": "prepare",
+      "kotterStep": null,
+      "adkar": [],
+      "lever": "assessment",
+      "status": "planned",
+      "title": {
+        "ar": "تقييم أثر التغيير على كل مجموعة",
+        "en": "Assess change impact per group"
+      }
+    },
+    {
+      "id": "P05",
+      "phase": "prepare",
+      "kotterStep": 5,
+      "adkar": [
+        "knowledge"
+      ],
+      "lever": "governance",
+      "status": "planned",
+      "title": {
+        "ar": "سياسة الاستخدام المقبول للذكاء الاصطناعي وحوكمته",
+        "en": "AI acceptable-use policy and governance"
+      }
+    },
+    {
+      "id": "P06",
+      "phase": "prepare",
+      "kotterStep": null,
+      "adkar": [],
+      "lever": "assessment",
+      "status": "planned",
+      "title": {
+        "ar": "الاستبيان الأساسي وخطوط أساس العمليات",
+        "en": "Baseline survey and process baselines"
+      }
+    },
+    {
+      "id": "M01",
+      "phase": "manage",
+      "kotterStep": 4,
+      "adkar": [
+        "awareness",
+        "desire"
+      ],
+      "lever": "communications",
+      "status": "planned",
+      "title": {
+        "ar": "إطلاق تنفيذي وتوصيل الرؤية",
+        "en": "Executive kickoff and vision communication"
+      }
+    },
+    {
+      "id": "M02",
+      "phase": "manage",
+      "kotterStep": 5,
+      "adkar": [
+        "desire"
+      ],
+      "lever": "coaching",
+      "status": "planned",
+      "title": {
+        "ar": "شبكة سفراء الذكاء الاصطناعي في كل قسم",
+        "en": "AI champions network in every department"
+      }
+    },
+    {
+      "id": "M03",
+      "phase": "manage",
+      "kotterStep": 5,
+      "adkar": [
+        "knowledge"
+      ],
+      "lever": "training",
+      "status": "planned",
+      "title": {
+        "ar": "تدريب حسب الدور ومكتبة أوامر لكل قسم",
+        "en": "Role-based training and a prompt library per department"
+      }
+    },
+    {
+      "id": "M04",
+      "phase": "manage",
+      "kotterStep": 5,
+      "adkar": [
+        "ability"
+      ],
+      "lever": "training",
+      "status": "planned",
+      "title": {
+        "ar": "ورش حالات الاستخدام لكل قسم",
+        "en": "Use-case workshops per department"
+      }
+    },
+    {
+      "id": "M05",
+      "phase": "manage",
+      "kotterStep": 5,
+      "adkar": [
+        "ability"
+      ],
+      "lever": "coaching",
+      "status": "planned",
+      "title": {
+        "ar": "ساعات دعم مفتوحة ودعم من الزملاء",
+        "en": "Office hours and peer support"
+      }
+    },
+    {
+      "id": "M06",
+      "phase": "manage",
+      "kotterStep": 6,
+      "adkar": [
+        "desire",
+        "reinforcement"
+      ],
+      "lever": "communications",
+      "status": "planned",
+      "title": {
+        "ar": "عرض الإنجازات السريعة",
+        "en": "Showcase quick wins"
+      }
+    },
+    {
+      "id": "M07",
+      "phase": "manage",
+      "kotterStep": null,
+      "adkar": [],
+      "lever": "resistance",
+      "status": "planned",
+      "title": {
+        "ar": "استبيانات المتابعة وإدارة المقاومة",
+        "en": "Pulse surveys and resistance management"
+      }
+    },
+    {
+      "id": "S01",
+      "phase": "sustain",
+      "kotterStep": 8,
+      "adkar": [
+        "reinforcement"
+      ],
+      "lever": "reinforcement",
+      "status": "planned",
+      "title": {
+        "ar": "التقدير والحوافز",
+        "en": "Recognition and incentives"
+      }
+    },
+    {
+      "id": "S02",
+      "phase": "sustain",
+      "kotterStep": 8,
+      "adkar": [
+        "reinforcement"
+      ],
+      "lever": "reinforcement",
+      "status": "planned",
+      "title": {
+        "ar": "دمج الذكاء الاصطناعي في العمليات ومؤشرات الأداء",
+        "en": "Embed AI in processes and KPIs"
+      }
+    },
+    {
+      "id": "S03",
+      "phase": "sustain",
+      "kotterStep": 7,
+      "adkar": [
+        "ability"
+      ],
+      "lever": "training",
+      "status": "planned",
+      "title": {
+        "ar": "توسيع حالات الاستخدام الناجحة",
+        "en": "Scale successful use cases"
+      }
+    },
+    {
+      "id": "S04",
+      "phase": "sustain",
+      "kotterStep": 7,
+      "adkar": [
+        "reinforcement"
+      ],
+      "lever": "assessment",
+      "status": "planned",
+      "title": {
+        "ar": "تقرير القيمة والدروس المستفادة",
+        "en": "Value report and lessons learned"
+      }
+    }
+  ]
+}

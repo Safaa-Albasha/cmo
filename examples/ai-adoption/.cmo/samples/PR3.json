@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "samples": [
+    {
+      "phase": "before",
+      "minutes": 17.53,
+      "errors": 0,
+      "date": "2026-02-02"
+    },
+    {
+      "phase": "before",
+      "minutes": 15.28,
+      "errors": 0,
+      "date": "2026-02-04"
+    },
+    {
+      "phase": "before",
+      "minutes": 17.19,
+      "errors": 0,
+      "date": "2026-02-06"
+    },
+    {
+      "phase": "before",
+      "minutes": 14.01,
+      "errors": 0,
+      "date": "2026-02-08"
+    },
+    {
+      "phase": "before",
+      "minutes": 18.1,
+      "errors": 0,
+      "date": "2026-02-10"
+    },
+    {
+      "phase": "before",
+      "minutes": 17.67,
+      "errors": 0,
+      "date": "2026-02-12"
+    },
+    {
+      "phase": "after",
+      "minutes": 9.93,
+      "errors": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "phase": "after",
+      "minutes": 12.66,
+      "errors": 0,
+      "date": "2026-06-03"
+    },
+    {
+      "phase": "after",
+      "minutes": 12.43,
+      "errors": 0,
+      "date": "2026-06-05"
+    }
+  ]
+}

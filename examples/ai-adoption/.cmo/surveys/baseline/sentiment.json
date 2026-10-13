@@ -1,0 +1,1375 @@
+{
+  "schemaVersion": 1,
+  "labels": [
+    {
+      "id": "r_b3786e8d2826:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.69,
+      "reviewed": false
+    },
+    {
+      "id": "r_ada352815c18:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_a7d83e6a8703:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.87,
+      "reviewed": false
+    },
+    {
+      "id": "r_7cbc7aebd64a:O1",
+      "sentiment": -1,
+      "themes": [
+        "policy-clarity",
+        "privacy"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.7,
+      "reviewed": false
+    },
+    {
+      "id": "r_40e3df852b70:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.62,
+      "reviewed": true
+    },
+    {
+      "id": "r_ec35e2bc204d:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.57,
+      "reviewed": true
+    },
+    {
+      "id": "r_9184a7db874d:O1",
+      "sentiment": -1,
+      "themes": [
+        "policy-clarity",
+        "privacy"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_dee0fc3c2622:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.67,
+      "reviewed": true
+    },
+    {
+      "id": "r_d615a1d0f196:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.58,
+      "reviewed": false
+    },
+    {
+      "id": "r_90053891b42b:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.81,
+      "reviewed": false
+    },
+    {
+      "id": "r_ecfd5185cfad:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.94,
+      "reviewed": false
+    },
+    {
+      "id": "r_a12f4ccac0cd:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.72,
+      "reviewed": false
+    },
+    {
+      "id": "r_fe27ce65e6ad:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.62,
+      "reviewed": true
+    },
+    {
+      "id": "r_b035bffcf0c0:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.76,
+      "reviewed": false
+    },
+    {
+      "id": "r_80e431c90990:O1",
+      "sentiment": -1,
+      "themes": [
+        "policy-clarity",
+        "privacy"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.71,
+      "reviewed": false
+    },
+    {
+      "id": "r_30427c9fdc6c:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.72,
+      "reviewed": false
+    },
+    {
+      "id": "r_fae2e4f01410:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.57,
+      "reviewed": false
+    },
+    {
+      "id": "r_823018b2ccab:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.97,
+      "reviewed": false
+    },
+    {
+      "id": "r_6b770f7fe1c1:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.7,
+      "reviewed": false
+    },
+    {
+      "id": "r_f3f40803e7d9:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_b4d6064886ef:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.93,
+      "reviewed": false
+    },
+    {
+      "id": "r_89360fab3e84:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.95,
+      "reviewed": false
+    },
+    {
+      "id": "r_389b188ba2be:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.55,
+      "reviewed": false
+    },
+    {
+      "id": "r_6b3fff47db59:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_f09da376c52b:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.71,
+      "reviewed": false
+    },
+    {
+      "id": "r_262ffb7a496c:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.8,
+      "reviewed": false
+    },
+    {
+      "id": "r_3841c3b2f099:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.57,
+      "reviewed": false
+    },
+    {
+      "id": "r_110e0dcf7fd7:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_537d21646209:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.68,
+      "reviewed": true
+    },
+    {
+      "id": "r_f4fe49c03f71:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.97,
+      "reviewed": false
+    },
+    {
+      "id": "r_6d92146a77a9:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.82,
+      "reviewed": false
+    },
+    {
+      "id": "r_61026f68b98f:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.58,
+      "reviewed": false
+    },
+    {
+      "id": "r_11908f217015:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.78,
+      "reviewed": false
+    },
+    {
+      "id": "r_f862b9a9a5c9:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.57,
+      "reviewed": false
+    },
+    {
+      "id": "r_a058d7117eb6:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.89,
+      "reviewed": false
+    },
+    {
+      "id": "r_f7337c19b367:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_5f869091b8ac:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.76,
+      "reviewed": false
+    },
+    {
+      "id": "r_c8367986a861:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.68,
+      "reviewed": false
+    },
+    {
+      "id": "r_d269cae9ad72:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.63,
+      "reviewed": true
+    },
+    {
+      "id": "r_065ffc7dc531:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.92,
+      "reviewed": false
+    },
+    {
+      "id": "r_8c135f2c2853:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.96,
+      "reviewed": false
+    },
+    {
+      "id": "r_8fb9c1df2eaf:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.82,
+      "reviewed": false
+    },
+    {
+      "id": "r_6e56aacc1296:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.97,
+      "reviewed": false
+    },
+    {
+      "id": "r_90373ff1d8fa:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_82cd97c99b25:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.96,
+      "reviewed": false
+    },
+    {
+      "id": "r_6fedef820d80:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.64,
+      "reviewed": false
+    },
+    {
+      "id": "r_89bac51a54e2:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.78,
+      "reviewed": false
+    },
+    {
+      "id": "r_3d734d257453:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.82,
+      "reviewed": false
+    },
+    {
+      "id": "r_0619cfbe2770:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.86,
+      "reviewed": false
+    },
+    {
+      "id": "r_5befc0540f03:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.9,
+      "reviewed": false
+    },
+    {
+      "id": "r_45426caab2b7:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.94,
+      "reviewed": false
+    },
+    {
+      "id": "r_a6b7ca8b892f:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.9,
+      "reviewed": false
+    },
+    {
+      "id": "r_edc2af39ab0e:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_122c48bebe2c:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.74,
+      "reviewed": false
+    },
+    {
+      "id": "r_2d31e0064512:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.74,
+      "reviewed": false
+    },
+    {
+      "id": "r_9de5cc2cff19:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.78,
+      "reviewed": false
+    },
+    {
+      "id": "r_1a1b301bad41:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.85,
+      "reviewed": false
+    },
+    {
+      "id": "r_9ba6fff796b7:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.79,
+      "reviewed": false
+    },
+    {
+      "id": "r_a69695c7f98e:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.61,
+      "reviewed": true
+    },
+    {
+      "id": "r_f742a207dc2d:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.59,
+      "reviewed": false
+    },
+    {
+      "id": "r_8515a7211f26:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.59,
+      "reviewed": true
+    },
+    {
+      "id": "r_ffe48d36afe3:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.95,
+      "reviewed": false
+    },
+    {
+      "id": "r_81d02403752c:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.57,
+      "reviewed": false
+    },
+    {
+      "id": "r_69ec87d213ba:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.72,
+      "reviewed": false
+    },
+    {
+      "id": "r_d9d39f92f9c5:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.64,
+      "reviewed": true
+    },
+    {
+      "id": "r_e636341957ad:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.55,
+      "reviewed": false
+    },
+    {
+      "id": "r_d12105a3ddc2:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.72,
+      "reviewed": false
+    },
+    {
+      "id": "r_f657ea6caeb2:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.8,
+      "reviewed": false
+    },
+    {
+      "id": "r_9a53ce93ac46:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.59,
+      "reviewed": true
+    },
+    {
+      "id": "r_7ed1207ff8c6:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.92,
+      "reviewed": false
+    },
+    {
+      "id": "r_46a909886a90:O1",
+      "sentiment": 1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "ability",
+      "confidence": 0.75,
+      "reviewed": false
+    },
+    {
+      "id": "r_d8b668865667:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.71,
+      "reviewed": false
+    },
+    {
+      "id": "r_520224d59dcd:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.66,
+      "reviewed": false
+    },
+    {
+      "id": "r_2a64dbf1d12f:O1",
+      "sentiment": -1,
+      "themes": [
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.92,
+      "reviewed": false
+    },
+    {
+      "id": "r_4541093d6dfb:O1",
+      "sentiment": -1,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.62,
+      "reviewed": true
+    },
+    {
+      "id": "r_5518b2d03bf0:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_db624b41d4f5:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.66,
+      "reviewed": false
+    },
+    {
+      "id": "r_249ac7362163:O1",
+      "sentiment": -1,
+      "themes": [
+        "job-security"
+      ],
+      "adkar": "desire",
+      "confidence": 0.89,
+      "reviewed": false
+    },
+    {
+      "id": "r_03ea3f5e88fa:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.83,
+      "reviewed": false
+    },
+    {
+      "id": "r_a45b9b4fcd4e:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.96,
+      "reviewed": false
+    },
+    {
+      "id": "r_1304103e2821:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.88,
+      "reviewed": false
+    },
+    {
+      "id": "r_78d028e03f6a:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.66,
+      "reviewed": true
+    },
+    {
+      "id": "r_bd25d4e17524:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.63,
+      "reviewed": false
+    },
+    {
+      "id": "r_6cf7f6b4f9e4:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.76,
+      "reviewed": false
+    },
+    {
+      "id": "r_bbbe2bdc2b69:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.69,
+      "reviewed": false
+    },
+    {
+      "id": "r_ee17b7a0b653:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.64,
+      "reviewed": false
+    },
+    {
+      "id": "r_da0db90499ae:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.6,
+      "reviewed": true
+    },
+    {
+      "id": "r_e8d120d57c9f:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.91,
+      "reviewed": false
+    },
+    {
+      "id": "r_e9dcc4b4d320:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_4d70c05a72a0:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.71,
+      "reviewed": false
+    },
+    {
+      "id": "r_7ed9efb73a32:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.91,
+      "reviewed": false
+    },
+    {
+      "id": "r_be2f85382c95:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.71,
+      "reviewed": false
+    },
+    {
+      "id": "r_509b5c5ccaf4:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.83,
+      "reviewed": false
+    },
+    {
+      "id": "r_6217168d9af2:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.75,
+      "reviewed": false
+    },
+    {
+      "id": "r_729015cd6307:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.89,
+      "reviewed": false
+    },
+    {
+      "id": "r_d1451b857966:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.6,
+      "reviewed": true
+    },
+    {
+      "id": "r_be35595885e7:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.8,
+      "reviewed": false
+    },
+    {
+      "id": "r_a7f2ab45e942:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.75,
+      "reviewed": false
+    },
+    {
+      "id": "r_2d50b234b019:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.68,
+      "reviewed": true
+    },
+    {
+      "id": "r_730e92e85d79:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.74,
+      "reviewed": false
+    },
+    {
+      "id": "r_2fb1aae9db84:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.92,
+      "reviewed": false
+    },
+    {
+      "id": "r_c48fe8acbc5b:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.86,
+      "reviewed": false
+    },
+    {
+      "id": "r_9c2e6a6c1361:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.7,
+      "reviewed": false
+    },
+    {
+      "id": "r_158d3cf069ae:O1",
+      "sentiment": 1,
+      "themes": [
+        "tool-quality",
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.83,
+      "reviewed": false
+    },
+    {
+      "id": "r_7e9ceaba4386:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.69,
+      "reviewed": false
+    },
+    {
+      "id": "r_ecad8cd72edc:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.62,
+      "reviewed": true
+    },
+    {
+      "id": "r_9a6ceec7ada1:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.64,
+      "reviewed": true
+    },
+    {
+      "id": "r_e02a31187bb5:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.89,
+      "reviewed": false
+    },
+    {
+      "id": "r_8c9af66acd18:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.94,
+      "reviewed": false
+    },
+    {
+      "id": "r_7a20cd5d02b5:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.88,
+      "reviewed": false
+    },
+    {
+      "id": "r_b8192be17ff9:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.56,
+      "reviewed": false
+    },
+    {
+      "id": "r_33d4539526f8:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.59,
+      "reviewed": false
+    },
+    {
+      "id": "r_793961160b9e:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.87,
+      "reviewed": false
+    },
+    {
+      "id": "r_38bab559cae9:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.67,
+      "reviewed": false
+    },
+    {
+      "id": "r_e9b7c4633772:O1",
+      "sentiment": 0,
+      "themes": [
+        "skills-gap"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.83,
+      "reviewed": false
+    },
+    {
+      "id": "r_d658f58c9a04:O1",
+      "sentiment": -1,
+      "themes": [
+        "manager-support"
+      ],
+      "adkar": "reinforcement",
+      "confidence": 0.72,
+      "reviewed": false
+    },
+    {
+      "id": "r_0ef8ad1368da:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.8,
+      "reviewed": false
+    },
+    {
+      "id": "r_ad192b0f4d39:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.9,
+      "reviewed": false
+    },
+    {
+      "id": "r_22ccf9f24342:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_0ce54929ff1d:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.79,
+      "reviewed": false
+    },
+    {
+      "id": "r_473a13d4b60e:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.94,
+      "reviewed": false
+    },
+    {
+      "id": "r_cd64d1bdd73e:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.84,
+      "reviewed": false
+    },
+    {
+      "id": "r_73f40670e71c:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.77,
+      "reviewed": false
+    },
+    {
+      "id": "r_1ea403accf88:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.61,
+      "reviewed": false
+    },
+    {
+      "id": "r_139e2c2734d3:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.76,
+      "reviewed": false
+    },
+    {
+      "id": "r_577a57effaa4:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.65,
+      "reviewed": true
+    },
+    {
+      "id": "r_f65c555cdb37:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.92,
+      "reviewed": false
+    },
+    {
+      "id": "r_fc57ba110841:O1",
+      "sentiment": -1,
+      "themes": [
+        "trust",
+        "workload"
+      ],
+      "adkar": "ability",
+      "confidence": 0.74,
+      "reviewed": false
+    },
+    {
+      "id": "r_ff3f0aedb288:O1",
+      "sentiment": 1,
+      "themes": [
+        "productivity"
+      ],
+      "adkar": null,
+      "confidence": 0.94,
+      "reviewed": false
+    },
+    {
+      "id": "r_be431495f63e:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.97,
+      "reviewed": false
+    },
+    {
+      "id": "r_2db9755acdc7:O1",
+      "sentiment": 0,
+      "themes": [
+        "policy-clarity",
+        "governance"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.64,
+      "reviewed": true
+    },
+    {
+      "id": "r_8dbf40a95140:O1",
+      "sentiment": -1,
+      "themes": [
+        "policy-clarity",
+        "privacy"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.57,
+      "reviewed": true
+    },
+    {
+      "id": "r_b1c2902eac1f:O1",
+      "sentiment": -1,
+      "themes": [
+        "policy-clarity",
+        "privacy"
+      ],
+      "adkar": "knowledge",
+      "confidence": 0.98,
+      "reviewed": false
+    }
+  ]
+}
