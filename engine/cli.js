@@ -109,6 +109,19 @@ const COMMANDS = {
   plan: (dir, o) => status(loadValid(dir), { today: str(o.today) }).plan,
   impact: (dir) => analyzeImpact(loadValid(dir).groups),
   'timing-form': (dir) => generateTimingForm(dir),
+  doctor: (dir) => {
+    const project = { dir, exists: fs.existsSync(path.join(dir, 'project.json')), valid: null, errors: 0, salt: fs.existsSync(path.join(dir, '.salt')), waves: 0, usageSnapshots: 0, processes: 0, pendingApprovals: 0 };
+    if (project.exists) {
+      try {
+        const d = loadProject(dir);
+        const v = validate(d);
+        Object.assign(project, { valid: v.ok, errors: v.errors.length, waves: d.waves.length, usageSnapshots: d.usage.length, processes: ((d.processes && d.processes.processes) || []).length, pendingApprovals: approvals.list(dir).length });
+      } catch {
+        project.valid = false;
+      }
+    }
+    return { node: { version: process.version, ok: Number(process.versions.node.split('.')[0]) >= 18 }, platform: process.platform, project };
+  },
   report: (dir, o) =>
     writeReport(dir, { wave: str(o.wave), lang: str(o.lang), today: str(o.today), narrativeFile: str(o.narrative) ? path.resolve(o.narrative) : null, out: str(o.out) ? path.resolve(o.out) : undefined }),
   init: (dir, o) =>

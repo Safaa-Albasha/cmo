@@ -38,3 +38,11 @@ test('init through a real process', () => {
   const st = JSON.parse(execFileSync(process.execPath, [cli, 'status', '--dir', dir], { encoding: 'utf8' }));
   assert.strictEqual(st.project.currency, 'KWD');
 });
+
+test('doctor reports environment and project health', () => {
+  const r = run(['doctor', '--dir', EX]).out;
+  assert.strictEqual(r.node.ok, true);
+  assert.deepStrictEqual([r.project.exists, r.project.valid, r.project.waves, r.project.usageSnapshots, r.project.processes], [true, true, 3, 6, 5]);
+  const none = run(['doctor', '--dir', path.join(os.tmpdir(), 'no-such-cmo')]).out;
+  assert.strictEqual(none.project.exists, false);
+});

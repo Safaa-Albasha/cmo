@@ -1,0 +1,16 @@
+{
+  "name": "cmo",
+  "owner": {
+    "name": "Safaa Albasha"
+  },
+  "metadata": {
+    "description": "AI-adoption Change Management Office for Claude"
+  },
+  "plugins": [
+    {
+      "name": "cmo",
+      "source": "./",
+      "description": "AI-adoption Change Management Office — Prosci + Kotter, ADKAR, sentiment, adoption and ROI before/after. Arabic/English"
+    }
+  ]
+}
