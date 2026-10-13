@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تبنّي الذكاء الاصطناعي في شركة النخبة / AI Adoption at Al Nukhba Co.</title>
+<style>
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --surface-2: #f0f2f5; --text: #17202a; --muted: #5d6b7a; --border: #dde2e8;
+  --accent: #1f5fbf; --green: #1e8e4e; --amber: #c27c0e; --red: #c6372f; --grey: #9aa5b1;
+  --pv: #7a8796; --ev: #1f5fbf; --ac: #c6372f; --scope: #9aa5b1;
+  --heat-low: #d7efe0; --heat-med: #f8e2b4; --heat-high: #f4c0bb; --heat-empty: #eef1f4;
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0f141a; --surface: #171e26; --surface-2: #1f2832; --text: #e6ebf0; --muted: #9aa8b6; --border: #2c3846;
+  --accent: #6ea4f5; --green: #4cc27f; --amber: #f0b44c; --red: #f07368; --grey: #6b7887;
+  --pv: #8c99a8; --ev: #6ea4f5; --ac: #f07368; --scope: #6b7887;
+  --heat-low: #1d3b2a; --heat-med: #4a3a17; --heat-high: #4f2522; --heat-empty: #1f2832;
+  --shadow: none; color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141a; --surface: #171e26; --surface-2: #1f2832; --text: #e6ebf0; --muted: #9aa8b6; --border: #2c3846;
+    --accent: #6ea4f5; --green: #4cc27f; --amber: #f0b44c; --red: #f07368; --grey: #6b7887;
+    --pv: #8c99a8; --ev: #6ea4f5; --ac: #f07368; --scope: #6b7887;
+    --heat-low: #1d3b2a; --heat-med: #4a3a17; --heat-high: #4f2522; --heat-empty: #1f2832;
+    --shadow: none; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.55 "Segoe UI", Tahoma, "Noto Sans Arabic", "Noto Sans", system-ui, sans-serif; }
+.toolbar { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.toolbar .title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.toolbar .actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+button { font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+main { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+.slide { scroll-margin-top: 72px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); min-width: 0; }
+.slide > h2 { margin: 0 0 14px; font-size: 1.25rem; }
+h3 { margin: 18px 0 8px; font-size: 1rem; color: var(--muted); font-weight: 600; }
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+.grid > * { min-width: 0; }
+.kpi { background: var(--surface-2); border-radius: 10px; padding: 12px; min-width: 0; }
+.kpi .label { color: var(--muted); font-size: .82rem; }
+.kpi .value { font-size: 1.35rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.kpi .sub { font-size: .8rem; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; unicode-bidi: isolate; }
+.pos { color: var(--green); } .neg { color: var(--red); }
+.rag { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: .85rem; }
+.rag::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.rag-green { color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); }
+.rag-amber { color: var(--amber); background: color-mix(in srgb, var(--amber) 16%, transparent); }
+.rag-red { color: var(--red); background: color-mix(in srgb, var(--red) 14%, transparent); }
+.rag-null { color: var(--grey); background: var(--surface-2); }
+.cover { display: grid; gap: 14px; }
+.cover h1 { margin: 0; font-size: 1.8rem; line-height: 1.25; }
+.cover .meta { color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.cover .big { font-size: 1.1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { padding: 7px 8px; border-bottom: 1px solid var(--border); text-align: start; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: .8rem; }
+.table-wrap { overflow-x: auto; }
+ul.clean { margin: 0; padding-inline-start: 18px; }
+.chart { width: 100%; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart text { fill: var(--muted); font-size: 11px; }
+.chart .grid-line { stroke: var(--border); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); margin-top: 6px; }
+.legend i { display: inline-block; width: 14px; height: 4px; border-radius: 2px; margin-inline-end: 6px; vertical-align: middle; }
+.ltr { direction: ltr; }
+.progress { height: 12px; border-radius: 6px; background: var(--surface-2); overflow: hidden; display: flex; }
+.progress > span { display: block; height: 100%; background: var(--accent); }
+/* Gantt */
+.gantt { display: grid; grid-template-columns: minmax(110px, 30%) 1fr; font-size: .82rem; }
+.gantt .lbl { padding: 6px 8px; border-bottom: 1px solid var(--border); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gantt .lbl.crit { font-weight: 650; }
+.gantt .track { position: relative; border-bottom: 1px solid var(--border); min-height: 30px; direction: ltr; }
+.gantt .head { position: relative; height: 22px; direction: ltr; color: var(--muted); font-size: .72rem; border-bottom: 1px solid var(--border); }
+.gantt .tick { position: absolute; top: 3px; transform: translateX(-50%); white-space: nowrap; }
+.bar { position: absolute; border-radius: 4px; }
+.bar.base { height: 4px; top: 22px; background: var(--grey); opacity: .7; }
+.bar.fc { height: 12px; top: 7px; background: color-mix(in srgb, var(--accent) 35%, transparent); border: 1px solid var(--accent); overflow: hidden; }
+.bar.fc.crit { background: color-mix(in srgb, var(--red) 30%, transparent); border-color: var(--red); }
+.bar.fc.done { background: color-mix(in srgb, var(--green) 45%, transparent); border-color: var(--green); }
+.bar.fc > span { display: block; height: 100%; background: currentColor; opacity: .55; }
+.bar.fc { color: var(--accent); } .bar.fc.crit { color: var(--red); } .bar.fc.done { color: var(--green); }
+.vline { position: absolute; top: 0; bottom: 0; width: 0; border-inline-start: 2px dashed var(--amber); pointer-events: none; }
+.vline.deadline { border-color: var(--red); }
+/* heat map */
+.heat { display: grid; grid-template-columns: 22px repeat(5, minmax(0, 1fr)); gap: 4px; direction: ltr; max-width: 420px; }
+.heat .cell { min-width: 0; padding: 0; aspect-ratio: 1.6; border-radius: 6px; display: grid; place-items: center; font-weight: 650; border: 2px solid transparent; cursor: pointer; background: var(--heat-empty); color: var(--text); }
+.heat .cell.low { background: var(--heat-low); } .heat .cell.medium { background: var(--heat-med); } .heat .cell.high { background: var(--heat-high); }
+.heat .cell.sel { border-color: var(--accent); }
+.heat .ax { display: grid; place-items: center; color: var(--muted); font-size: .75rem; }
+.lv { font-weight: 600; } .lv-high { color: var(--red); } .lv-medium { color: var(--amber); } .lv-low { color: var(--green); }
+.quad { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.quad > div { background: var(--surface-2); border-radius: 10px; padding: 10px; min-height: 90px; }
+.quad h4 { margin: 0 0 6px; font-size: .85rem; }
+.pill { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; margin: 2px; font-size: .8rem; }
+.note { color: var(--muted); font-size: .85rem; }
+.whatif { background: var(--surface-2); border-radius: 10px; padding: 12px; margin-top: 12px; }
+.whatif input[type=range] { width: 100%; }
+.footer { color: var(--muted); font-size: .8rem; text-align: center; padding: 8px 16px 24px; }
+.slide-nav { display: none; }
+/* presentation mode */
+body.present .toolbar .hide-present { display: none; }
+body.present main { max-width: none; padding: 0; display: block; }
+body.present .slide { display: none; min-height: calc(100vh - 110px); border-radius: 0; border: 0; box-shadow: none; padding: 32px max(16px, 6vw); }
+body.present .slide.active { display: block; }
+body.present .slide > h2 { font-size: 1.8rem; }
+body.present .slide-nav { display: flex; position: fixed; bottom: 0; inset-inline: 0; justify-content: center; gap: 12px; align-items: center; padding: 10px; background: var(--surface); border-top: 1px solid var(--border); }
+body.present .footer { display: none; }
+/* CMO sections */
+.adk-table td, .adk-table th { text-align: center; }
+.adk-table td:first-child, .adk-table th:first-child { text-align: start; }
+.adk-table tr.overall td { font-weight: 650; }
+.adk { font-variant-numeric: tabular-nums; border-radius: 6px; }
+.adk.h1, .sw.h1 { background: color-mix(in srgb, var(--red) 34%, transparent); }
+.adk.h2, .sw.h2 { background: color-mix(in srgb, var(--amber) 34%, transparent); }
+.adk.h3, .sw.h3 { background: color-mix(in srgb, var(--amber) 14%, transparent); }
+.adk.h4, .sw.h4 { background: color-mix(in srgb, var(--green) 18%, transparent); }
+.adk.h5, .sw.h5 { background: color-mix(in srgb, var(--green) 36%, transparent); }
+.adk.barrier { outline: 3px solid var(--text); outline-offset: -3px; font-weight: 700; }
+.legend .sw { width: 14px; height: 14px; border-radius: 4px; }
+.legend .barrier-sw { outline: 2px solid var(--text); outline-offset: -2px; }
+.steps { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr)); }
+.step { border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; background: var(--surface-2); min-width: 0; }
+.step .stepnum { font-weight: 700; font-size: 1.1rem; }
+.step .steptitle { font-weight: 600; font-size: .9rem; }
+.step.st-done { border-color: var(--green); }
+.step.st-in-progress { border-color: var(--accent); }
+.step.st-missing { border-color: var(--red); border-style: dashed; }
+.divbars, .funnel { display: grid; gap: 6px; }
+.dbar, .frow { display: grid; grid-template-columns: minmax(80px, 34%) 1fr 70px; gap: 8px; align-items: center; font-size: .85rem; }
+.dl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dtrack, .ftrack { position: relative; height: 14px; background: var(--surface-2); border-radius: 7px; overflow: hidden; }
+.dmid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--grey); }
+.dfill { position: absolute; top: 2px; bottom: 2px; border-radius: 5px; }
+.ffill { position: absolute; top: 0; bottom: 0; left: 0; background: var(--accent); border-radius: 7px; }
+[dir="rtl"] .ffill { left: auto; right: 0; }
+.pos-bg { background: var(--green); } .neg-bg { background: var(--red); }
+blockquote { margin: 8px 0; padding: 8px 12px; border-inline-start: 4px solid var(--accent); background: var(--surface-2); border-radius: 6px; }
+.lvl { display: inline-block; min-width: 26px; text-align: center; border-radius: 6px; font-weight: 650; }
+.lvl4, .lvl5 { background: color-mix(in srgb, var(--red) 25%, transparent); }
+.lvl3 { background: color-mix(in srgb, var(--amber) 25%, transparent); }
+.whatif label { display: block; margin-top: 8px; font-size: .85rem; color: var(--muted); }
+@media (max-width: 640px) {
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .cover h1 { font-size: 1.4rem; }
+  .gantt { grid-template-columns: 96px 1fr; }
+}
+@media print {
+  .toolbar, .slide-nav, .whatif { display: none !important; }
+  body { background: #fff; }
+  main { display: block; max-width: none; }
+  .slide { display: block !important; break-after: page; box-shadow: none; border: 0; }
+}
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="title" id="tb-title"></div>
+  <div class="actions">
+    <button id="btn-lang" type="button"></button>
+    <button id="btn-theme" type="button" class="hide-present"></button>
+    <button id="btn-print" type="button" class="hide-present"></button>
+    <button id="btn-mode" type="button" class="primary"></button>
+  </div>
+</header>
+<main id="app"></main>
+<nav class="slide-nav">
+  <button id="btn-prev" type="button"></button>
+  <span id="slide-count" class="num"></span>
+  <button id="btn-next" type="button"></button>
+</nav>
+<div class="footer" id="footer"></div>
+<script id="pmo-data" type="application/json">{"meta":{"name":"تبنّي الذكاء الاصطناعي في شركة النخبة / AI Adoption at Al Nukhba Co.","type":"ai-adoption","lang":"ar","currency":"SAR","sponsor":"الرئيس التنفيذي للعمليات / COO","changeManager":"سارة / Sara","latestWave":"pulse-2","baselineWave":"baseline","latestDate":"2026-07-01","usageDate":"2026-07-31","today":"2026-10-13","minGroupSize":5,"generatedAt":"2026-10-13T18:26:49.924Z"},"groups":[{"id":"FIN","name":"المالية / Finance","headcount":60},{"id":"HR","name":"الموارد البشرية / Human Resources","headcount":40},{"id":"OPS","name":"العمليات وخدمة العملاء / Operations & Customer Service","headcount":150},{"id":"SALES","name":"المبيعات / Sales","headcount":100},{"id":"IT","name":"تقنية المعلومات / IT","headcount":45},{"id":"LEGAL","name":"الشؤون القانونية / Legal","headcount":4}],"themes":[{"id":"job-security","ar":"الخوف على الوظيفة","en":"Job security"},{"id":"trust","ar":"الثقة بدقة النتائج","en":"Trust in accuracy"},{"id":"privacy","ar":"خصوصية البيانات","en":"Data privacy"},{"id":"skills-gap","ar":"نقص المهارات","en":"Skills gap"},{"id":"workload","ar":"ضغط العمل والوقت","en":"Workload / time"},{"id":"manager-support","ar":"دعم المدير","en":"Manager support"},{"id":"policy-clarity","ar":"وضوح الاستخدام المسموح","en":"Clarity of allowed use"},{"id":"governance","ar":"الحوكمة والمخاطر","en":"Governance & risk"},{"id":"productivity","ar":"الإنتاجية والفائدة","en":"Productivity & benefit"},{"id":"tool-quality","ar":"جودة الأداة وسهولتها","en":"Tool quality & usability"}],"status":{"readiness":{"latest":{"overall":{"score":69.5,"rag":"amber"},"groups":{"FIN":{"score":67,"rag":"amber","suppressed":false},"HR":{"score":75,"rag":"green","suppressed":false},"OPS":{"score":58.6,"rag":"amber","suppressed":false},"SALES":{"score":76.5,"rag":"green","suppressed":false},"IT":{"score":83.7,"rag":"green","suppressed":false},"LEGAL":{"score":null,"rag":null,"suppressed":true}}},"baseline":{"overall":{"score":37.1,"rag":"red"},"groups":{"FIN":{"score":30.1,"rag":"red","suppressed":false},"HR":{"score":37.1,"rag":"red","suppressed":false},"OPS":{"score":26.4,"rag":"red","suppressed":false},"SALES":{"score":42,"rag":"red","suppressed":false},"IT":{"score":61.8,"rag":"amber","suppressed":false},"LEGAL":{"score":null,"rag":null,"suppressed":true}}}},"compare":{"people":{"adkarAverage":{"before":2.84,"after":3.66,"delta":0.82},"awareness":{"before":3.26,"after":4.06,"delta":0.8},"desire":{"before":3.27,"after":3.79,"delta":0.52},"knowledge":{"before":2.73,"after":3.66,"delta":0.93},"ability":{"before":2.52,"after":3.5,"delta":0.98},"reinforcement":{"before":2.41,"after":3.29,"delta":0.88},"net":{"before":-38.7,"after":48.6,"delta":87.3},"negative":{"before":59.5,"after":23.6,"delta":-35.9}},"adoption":{"reach":{"before":26.5,"after":71.2,"delta":44.7},"activation":{"before":35.6,"after":81.2,"delta":45.6},"frequency":{"before":1.49,"after":3.75,"delta":2.26},"depth":{"before":1.59,"after":4.15,"delta":2.56},"retention":{"before":56.4,"after":85.3,"delta":28.9}},"readiness":{"score":{"before":37.1,"after":69.5,"delta":32.4}}},"notes":[]},"sections":{"journey":{"total":17,"done":11,"percentDone":64.7,"phases":{"prepare":{"total":6,"done":6,"inProgress":0,"percentDone":100},"manage":{"total":7,"done":5,"inProgress":2,"percentDone":71.4},"sustain":{"total":4,"done":0,"inProgress":0,"percentDone":0}},"kotter":[{"step":1,"activities":1,"done":1,"status":"done"},{"step":2,"activities":1,"done":1,"status":"done"},{"step":3,"activities":1,"done":1,"status":"done"},{"step":4,"activities":1,"done":1,"status":"done"},{"step":5,"activities":5,"done":5,"status":"done"},{"step":6,"activities":1,"done":0,"status":"in-progress"},{"step":7,"activities":2,"done":0,"status":"planned"},{"step":8,"activities":2,"done":0,"status":"planned"}],"adkar":{"awareness":{"activities":3,"done":3},"desire":{"activities":3,"done":2},"knowledge":{"activities":2,"done":2},"ability":{"activities":3,"done":2},"reinforcement":{"activities":4,"done":0}},"levers":{"sponsorship":3,"communications":2,"training":3,"coaching":2,"resistance":1,"reinforcement":2,"assessment":3,"governance":1},"overdue":[{"id":"S01","title":{"ar":"التقدير والحوافز","en":"Recognition and incentives"},"due":"2026-09-30","owner":"HR","status":"planned"}],"gaps":[],"upcoming":[{"id":"M06","title":{"ar":"عرض الإنجازات السريعة","en":"Showcase quick wins"},"owner":"Comms","due":"2026-10-31"}]},"adkar":{"overall":{"n":212,"scores":{"awareness":4.06,"desire":3.79,"knowledge":3.66,"ability":3.5,"reinforcement":3.29},"barrier":null,"average":3.66,"barrierDistribution":{"none":177,"reinforcement":24,"ability":5,"desire":3,"knowledge":2,"awareness":1},"baselineAverage":2.84},"groups":[{"id":"FIN","suppressed":false,"n":27,"scores":{"awareness":4.24,"desire":3.5,"knowledge":3.7,"ability":3.37,"reinforcement":3.19},"barrier":null,"average":3.6,"baselineAverage":2.58},{"id":"HR","suppressed":false,"n":17,"scores":{"awareness":4.18,"desire":4.06,"knowledge":3.85,"ability":3.62,"reinforcement":3.41},"barrier":null,"average":3.82,"baselineAverage":2.95},{"id":"OPS","suppressed":false,"n":79,"scores":{"awareness":3.86,"desire":3.47,"knowledge":3.39,"ability":3.2,"reinforcement":2.96},"barrier":"reinforcement","average":3.38,"baselineAverage":2.48},{"id":"SALES","suppressed":false,"n":58,"scores":{"awareness":4.11,"desire":4.09,"knowledge":3.75,"ability":3.66,"reinforcement":3.39},"barrier":null,"average":3.8,"baselineAverage":3.03},{"id":"IT","suppressed":false,"n":27,"scores":{"awareness":4.44,"desire":4.28,"knowledge":4.09,"ability":4.11,"reinforcement":4},"barrier":null,"average":4.18,"baselineAverage":3.86},{"id":"LEGAL","suppressed":true,"n":4}]},"sentiment":{"latest":{"overall":{"n":72,"positive":72.2,"neutral":4.2,"negative":23.6,"net":48.6,"themes":[{"theme":"productivity","count":34,"share":47.2,"net":100},{"theme":"manager-support","count":19,"share":26.4,"net":89.5},{"theme":"tool-quality","count":10,"share":13.9,"net":100},{"theme":"workload","count":10,"share":13.9,"net":-100},{"theme":"trust","count":6,"share":8.3,"net":-100},{"theme":"job-security","count":4,"share":5.6,"net":-100},{"theme":"skills-gap","count":4,"share":5.6,"net":-50},{"theme":"governance","count":1,"share":1.4,"net":0},{"theme":"policy-clarity","count":1,"share":1.4,"net":0}],"adkar":{"desire":4,"ability":28,"knowledge":5,"reinforcement":1},"pendingReview":17,"reviewed":19,"total":89},"groups":{"FIN":{"n":15,"positive":80,"neutral":0,"negative":20,"net":60,"themes":[{"theme":"productivity","count":7,"share":46.7,"net":100},{"theme":"manager-support","count":5,"share":33.3,"net":100},{"theme":"tool-quality","count":3,"share":20,"net":100},{"theme":"job-security","count":2,"share":13.3,"net":-100},{"theme":"trust","count":1,"share":6.7,"net":-100},{"theme":"workload","count":1,"share":6.7,"net":-100}],"adkar":{"desire":2,"ability":6},"respondents":27,"suppressed":false},"HR":{"n":6,"positive":83.3,"neutral":16.7,"negative":0,"net":83.3,"themes":[{"theme":"productivity","count":3,"share":50,"net":100},{"theme":"manager-support","count":2,"share":33.3,"net":100},{"theme":"tool-quality","count":2,"share":33.3,"net":100},{"theme":"governance","count":1,"share":16.7,"net":0},{"theme":"policy-clarity","count":1,"share":16.7,"net":0}],"adkar":{"ability":2,"knowledge":1},"respondents":17,"suppressed":false},"OPS":{"n":30,"positive":56.7,"neutral":0,"negative":43.3,"net":13.3,"themes":[{"theme":"productivity","count":10,"share":33.3,"net":100},{"theme":"workload","count":9,"share":30,"net":-100},{"theme":"manager-support","count":7,"share":23.3,"net":100},{"theme":"trust","count":5,"share":16.7,"net":-100},{"theme":"job-security","count":2,"share":6.7,"net":-100},{"theme":"skills-gap","count":2,"share":6.7,"net":-100},{"theme":"tool-quality","count":1,"share":3.3,"net":100}],"adkar":{"knowledge":2,"ability":16,"desire":2},"respondents":79,"suppressed":false},"SALES":{"n":21,"positive":85.7,"neutral":9.5,"negative":4.8,"net":81,"themes":[{"theme":"productivity","count":14,"share":66.7,"net":100},{"theme":"manager-support","count":5,"share":23.8,"net":60},{"theme":"tool-quality","count":4,"share":19,"net":100},{"theme":"skills-gap","count":2,"share":9.5,"net":0}],"adkar":{"reinforcement":1,"ability":4,"knowledge":2},"respondents":58,"suppressed":false},"IT":{"n":0,"positive":null,"neutral":null,"negative":null,"net":null,"themes":[],"adkar":{},"respondents":27,"suppressed":false},"LEGAL":{"respondents":4,"suppressed":true}}},"baseline":{"overall":{"n":111,"positive":20.7,"neutral":19.8,"negative":59.5,"net":-38.7,"themes":[{"theme":"workload","count":27,"share":24.3,"net":-100},{"theme":"skills-gap","count":22,"share":19.8,"net":-31.8},{"theme":"manager-support","count":17,"share":15.3,"net":-29.4},{"theme":"productivity","count":17,"share":15.3,"net":100},{"theme":"job-security","count":16,"share":14.4,"net":-100},{"theme":"trust","count":15,"share":13.5,"net":-100},{"theme":"policy-clarity","count":12,"share":10.8,"net":-41.7},{"theme":"governance","count":7,"share":6.3,"net":0},{"theme":"tool-quality","count":6,"share":5.4,"net":100},{"theme":"privacy","count":5,"share":4.5,"net":-100}],"adkar":{"desire":16,"knowledge":34,"ability":33,"reinforcement":11},"pendingReview":22,"reviewed":20,"total":133},"groups":{"FIN":{"n":15,"positive":26.7,"neutral":0,"negative":73.3,"net":-46.7,"themes":[{"theme":"job-security","count":4,"share":26.7,"net":-100},{"theme":"productivity","count":4,"share":26.7,"net":100},{"theme":"trust","count":4,"share":26.7,"net":-100},{"theme":"workload","count":4,"share":26.7,"net":-100},{"theme":"policy-clarity","count":3,"share":20,"net":-100},{"theme":"privacy","count":3,"share":20,"net":-100},{"theme":"tool-quality","count":2,"share":13.3,"net":100}],"adkar":{"desire":4,"knowledge":3,"ability":4},"respondents":35,"suppressed":false},"HR":{"n":6,"positive":0,"neutral":50,"negative":50,"net":-50,"themes":[{"theme":"skills-gap","count":4,"share":66.7,"net":-75},{"theme":"governance","count":2,"share":33.3,"net":0},{"theme":"policy-clarity","count":2,"share":33.3,"net":0}],"adkar":{"knowledge":6},"respondents":21,"suppressed":false},"OPS":{"n":45,"positive":24.4,"neutral":0,"negative":75.6,"net":-51.1,"themes":[{"theme":"workload","count":18,"share":40,"net":-100},{"theme":"job-security","count":12,"share":26.7,"net":-100},{"theme":"manager-support","count":6,"share":13.3,"net":100},{"theme":"trust","count":6,"share":13.3,"net":-100},{"theme":"productivity","count":5,"share":11.1,"net":100},{"theme":"skills-gap","count":4,"share":8.9,"net":-100},{"theme":"tool-quality","count":2,"share":4.4,"net":100}],"adkar":{"knowledge":4,"ability":24,"desire":12},"respondents":96,"suppressed":false},"SALES":{"n":29,"positive":13.8,"neutral":48.3,"negative":37.9,"net":-24.1,"themes":[{"theme":"skills-gap","count":14,"share":48.3,"net":0},{"theme":"manager-support","count":11,"share":37.9,"net":-100},{"theme":"productivity","count":4,"share":13.8,"net":100},{"theme":"tool-quality","count":2,"share":6.9,"net":100}],"adkar":{"knowledge":14,"reinforcement":11},"respondents":57,"suppressed":false},"IT":{"n":13,"positive":30.8,"neutral":30.8,"negative":38.5,"net":-7.7,"themes":[{"theme":"trust","count":5,"share":38.5,"net":-100},{"theme":"workload","count":5,"share":38.5,"net":-100},{"theme":"governance","count":4,"share":30.8,"net":0},{"theme":"policy-clarity","count":4,"share":30.8,"net":0},{"theme":"productivity","count":4,"share":30.8,"net":100}],"adkar":{"knowledge":4,"ability":5},"respondents":30,"suppressed":false},"LEGAL":{"respondents":4,"suppressed":true}}},"trend":[{"id":"baseline","date":"2026-03-01","net":-38.7,"negative":59.5,"adkarAverage":2.84,"respondents":243},{"id":"pulse-1","date":"2026-05-01","net":-8.2,"negative":46.9,"adkarAverage":3.27,"respondents":244},{"id":"pulse-2","date":"2026-07-01","net":48.6,"negative":23.6,"adkarAverage":3.66,"respondents":212}]},"adoption":{"latest":{"date":"2026-07-31","overall":{"licensed":393,"activated":319,"activeWeekly":280,"powerUsers":111,"activation":81.2,"reach":71.2,"retention":85.3,"powerShare":28.2,"frequency":3.75,"depth":4.15},"tools":{"copilot":{"licensed":318,"activated":249,"activeWeekly":217,"powerUsers":87,"activation":78.3,"reach":68.2,"retention":85.5,"powerShare":27.4,"frequency":3.77,"depth":4.16},"claude":{"licensed":75,"activated":70,"activeWeekly":63,"powerUsers":24,"activation":93.3,"reach":84,"retention":84.3,"powerShare":32,"frequency":3.67,"depth":4.12}},"groups":{"FIN":{"licensed":60,"activated":43,"activeWeekly":37,"powerUsers":14,"activation":71.7,"reach":61.7,"retention":86,"powerShare":23.3,"frequency":3.72,"depth":4.14,"suppressed":false},"HR":{"licensed":35,"activated":29,"activeWeekly":25,"powerUsers":10,"activation":82.9,"reach":71.4,"retention":86.2,"powerShare":28.6,"frequency":3.74,"depth":4.3,"suppressed":false},"OPS":{"licensed":120,"activated":81,"activeWeekly":70,"powerUsers":28,"activation":67.5,"reach":58.3,"retention":85.2,"powerShare":23.3,"frequency":3.8,"depth":4.01,"suppressed":false},"SALES":{"licensed":100,"activated":89,"activeWeekly":78,"powerUsers":31,"activation":89,"reach":78,"retention":84.3,"powerShare":31,"frequency":3.75,"depth":4.29,"suppressed":false},"IT":{"licensed":75,"activated":75,"activeWeekly":68,"powerUsers":27,"activation":100,"reach":90.7,"retention":85.3,"powerShare":36,"frequency":3.71,"depth":4.08,"suppressed":false},"LEGAL":{"licensed":3,"suppressed":true}}},"first":{"date":"2026-02-28","overall":{"licensed":393,"activated":140,"activeWeekly":104,"powerUsers":11,"activation":35.6,"reach":26.5,"retention":56.4,"powerShare":2.8,"frequency":1.49,"depth":1.59},"tools":{"copilot":{"licensed":318,"activated":95,"activeWeekly":71,"powerUsers":7,"activation":29.9,"reach":22.3,"retention":56.8,"powerShare":2.2,"frequency":1.5,"depth":1.6},"claude":{"licensed":75,"activated":45,"activeWeekly":33,"powerUsers":4,"activation":60,"reach":44,"retention":55.6,"powerShare":5.3,"frequency":1.46,"depth":1.59}},"groups":{"FIN":{"licensed":60,"activated":14,"activeWeekly":10,"powerUsers":1,"activation":23.3,"reach":16.7,"retention":57.1,"powerShare":1.7,"frequency":1.57,"depth":1.58,"suppressed":false},"HR":{"licensed":35,"activated":12,"activeWeekly":9,"powerUsers":1,"activation":34.3,"reach":25.7,"retention":58.3,"powerShare":2.9,"frequency":1.52,"depth":1.51,"suppressed":false},"OPS":{"licensed":120,"activated":16,"activeWeekly":12,"powerUsers":1,"activation":13.3,"reach":10,"retention":56.3,"powerShare":0.8,"frequency":1.48,"depth":1.59,"suppressed":false},"SALES":{"licensed":100,"activated":40,"activeWeekly":30,"powerUsers":3,"activation":40,"reach":30,"retention":55,"powerShare":3,"frequency":1.51,"depth":1.55,"suppressed":false},"IT":{"licensed":75,"activated":57,"activeWeekly":42,"powerUsers":5,"activation":76,"reach":56,"retention":56.1,"powerShare":6.7,"frequency":1.45,"depth":1.65,"suppressed":false},"LEGAL":{"licensed":3,"suppressed":true}}},"trend":[{"date":"2026-02-28","reach":26.5,"activation":35.6,"frequency":1.49,"retention":56.4},{"date":"2026-03-31","reach":35.1,"activation":46.1,"frequency":1.99,"retention":61.9},{"date":"2026-04-30","reach":43.8,"activation":55.7,"frequency":2.41,"retention":67.6},{"date":"2026-05-31","reach":52.9,"activation":65.1,"frequency":2.84,"retention":73},{"date":"2026-06-30","reach":61.8,"activation":73.5,"frequency":3.3,"retention":79.2},{"date":"2026-07-31","reach":71.2,"activation":81.2,"frequency":3.75,"retention":85.3}]},"value":{"processes":[{"id":"PR1","name":"تقرير المبيعات الشهري / Monthly sales report","group":"SALES","frequencyPerMonth":40,"hourlyCost":120,"before":{"minutes":349,"source":"measured"},"after":{"minutes":98.1,"source":"measured"},"savedMinutes":250.9,"improvementPct":71.9,"hoursPerMonth":167.3,"valuePerMonth":20074.5,"errorRate":{"before":12.5,"after":0},"evidence":{"status":"confirmed","p":0,"t":38.729,"df":12.68,"ci":[236.9,264.96],"nBefore":8,"nAfter":8}},{"id":"PR2","name":"الرد على استفسار عميل / Customer inquiry reply","group":"OPS","frequencyPerMonth":3000,"hourlyCost":60,"before":{"minutes":24.9,"source":"measured"},"after":{"minutes":9,"source":"measured"},"savedMinutes":15.9,"improvementPct":63.7,"hoursPerMonth":795,"valuePerMonth":47697.5,"errorRate":{"before":16.7,"after":8.3},"evidence":{"status":"confirmed","p":0,"t":12.466,"df":13.34,"ci":[13.15,18.65],"nBefore":12,"nAfter":12}},{"id":"PR3","name":"مطابقة الفواتير / Invoice reconciliation","group":"FIN","frequencyPerMonth":400,"hourlyCost":110,"before":{"minutes":16.6,"source":"measured"},"after":{"minutes":11.7,"source":"measured"},"savedMinutes":5,"improvementPct":29.8,"hoursPerMonth":33,"valuePerMonth":3634.89,"errorRate":{"before":0,"after":0},"evidence":{"status":"preliminary","nBefore":6,"nAfter":3}},{"id":"PR4","name":"صياغة الوصف الوظيفي / Job description drafting","group":"HR","frequencyPerMonth":15,"hourlyCost":100,"before":{"minutes":120,"source":"estimate"},"after":{"minutes":40,"source":"estimate"},"savedMinutes":80,"improvementPct":66.7,"hoursPerMonth":20,"valuePerMonth":2000,"errorRate":{"before":null,"after":null},"evidence":{"status":"estimate","nBefore":0,"nAfter":0}},{"id":"PR5","name":"ملخص مراجعة الكود / Code review summary","group":"IT","frequencyPerMonth":200,"hourlyCost":150,"before":{"minutes":27.1,"source":"measured"},"after":{"minutes":31.6,"source":"measured"},"savedMinutes":-4.4,"improvementPct":-16.3,"hoursPerMonth":-14.8,"valuePerMonth":-2218.33,"errorRate":{"before":0,"after":0},"evidence":{"status":"inconclusive","p":0.1295,"t":-1.655,"df":9.82,"ci":[-10.42,1.55],"nBefore":6,"nAfter":6}}],"totals":{"hoursPerMonth":1000.5,"valuePerMonth":71188.56,"licenseMonthly":46330,"amortizedMonthly":15000,"monthlyCost":61330,"roiPct":16.1,"netMonthlyBenefit":24858.56,"paybackMonths":7.2,"measuredValueShare":97.2},"whatIf":{"reach":71.2,"oneTime":180000,"amortizationMonths":12}},"compare":{"people":{"adkarAverage":{"before":2.84,"after":3.66,"delta":0.82},"awareness":{"before":3.26,"after":4.06,"delta":0.8},"desire":{"before":3.27,"after":3.79,"delta":0.52},"knowledge":{"before":2.73,"after":3.66,"delta":0.93},"ability":{"before":2.52,"after":3.5,"delta":0.98},"reinforcement":{"before":2.41,"after":3.29,"delta":0.88},"net":{"before":-38.7,"after":48.6,"delta":87.3},"negative":{"before":59.5,"after":23.6,"delta":-35.9}},"adoption":{"reach":{"before":26.5,"after":71.2,"delta":44.7},"activation":{"before":35.6,"after":81.2,"delta":45.6},"frequency":{"before":1.49,"after":3.75,"delta":2.26},"depth":{"before":1.59,"after":4.15,"delta":2.56},"retention":{"before":56.4,"after":85.3,"delta":28.9}},"readiness":{"score":{"before":37.1,"after":69.5,"delta":32.4}}},"impact":{"totalHeadcount":399,"byLevel":{"1":0,"2":45,"3":44,"4":160,"5":150},"highImpactShare":77.7,"aspects":[{"aspect":"processes","groups":4},{"aspect":"skills","groups":4},{"aspect":"data-handling","groups":3},{"aspect":"systems-tools","groups":3},{"aspect":"performance-measures","groups":1}],"groups":[{"id":"OPS","name":"العمليات وخدمة العملاء / Operations & Customer Service","headcount":150,"impactLevel":5,"load":750,"aspects":["processes","systems-tools","performance-measures","skills"]},{"id":"SALES","name":"المبيعات / Sales","headcount":100,"impactLevel":4,"load":400,"aspects":["processes","systems-tools","skills"]},{"id":"FIN","name":"المالية / Finance","headcount":60,"impactLevel":4,"load":240,"aspects":["processes","skills","data-handling"]},{"id":"HR","name":"الموارد البشرية / Human Resources","headcount":40,"impactLevel":3,"load":120,"aspects":["processes","skills"]},{"id":"IT","name":"تقنية المعلومات / IT","headcount":45,"impactLevel":2,"load":90,"aspects":["systems-tools","data-handling"]},{"id":"LEGAL","name":"الشؤون القانونية / Legal","headcount":4,"impactLevel":3,"load":12,"aspects":["data-handling"]}]},"resistance":{"summary":{"open":2,"monitoring":1,"resolved":0,"byRootCause":{"reinforcement":2,"desire":1},"byGroup":{"OPS":1,"FIN":1,"SALES":1}},"entries":[{"id":"RS-1","group":"OPS","rootCause":"reinforcement","signal":"Workload: saved time turned into extra tasks","intervention":"Protect saved time; recognise adopters; add AI use to team KPIs","owner":"OPS director","status":"open"},{"id":"RS-2","group":"FIN","rootCause":"desire","signal":"Fear of job loss in reconciliation team","intervention":"CFO town hall on future roles; reskilling path","owner":"CFO","status":"monitoring"},{"id":"RS-3","group":"SALES","rootCause":"reinforcement","signal":"Managers do not follow up on AI use","intervention":"Manager coaching guide; monthly AI showcase","owner":"Sales director","status":"open"}]}},"omitted":[],"narrative":{"summary":{"ar":"ارتفعت الجاهزية من 37.1 إلى 69.5 بعد خمسة أشهر، وتجاوز الاستخدام النشط 71%. أكبر خطر الآن هو قسم العمليات: نقطة العائق عند التعزيز، وضغط العمل يبتلع الوقت الموفّر.","en":"Readiness rose from 37.1 to 69.5 in five months and active use passed 71%. The main risk now is Operations: the barrier is reinforcement and workload absorbs the time saved."},"highlights":[{"ar":"الرد على استفسارات العملاء أسرع بنسبة 64% (مؤكد إحصائيًا)","en":"Customer inquiry replies 64% faster (statistically confirmed)"},{"ar":"اختفت نقاط العائق في المالية والمبيعات والموارد البشرية","en":"Barrier points cleared in Finance, Sales and HR"}],"recommendations":[{"ar":"حماية الوقت الموفّر في العمليات وتقدير المتبنّين","en":"Protect saved time in Operations and recognise adopters"},{"ar":"تدريب مديري المبيعات على المتابعة","en":"Coach Sales managers on follow-up"}],"decisions":[],"quotes":[{"ar":"الردود على العملاء صارت أسرع","en":"Replies to customers became faster"},{"ar":"لا يوجد وقت لتجربة الأداة مع ضغط العمل","en":"No time to try the tool with this workload"}]}}</script>
+<script id="pmo-ui" type="application/json">{"ar":{"report":"تقرير التغيير","dashboard":"لوحة","present":"عرض","exitPresent":"إنهاء العرض","theme":"المحور","print":"طباعة / PDF","langSwitch":"English","prev":"السابق","next":"التالي","slideOf":"من","generated":"أُنشئ بواسطة CMO لـ Claude — الأرقام من محرّك الحسابات، والمجموعات الأقل من 5 أشخاص مخفية للخصوصية","s_cover":"الغلاف","s_summary":"الملخص التنفيذي","s_journey":"رحلة التغيير","s_adkar":"ADKAR حسب المجموعة","s_sentiment":"المشاعر","s_adoption":"التبنّي الفعلي","s_value":"الأثر على العمل","s_compare":"قبل وبعد","s_impact":"أثر التغيير","s_resistance":"المقاومة","s_governance":"القرارات والموافقات","wave":"الجولة","usageDate":"بيانات الاستخدام","sponsor":"الراعي","cm":"مدير التغيير","readiness":"الجاهزية","rag_green":"أخضر","rag_amber":"كهرماني","rag_red":"أحمر","rag_null":"بيانات غير كافية","reach":"الاستخدام النشط","net":"صافي المشاعر","negative":"نسبة السلبية","barrier":"نقطة العائق","noBarrier":"لا يوجد عائق","hours":"الساعات الموفّرة","perMonth":"شهريًا","roi":"العائد على الاستثمار","payback":"الاسترداد","months":"شهر","highlights":"أبرز النقاط","recommendations":"التوصيات","decisionsNeeded":"قرارات مطلوبة","noneYet":"لا شيء حاليًا","notIncluded":"أقسام غير مضمّنة","r_NO_DATA":"لا توجد بيانات","r_NO_SURVEY":"لا توجد جولات استبيان","r_NO_USAGE":"لا توجد بيانات استخدام","r_NO_PROCESSES":"لا توجد عمليات مسجلة","ph_prepare":"تحضير النهج","ph_manage":"إدارة التغيير","ph_sustain":"استدامة النتائج","planDone":"إنجاز الخطة","kotter":"خطوات Kotter الثماني","k1":"خلق الإلحاح","k2":"التحالف القيادي","k3":"الرؤية","k4":"توصيل الرؤية","k5":"التمكين","k6":"الإنجازات السريعة","k7":"مواصلة الزخم","k8":"الترسيخ","ks_done":"مكتملة","ks_in-progress":"جارية","ks_planned":"مخططة","ks_missing":"مفقودة","gaps":"فجوات: عوائق بلا أنشطة مفتوحة","group":"المجموعة","levers":"الأدوات المقترحة","overdue":"أنشطة متأخرة","upcoming":"خلال 30 يومًا","activity":"النشاط","owner":"المسؤول","due":"الاستحقاق","lv_sponsorship":"الرعاية","lv_communications":"الاتصال","lv_training":"التدريب","lv_coaching":"التوجيه","lv_resistance":"إدارة المقاومة","lv_reinforcement":"التعزيز","lv_assessment":"التقييم","lv_governance":"الحوكمة","el_awareness":"الوعي","el_desire":"الرغبة","el_knowledge":"المعرفة","el_ability":"القدرة","el_reinforcement":"التعزيز","avg":"المتوسط","vsBaseline":"مقابل الأساسية","overall":"الإجمالي","suppressed":"أقل من 5 — مخفي للخصوصية","barrierNote":"نموذج ADKAR متسلسل: الخلية المحددة هي أول عنصر أقل من 3، وعلاجه يأتي قبل العناصر التالية.","comments":"تعليقات مصنّفة","pending":"بانتظار المراجعة","netByGroup":"صافي المشاعر حسب المجموعة","netTrend":"صافي المشاعر عبر الجولات","themes":"المحاور","count":"العدد","share":"النسبة","quotes":"من تعليقات الموظفين (بلا أي تعريف)","activation":"التفعيل","frequency":"التكرار","daysWeek":"يوم أسبوعيًا","retention":"الاستمرارية","funnel":"قمع التبنّي","licensed":"مرخّص","activated":"مفعّل","weeklyActive":"نشط أسبوعيًا","powerUsers":"مستخدم متقدم","adoptionTrend":"اتجاه التبنّي","byGroup":"حسب المجموعة","valueMonth":"القيمة الشهرية","monthlyCost":"التكلفة الشهرية","measuredShare":"نسبة القيمة المقاسة","process":"العملية","beforeAfter":"قبل ← بعد","min":"دقيقة","source":"المصدر","measured":"مقاس","estimate":"تقدير","improvement":"التحسن","hoursMonth":"ساعات/شهر","evidence":"الدليل","ev_confirmed":"مؤكد إحصائيًا","ev_inconclusive":"غير حاسم","ev_preliminary":"أولي","ev_estimate":"تقدير","capacityNote":"الوقت الموفّر طاقة متاحة، ولا يصبح توفيرًا ماليًا إلا إذا أُعيد توظيفه.","paybackCurve":"منحنى الاسترداد: القيمة التراكمية مقابل التكلفة","cumValue":"القيمة التراكمية","cumCost":"التكلفة التراكمية","whatIf":"ماذا لو؟","wiReach":"نسبة الاستخدام النشط","wiLicense":"تكلفة الترخيص","wiNote":"افتراض: القيمة تتغير بنسبة تغيّر الاستخدام النشط.","baselineWave":"من الجولة الأساسية إلى الأخيرة","metric":"المؤشر","before":"قبل","after":"بعد","change":"التغيّر","adkarAvg":"متوسط ADKAR","headcount":"عدد الموظفين","highImpact":"متأثرون بشدة (4–5)","impactLevel":"درجة الأثر","aspects":"جوانب الأثر","as_processes":"العمليات","as_systems-tools":"الأنظمة والأدوات","as_job-roles":"الأدوار","as_skills":"المهارات","as_behaviors":"السلوكيات","as_performance-measures":"مقاييس الأداء","as_reporting-lines":"خطوط التبعية","as_data-handling":"التعامل مع البيانات","rOpen":"مفتوحة","rMonitoring":"تحت المتابعة","rResolved":"محلولة","rootCause":"السبب الجذري","signal":"الإشارة","intervention":"التدخل","status":"الحالة","rs_open":"مفتوحة","rs_monitoring":"تحت المتابعة","rs_resolved":"محلولة","pendingDecisions":"بانتظار قرارك","recentDecisions":"آخر القرارات","proposal":"المقترح","agent":"الوكيل","by":"بواسطة","approved":"موافق عليه","rejected":"مرفوض"},"en":{"report":"Change report","dashboard":"Dashboard","present":"Present","exitPresent":"Exit presentation","theme":"Theme","print":"Print / PDF","langSwitch":"العربية","prev":"Previous","next":"Next","slideOf":"of","generated":"Generated by CMO for Claude — figures from the calculation engine; groups under 5 people are hidden for privacy","s_cover":"Cover","s_summary":"Executive summary","s_journey":"Change journey","s_adkar":"ADKAR by group","s_sentiment":"Sentiment","s_adoption":"Actual adoption","s_value":"Business value","s_compare":"Before and after","s_impact":"Change impact","s_resistance":"Resistance","s_governance":"Decisions & approvals","wave":"Wave","usageDate":"Usage data","sponsor":"Sponsor","cm":"Change manager","readiness":"Readiness","rag_green":"Green","rag_amber":"Amber","rag_red":"Red","rag_null":"Insufficient data","reach":"Active use (reach)","net":"Net sentiment","negative":"Negative share","barrier":"Barrier point","noBarrier":"No barrier","hours":"Hours saved","perMonth":"per month","roi":"ROI","payback":"Payback","months":"months","highlights":"Highlights","recommendations":"Recommendations","decisionsNeeded":"Decisions needed","noneYet":"None at the moment","notIncluded":"Sections not included","r_NO_DATA":"no data","r_NO_SURVEY":"no survey waves","r_NO_USAGE":"no usage data","r_NO_PROCESSES":"no processes registered","ph_prepare":"Prepare approach","ph_manage":"Manage change","ph_sustain":"Sustain outcomes","planDone":"Plan complete","kotter":"Kotter's 8 steps","k1":"Urgency","k2":"Coalition","k3":"Vision","k4":"Communicate","k5":"Empower","k6":"Short-term wins","k7":"Accelerate","k8":"Anchor","ks_done":"done","ks_in-progress":"in progress","ks_planned":"planned","ks_missing":"missing","gaps":"Gaps: barriers with no open activity","group":"Group","levers":"Suggested levers","overdue":"Overdue activities","upcoming":"Next 30 days","activity":"Activity","owner":"Owner","due":"Due","lv_sponsorship":"Sponsorship","lv_communications":"Communications","lv_training":"Training","lv_coaching":"Coaching","lv_resistance":"Resistance mgmt","lv_reinforcement":"Reinforcement","lv_assessment":"Assessment","lv_governance":"Governance","el_awareness":"Awareness","el_desire":"Desire","el_knowledge":"Knowledge","el_ability":"Ability","el_reinforcement":"Reinforcement","avg":"Average","vsBaseline":"vs baseline","overall":"Overall","suppressed":"Under 5 — hidden for privacy","barrierNote":"ADKAR is sequential: the outlined cell is the first element below 3, to be addressed before later ones.","comments":"Classified comments","pending":"Pending review","netByGroup":"Net sentiment by group","netTrend":"Net sentiment across waves","themes":"Themes","count":"Count","share":"Share","quotes":"From employee comments (de-identified)","activation":"Activation","frequency":"Frequency","daysWeek":"days/week","retention":"Retention","funnel":"Adoption funnel","licensed":"Licensed","activated":"Activated","weeklyActive":"Weekly active","powerUsers":"Power users","adoptionTrend":"Adoption trend","byGroup":"By group","valueMonth":"Value per month","monthlyCost":"Monthly cost","measuredShare":"Measured value share","process":"Process","beforeAfter":"Before → after","min":"min","source":"Source","measured":"measured","estimate":"estimate","improvement":"Improvement","hoursMonth":"Hours/month","evidence":"Evidence","ev_confirmed":"Statistically confirmed","ev_inconclusive":"Inconclusive","ev_preliminary":"Preliminary","ev_estimate":"Estimate","capacityNote":"Saved time is capacity; it becomes financial savings only when redeployed.","paybackCurve":"Payback curve: cumulative value vs cost","cumValue":"Cumulative value","cumCost":"Cumulative cost","whatIf":"What if?","wiReach":"Active use (reach)","wiLicense":"Licence cost","wiNote":"Assumption: value scales with active use.","baselineWave":"From baseline to latest wave","metric":"Metric","before":"Before","after":"After","change":"Change","adkarAvg":"ADKAR average","headcount":"Headcount","highImpact":"Highly impacted (4–5)","impactLevel":"Impact level","aspects":"Impacted aspects","as_processes":"Processes","as_systems-tools":"Systems & tools","as_job-roles":"Job roles","as_skills":"Skills","as_behaviors":"Behaviours","as_performance-measures":"Performance measures","as_reporting-lines":"Reporting lines","as_data-handling":"Data handling","rOpen":"Open","rMonitoring":"Monitoring","rResolved":"Resolved","rootCause":"Root cause","signal":"Signal","intervention":"Intervention","status":"Status","rs_open":"Open","rs_monitoring":"Monitoring","rs_resolved":"Resolved","pendingDecisions":"Awaiting your decision","recentDecisions":"Recent decisions","proposal":"Proposal","agent":"Agent","by":"by","approved":"Approved","rejected":"Rejected"}}</script>
+<script>
+function round(n, d = 2) {
+  if (n === null || n === undefined || !Number.isFinite(n)) return null;
+  const f = 10 ** d;
+  return Math.round(n * f) / f;
+}
+function whatIf({ valuePerMonth, reach, oneTime, licenseMonthly, amortizationMonths }, { targetReach, licenseFactor = 1 }) {
+  const scale = reach > 0 && targetReach !== null && targetReach !== undefined ? targetReach / reach : 1;
+  const v = valuePerMonth * scale;
+  const lic = licenseMonthly * licenseFactor;
+  const cost = lic + (oneTime || 0) / (amortizationMonths || 12);
+  const net = v - lic;
+  return {
+    valuePerMonth: round(v, 2),
+    monthlyCost: round(cost, 2),
+    roiPct: cost > 0 ? round(((v - cost) / cost) * 100, 1) : null,
+    paybackMonths: !oneTime ? 0 : net > 0 ? round(oneTime / net, 1) : null,
+  };
+}
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('pmo-data').textContent);
+  var UI = JSON.parse(document.getElementById('pmo-ui').textContent);
+  var store = {
+    get: function (k) { try { return localStorage.getItem('pmo:' + k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem('pmo:' + k, v); } catch (e) {} }
+  };
+  // Each report opens in the language it was generated for; only the theme is remembered.
+  var lang = D.meta.lang;
+  var theme = store.get('theme');
+  var presenting = false;
+  var slideIdx = 0;
+  var riskFilter = null;
+
+  function t(k) { return (UI[lang] && UI[lang][k]) || UI.en[k] || k; }
+  function locale() { return lang === 'ar' ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB'; }
+  function nf(n, d) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    d = d || 0;
+    return new Intl.NumberFormat(locale(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+  }
+  function money(n) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    try { return new Intl.NumberFormat(locale(), { style: 'currency', currency: D.meta.currency, maximumFractionDigits: 0 }).format(n); }
+    catch (e) { return nf(n) + ' ' + D.meta.currency; }
+  }
+  function nv(n) { return nf(n, n !== null && n !== undefined && !Number.isInteger(n) ? 2 : 0); }
+  function word(prefix, v) { if (!v) return '—'; var k = prefix + v; var s = t(k); return s === k ? v : s; }
+  function range(a, b) {
+    var lo = Math.min(a, b), hi = Math.max(a, b);
+    return el('span', {}, el('bdi', {}, money(lo)), ' – ', el('bdi', {}, money(hi)));
+  }
+  function idx(n) { return nf(n, 2); }
+  function fdate(s) {
+    if (!s) return '—';
+    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(s + 'T00:00:00Z'));
+  }
+  function tr(v) { return v === null || v === undefined ? '' : typeof v === 'string' ? v : (v[lang] || v.en || v.ar || ''); }
+  // Names written as "عربي / English" show the part matching the language.
+  function pick(s) {
+    if (typeof s !== 'string') return s === null || s === undefined ? '' : String(s);
+    var parts = s.split(' / ');
+    if (parts.length !== 2) return s;
+    var firstAr = /[؀-ۿ]/.test(parts[0]);
+    return lang === 'ar' ? (firstAr ? parts[0] : parts[1]) : (firstAr ? parts[1] : parts[0]);
+  }
+  function el(tag, attrs) {
+    var e = document.createElement(tag);
+    attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v === null || v === undefined || v === false) return;
+      if (k === 'class') e.className = v;
+      else if (k === 'text') e.textContent = v;
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v);
+    });
+    for (var i = 2; i < arguments.length; i++) append(e, arguments[i]);
+    return e;
+  }
+  function append(e, c) {
+    if (c === null || c === undefined || c === false) return;
+    if (Array.isArray(c)) { c.forEach(function (x) { append(e, x); }); return; }
+    e.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  }
+  function svg(tag, attrs) {
+    var e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    return e;
+  }
+  function rag(v) { return el('span', { class: 'rag rag-' + (v || 'null') }, t('rag_' + (v || 'null'))); }
+  function kpi(label, value, sub, cls) {
+    return el('div', { class: 'kpi' }, el('div', { class: 'label' }, label), el('div', { class: 'value num ' + (cls || '') }, value), sub ? el('div', { class: 'sub' }, sub) : null);
+  }
+  function signCls(n) { return n === null || n === undefined ? '' : n < 0 ? 'neg' : 'pos'; }
+  function daysText(n) {
+    if (n === null || n === undefined) return '—';
+    if (n === 0) return '0 ' + t('days');
+    return nf(Math.abs(n)) + ' ' + t('days') + ' ' + (n > 0 ? t('late') : t('early'));
+  }
+  function table(headers, rows) {
+    return el('div', { class: 'table-wrap' }, el('table', {},
+      el('thead', {}, el('tr', {}, headers.map(function (h) { return el('th', {}, h); }))),
+      el('tbody', {}, rows.map(function (r) { return el('tr', {}, r.map(function (c) { return el('td', {}, c); })); }))));
+  }
+  function section(id, title) {
+    var s = el('section', { class: 'slide', id: 's-' + id, 'aria-label': title }, el('h2', {}, title));
+    for (var i = 2; i < arguments.length; i++) append(s, arguments[i]);
+    return s;
+  }
+  function ms(s) { return Date.parse(s + 'T00:00:00Z'); }
+
+  // ---------- charts (inline SVG, always left-to-right time axis) ----------
+  function lineChart(opts) {
+    var W = 640, H = opts.height || 260, L = 64, R = 14, T = 12, B = 30;
+    var xs = [], ys = [];
+    opts.series.forEach(function (s) { s.points.forEach(function (p) { xs.push(p[0]); ys.push(p[1]); }); });
+    (opts.refY || []).forEach(function (r) { ys.push(r.y); });
+    if (!xs.length) return null;
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+    var y0 = opts.yMin !== undefined ? opts.yMin : Math.min(0, Math.min.apply(null, ys));
+    var y1 = Math.max.apply(null, ys); if (y1 === y0) y1 = y0 + 1; y1 = y1 + (y1 - y0) * 0.06;
+    if (x1 === x0) x1 = x0 + 1;
+    var sx = function (x) { return L + (x - x0) / (x1 - x0) * (W - L - R); };
+    var sy = function (y) { return H - B - (y - y0) / (y1 - y0) * (H - T - B); };
+    var g = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': opts.title || '' });
+    for (var i = 0; i <= 4; i++) {
+      var yv = y0 + (y1 - y0) * i / 4, yy = sy(yv);
+      g.append(svg('line', { x1: L, x2: W - R, y1: yy, y2: yy, class: 'grid-line' }));
+      var tx = svg('text', { x: L - 6, y: yy + 4, 'text-anchor': 'end' }); tx.textContent = opts.yFmt(yv); g.append(tx);
+    }
+    var ticks = opts.xTicks || [];
+    ticks.forEach(function (tk) {
+      var xt = svg('text', { x: sx(tk[0]), y: H - 10, 'text-anchor': 'middle' }); xt.textContent = tk[1]; g.append(xt);
+    });
+    (opts.refY || []).forEach(function (r) {
+      g.append(svg('line', { x1: L, x2: W - R, y1: sy(r.y), y2: sy(r.y), stroke: r.color, 'stroke-dasharray': '4 4', 'stroke-width': 1.5 }));
+    });
+    (opts.refX || []).forEach(function (r) {
+      g.append(svg('line', { x1: sx(r.x), x2: sx(r.x), y1: T, y2: H - B, stroke: r.color, 'stroke-dasharray': '4 4', 'stroke-width': 1.5 }));
+    });
+    opts.series.forEach(function (s) {
+      if (!s.points.length) return;
+      var d = s.points.map(function (p, k) { return (k ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + sy(p[1]).toFixed(1); }).join(' ');
+      g.append(svg('path', { d: d, fill: 'none', stroke: s.color, 'stroke-width': s.width || 2.5, 'stroke-dasharray': s.dash || '' }));
+      s.points.forEach(function (p) {
+        var c = svg('circle', { cx: sx(p[0]), cy: sy(p[1]), r: s.dot === false ? 0 : 3.5, fill: s.color });
+        var ti = svg('title', {}); ti.textContent = s.label + ' — ' + (opts.xFmt ? opts.xFmt(p[0]) : p[0]) + ': ' + opts.yFmt(p[1]);
+        c.append(ti); g.append(c);
+      });
+    });
+    var box = el('div', { class: 'chart ltr' });
+    box.append(g);
+    box.append(el('div', { class: 'legend', dir: lang === 'ar' ? 'rtl' : 'ltr' },
+      opts.series.map(function (s) { return el('span', {}, el('i', { style: 'background:' + s.color }), s.label); }),
+      (opts.refY || []).concat(opts.refX || []).filter(function (r) { return r.label; }).map(function (r) { return el('span', {}, el('i', { style: 'background:' + r.color }), r.label); })));
+    return box;
+  }
+  function barChart(labels, values, color, fmt) {
+    var W = 640, H = 220, L = 44, R = 10, T = 10, B = 28;
+    var max = Math.max.apply(null, values.concat([1]));
+    var bw = (W - L - R) / Math.max(values.length, 1);
+    var g = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' });
+    for (var i = 0; i <= 4; i++) {
+      var y = H - B - (H - T - B) * i / 4;
+      g.append(svg('line', { x1: L, x2: W - R, y1: y, y2: y, class: 'grid-line' }));
+      var tx = svg('text', { x: L - 6, y: y + 4, 'text-anchor': 'end' }); tx.textContent = fmt(max * i / 4); g.append(tx);
+    }
+    values.forEach(function (v, k) {
+      var h = (H - T - B) * v / max, x = L + k * bw + bw * 0.18;
+      var r = svg('rect', { x: x, y: H - B - h, width: bw * 0.64, height: h, rx: 3, fill: color });
+      var ti = svg('title', {}); ti.textContent = labels[k] + ': ' + fmt(v); r.append(ti); g.append(r);
+      var lt = svg('text', { x: x + bw * 0.32, y: H - 10, 'text-anchor': 'middle' }); lt.textContent = labels[k]; g.append(lt);
+    });
+    var box = el('div', { class: 'chart ltr' }); box.append(g); return box;
+  }
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function monthTicks(a, b) {
+    var out = [], d = new Date(ms(a)); d.setUTCDate(1);
+    var end = ms(b);
+    var fmt = new Intl.DateTimeFormat(locale(), { month: 'short', timeZone: 'UTC' });
+    while (d.getTime() <= end) {
+      if (d.getTime() >= ms(a)) out.push([d.getTime(), fmt.format(d)]);
+      d.setUTCMonth(d.getUTCMonth() + 1);
+    }
+    return out;
+  }
+
+  // ---------- sections ----------
+  var S = D.sections, st = D.status;
+  var EL = ['awareness', 'desire', 'knowledge', 'ability', 'reinforcement'];
+
+  function pv(p) { return p === null || p === undefined ? '—' : p < 0.001 ? '< 0.001' : nf(p, 3); }
+  function pctTxt(v) { return v === null || v === undefined ? '—' : nf(v, 1) + '%'; }
+  function delta(v, d, suffix, invert) {
+    if (v === null || v === undefined) return '—';
+    var good = invert ? v < 0 : v > 0, bad = invert ? v > 0 : v < 0;
+    return el('span', { class: good ? 'pos' : bad ? 'neg' : '' }, (v > 0 ? '+' : '') + nf(v, d === undefined ? 1 : d) + (suffix || ''));
+  }
+  function gname(id) {
+    var g = (D.groups || []).filter(function (x) { return x.id === id; })[0];
+    return g ? pick(g.name) : id;
+  }
+  function themeName(id) {
+    var th = (D.themes || []).filter(function (x) { return x.id === id; })[0];
+    return th ? (lang === 'ar' ? th.ar : th.en) : id;
+  }
+  function ragScore(r) {
+    return el('span', { class: 'rag rag-' + (r.rag || 'null') }, r.score === null ? t('rag_null') : nf(r.score, 1) + ' — ' + t('rag_' + r.rag));
+  }
+
+  function sCover() {
+    var r = st.readiness.latest.overall, C = st.compare || {};
+    var ad = S.adoption ? S.adoption.latest.overall : null, v = S.value ? S.value.totals : null;
+    var sen = S.sentiment ? S.sentiment.latest.overall : null;
+    var barrier = S.adkar ? S.adkar.overall.barrier : null;
+    return section('cover', t('s_cover'), el('div', { class: 'cover' },
+      el('h1', {}, pick(D.meta.name)),
+      el('div', { class: 'meta' },
+        el('span', {}, t('wave') + ': ', el('b', {}, D.meta.latestWave || '—'), D.meta.latestDate ? ' · ' + fdate(D.meta.latestDate) : ''),
+        D.meta.usageDate ? el('span', {}, t('usageDate') + ': ' + fdate(D.meta.usageDate)) : null,
+        D.meta.sponsor ? el('span', {}, t('sponsor') + ': ' + pick(D.meta.sponsor)) : null,
+        D.meta.changeManager ? el('span', {}, t('cm') + ': ' + pick(D.meta.changeManager)) : null),
+      el('div', { class: 'big' }, t('readiness') + ' ', ragScore(r)),
+      el('div', { class: 'grid' },
+        kpi(t('readiness'), r.score === null ? '—' : nf(r.score, 1), C.readiness ? delta(C.readiness.score.delta, 1) : null),
+        ad ? kpi(t('reach'), pctTxt(ad.reach), C.adoption ? delta(C.adoption.reach.delta, 1, ' pp') : null) : null,
+        sen ? kpi(t('net'), nf(sen.net, 1), C.people ? delta(C.people.net.delta, 1) : null) : null,
+        S.adkar ? kpi(t('barrier'), barrier ? t('el_' + barrier) : t('noBarrier')) : null,
+        v ? kpi(t('hours'), nf(v.hoursPerMonth, 0), t('perMonth')) : null,
+        v ? kpi(t('roi'), v.roiPct === null ? '—' : nf(v.roiPct, 1) + '%', t('payback') + ': ' + (v.paybackMonths === null ? '—' : nf(v.paybackMonths, 1) + ' ' + t('months')), v.roiPct !== null && v.roiPct < 0 ? 'neg' : 'pos') : null)));
+  }
+
+  function sSummary() {
+    var n = D.narrative, kids = [];
+    if (n && n.summary) kids.push(el('p', { class: 'big' }, tr(n.summary)));
+    if (n && n.highlights.length) kids.push(el('h3', {}, t('highlights')), el('ul', { class: 'clean' }, n.highlights.map(function (h) { return el('li', {}, tr(h)); })));
+    if (n && n.recommendations.length) kids.push(el('h3', {}, t('recommendations')), el('ul', { class: 'clean' }, n.recommendations.map(function (h) { return el('li', {}, tr(h)); })));
+    var pend = S.governance ? S.governance.pending : [];
+    kids.push(el('h3', {}, t('decisionsNeeded')));
+    kids.push(pend.length || (n && n.decisions.length)
+      ? el('ul', { class: 'clean' }, pend.map(function (a) { return el('li', {}, el('b', { class: 'num' }, a.id), ' — ', a.title || ''); }), (n ? n.decisions : []).map(function (d) { return el('li', {}, tr(d)); }))
+      : el('div', { class: 'note' }, t('noneYet')));
+    if (D.omitted.length) kids.push(el('h3', {}, t('notIncluded')), el('div', { class: 'note' }, D.omitted.map(function (o) { return t('s_' + o.section) + ' (' + t('r_' + o.reason) + ')'; }).join(' · ')));
+    return section('summary', t('s_summary'), kids);
+  }
+
+  function sJourney() {
+    var J = S.journey; if (!J) return null;
+    var ICON = { done: '✅', 'in-progress': '🔄', planned: '⏳', missing: '❌' };
+    var phases = ['prepare', 'manage', 'sustain'].map(function (p) {
+      var x = J.phases[p];
+      return el('div', { class: 'kpi' }, el('div', { class: 'label' }, t('ph_' + p)),
+        el('div', { class: 'value num' }, x.percentDone === null ? '—' : nf(x.percentDone, 0) + '%'),
+        el('div', { class: 'progress' }, el('span', { style: 'width:' + (x.percentDone || 0) + '%' })),
+        el('div', { class: 'sub' }, nf(x.done) + ' / ' + nf(x.total)));
+    });
+    var steps = el('div', { class: 'steps' }, J.kotter.map(function (k) {
+      return el('div', { class: 'step st-' + k.status }, el('div', { class: 'stepnum num' }, k.step), el('div', { class: 'steptitle' }, t('k' + k.step)), el('div', { class: 'note' }, ICON[k.status] + ' ' + t('ks_' + k.status)));
+    }));
+    var acts = function (list) { return table(['ID', t('activity'), t('owner'), t('due')], list.map(function (o) { return [o.id, tr(o.title), o.owner || '—', fdate(o.due)]; })); };
+    return section('journey', t('s_journey'),
+      el('div', { class: 'grid' }, phases, kpi(t('planDone'), J.percentDone === null ? '—' : nf(J.percentDone, 0) + '%', nf(J.done) + ' / ' + nf(J.total))),
+      el('h3', {}, t('kotter')), steps,
+      J.gaps.length ? [el('h3', {}, t('gaps')), table([t('group'), t('barrier'), t('levers')], J.gaps.map(function (g) { return [gname(g.group), t('el_' + g.barrier), g.suggestedLevers.map(function (l) { return t('lv_' + l); }).join(' · ')]; }))] : null,
+      J.overdue.length ? [el('h3', {}, t('overdue')), acts(J.overdue)] : null,
+      J.upcoming.length ? [el('h3', {}, t('upcoming')), acts(J.upcoming)] : null);
+  }
+
+  function sAdkar() {
+    var A = S.adkar; if (!A) return null;
+    function cls(v) { return v === null || v === undefined ? '' : v < 2.5 ? 'h1' : v < 3 ? 'h2' : v < 3.5 ? 'h3' : v < 4 ? 'h4' : 'h5'; }
+    function row(name, g, isOverall) {
+      if (g.suppressed) return el('tr', {}, el('td', {}, name), el('td', { colspan: 7, class: 'note' }, t('suppressed')));
+      return el('tr', { class: isOverall ? 'overall' : '' }, el('td', {}, name),
+        EL.map(function (e) { var v = g.scores[e]; return el('td', { class: 'adk ' + cls(v) + (g.barrier === e ? ' barrier' : ''), title: g.barrier === e ? t('barrier') : '' }, nf(v, 2)); }),
+        el('td', { class: 'num' }, nf(g.average, 2)),
+        el('td', {}, g.baselineAverage === null || g.baselineAverage === undefined ? '—' : delta(round(g.average - g.baselineAverage, 2), 2)));
+    }
+    var head = el('tr', {}, el('th', {}, t('group')), EL.map(function (e) { return el('th', {}, t('el_' + e)); }), el('th', {}, t('avg')), el('th', {}, t('vsBaseline')));
+    var rows = [row(t('overall'), A.overall, true)].concat(A.groups.map(function (g) { return row(gname(g.id), g); }));
+    return section('adkar', t('s_adkar'),
+      el('div', { class: 'table-wrap' }, el('table', { class: 'adk-table' }, el('thead', {}, head), el('tbody', {}, rows))),
+      el('div', { class: 'legend' }, ['h1', 'h2', 'h3', 'h4', 'h5'].map(function (h, i) { return el('span', {}, el('i', { class: 'sw ' + h }), ['< 2.5', '2.5–3', '3–3.5', '3.5–4', '≥ 4'][i]); }), el('span', {}, el('i', { class: 'sw barrier-sw' }), t('barrier'))),
+      el('p', { class: 'note' }, t('barrierNote')));
+  }
+
+  function sSentiment() {
+    var X = S.sentiment; if (!X) return null;
+    var L = X.latest;
+    var bars = el('div', { class: 'divbars' }, Object.keys(L.groups).map(function (id) {
+      var g = L.groups[id];
+      if (g.suppressed) return el('div', { class: 'dbar' }, el('span', { class: 'dl' }, gname(id)), el('span', { class: 'note' }, t('suppressed')));
+      var v = g.net || 0;
+      return el('div', { class: 'dbar' }, el('span', { class: 'dl' }, gname(id)),
+        el('span', { class: 'dtrack ltr' }, el('span', { class: 'dmid' }), el('span', { class: 'dfill ' + (v < 0 ? 'neg-bg' : 'pos-bg'), style: (v < 0 ? 'right:50%;' : 'left:50%;') + 'width:' + Math.min(50, Math.abs(v) / 2) + '%' })),
+        el('span', { class: 'num' }, g.net === null ? '—' : nf(g.net, 1)));
+    }));
+    var pts = X.trend.map(function (w, i) { return [i, w.net]; }).filter(function (p) { return p[1] !== null; });
+    var trend = pts.length > 1 ? lineChart({
+      title: t('netTrend'), yMin: -100, yFmt: function (v) { return nf(v, 0); }, xFmt: function (i) { return X.trend[i] ? X.trend[i].id : i; },
+      xTicks: X.trend.map(function (w, i) { return [i, w.id]; }), refY: [{ y: 0, color: css('--grey') }],
+      series: [{ label: t('net'), color: css('--ev'), points: pts }]
+    }) : null;
+    var themes = table([t('theme'), t('count'), t('share'), t('net')], L.overall.themes.slice(0, 8).map(function (th) {
+      return [themeName(th.theme), nf(th.count), pctTxt(th.share), el('span', { class: th.net < 0 ? 'neg' : th.net > 0 ? 'pos' : '' }, nf(th.net, 0))];
+    }));
+    var q = D.narrative && D.narrative.quotes.length ? [el('h3', {}, t('quotes')), D.narrative.quotes.map(function (x) { return el('blockquote', {}, tr(x)); })] : null;
+    return section('sentiment', t('s_sentiment'),
+      el('div', { class: 'grid' },
+        kpi(t('net'), nf(L.overall.net, 1), X.baseline ? delta(round(L.overall.net - X.baseline.overall.net, 1), 1) : null),
+        kpi(t('negative'), pctTxt(L.overall.negative), X.baseline ? delta(round(L.overall.negative - X.baseline.overall.negative, 1), 1, ' pp', true) : null),
+        kpi(t('comments'), nf(L.overall.n), L.overall.pendingReview ? t('pending') + ': ' + nf(L.overall.pendingReview) : null)),
+      el('div', { class: 'grid two' }, el('div', {}, el('h3', {}, t('netByGroup')), bars), trend ? el('div', {}, el('h3', {}, t('netTrend')), trend) : null),
+      el('h3', {}, t('themes')), themes, q);
+  }
+
+  function sAdoption() {
+    var A = S.adoption; if (!A) return null;
+    var o = A.latest.overall;
+    var steps = [['licensed', o.licensed], ['activated', o.activated], ['weeklyActive', o.activeWeekly], ['powerUsers', o.powerUsers]];
+    var funnel = el('div', { class: 'funnel' }, steps.map(function (s) {
+      var w = o.licensed ? (s[1] / o.licensed) * 100 : 0;
+      return el('div', { class: 'frow' }, el('span', { class: 'dl' }, t(s[0])), el('span', { class: 'ftrack' }, el('span', { class: 'ffill', style: 'width:' + w + '%' })), el('span', { class: 'num' }, nf(s[1]) + ' (' + nf(w, 0) + '%)'));
+    }));
+    var trend = A.trend.length > 1 ? lineChart({
+      title: t('adoptionTrend'), yMin: 0, yFmt: function (v) { return nf(v, 0) + '%'; }, xFmt: function (v) { return fdate(new Date(v).toISOString().slice(0, 10)); },
+      xTicks: A.trend.map(function (p) { return [ms(p.date), fdate(p.date)]; }),
+      series: [
+        { label: t('reach'), color: css('--ev'), points: A.trend.map(function (p) { return [ms(p.date), p.reach]; }) },
+        { label: t('retention'), color: css('--green'), points: A.trend.filter(function (p) { return p.retention !== null; }).map(function (p) { return [ms(p.date), p.retention]; }) },
+        { label: t('activation'), color: css('--pv'), dash: '6 4', points: A.trend.map(function (p) { return [ms(p.date), p.activation]; }) }
+      ]
+    }) : null;
+    var rows = Object.keys(A.latest.groups).map(function (id) {
+      var g = A.latest.groups[id];
+      if (g.suppressed) return [gname(id), el('span', { class: 'note' }, t('suppressed')), '', '', ''];
+      return [gname(id), pctTxt(g.reach), pctTxt(g.activation), nf(g.frequency, 1), pctTxt(g.retention)];
+    });
+    return section('adoption', t('s_adoption'),
+      el('div', { class: 'grid' }, kpi(t('reach'), pctTxt(o.reach)), kpi(t('activation'), pctTxt(o.activation)), kpi(t('frequency'), nf(o.frequency, 1), t('daysWeek')), kpi(t('retention'), pctTxt(o.retention))),
+      el('div', { class: 'grid two' }, el('div', {}, el('h3', {}, t('funnel')), funnel), trend ? el('div', {}, el('h3', {}, t('adoptionTrend')), trend) : null),
+      el('h3', {}, t('byGroup')), table([t('group'), t('reach'), t('activation'), t('frequency'), t('retention')], rows));
+  }
+
+  function sValue() {
+    var V = S.value; if (!V) return null;
+    var T = V.totals, W = V.whatIf;
+    function src(s) { return s === 'measured' ? '🟢 ' + t('measured') : s === 'estimate' ? '🟡 ' + t('estimate') : '—'; }
+    function ev(e) {
+      var s = t('ev_' + e.status);
+      if (e.status === 'confirmed') s = '✔ ' + s;
+      if (e.status === 'confirmed' || e.status === 'inconclusive') s += ' (p ' + pv(e.p) + ')';
+      return el('span', { class: e.status === 'confirmed' ? 'pos' : e.status === 'inconclusive' ? 'neg' : '' }, s);
+    }
+    var rows = V.processes.map(function (p) {
+      return [pick(p.name), el('span', { class: 'num' }, nf(p.before.minutes, 1) + ' → ' + nf(p.after.minutes, 1) + ' ' + t('min')),
+        el('span', { class: 'note' }, src(p.before.source) + ' / ' + src(p.after.source)),
+        p.improvementPct === null ? '—' : el('span', { class: p.savedMinutes < 0 ? 'neg' : 'pos' }, nf(p.improvementPct, 1) + '%'),
+        el('span', { class: 'num' }, nf(p.hoursPerMonth, 1)), el('span', { class: 'num' }, money(p.valuePerMonth)), ev(p.evidence)];
+    });
+    var months = []; for (var m = 0; m <= 24; m++) months.push(m);
+    var curve = lineChart({
+      title: t('paybackCurve'), yMin: 0, yFmt: function (v) { return nf(v / 1000, 0) + 'k'; }, xFmt: function (x) { return x + ' ' + t('months'); },
+      xTicks: [0, 6, 12, 18, 24].map(function (x) { return [x, String(x)]; }),
+      series: [
+        { label: t('cumValue'), color: css('--green'), dot: false, points: months.map(function (x) { return [x, T.valuePerMonth * x]; }) },
+        { label: t('cumCost'), color: css('--ac'), dot: false, points: months.map(function (x) { return [x, W.oneTime + T.licenseMonthly * x]; }) }
+      ]
+    });
+    var out = el('div', { class: 'num' });
+    var r1 = el('input', { type: 'range', min: 10, max: 100, step: 0.1, value: W.reach || 50, 'aria-label': t('wiReach') });
+    var r2 = el('input', { type: 'range', min: 50, max: 150, step: 5, value: 100, 'aria-label': t('wiLicense') });
+    function upd() {
+      var res = whatIf({ valuePerMonth: T.valuePerMonth, reach: W.reach, oneTime: W.oneTime, licenseMonthly: T.licenseMonthly, amortizationMonths: W.amortizationMonths }, { targetReach: Number(r1.value), licenseFactor: Number(r2.value) / 100 });
+      out.textContent = t('wiReach') + ' ' + r1.value + '% · ' + t('wiLicense') + ' ' + r2.value + '% → ' + t('valueMonth') + ' ' + money(res.valuePerMonth) + ' · ' + t('roi') + ' ' + (res.roiPct === null ? '—' : nf(res.roiPct, 1) + '%') + ' · ' + t('payback') + ' ' + (res.paybackMonths === null ? '—' : nf(res.paybackMonths, 1) + ' ' + t('months'));
+    }
+    r1.addEventListener('input', upd); r2.addEventListener('input', upd); upd();
+    return section('value', t('s_value'),
+      el('div', { class: 'grid' },
+        kpi(t('hours'), nf(T.hoursPerMonth, 0), t('perMonth')), kpi(t('valueMonth'), money(T.valuePerMonth)), kpi(t('monthlyCost'), money(T.monthlyCost)),
+        kpi(t('roi'), T.roiPct === null ? '—' : nf(T.roiPct, 1) + '%', null, T.roiPct !== null && T.roiPct < 0 ? 'neg' : 'pos'),
+        kpi(t('payback'), T.paybackMonths === null ? '—' : nf(T.paybackMonths, 1) + ' ' + t('months')),
+        kpi(t('measuredShare'), pctTxt(T.measuredValueShare))),
+      table([t('process'), t('beforeAfter'), t('source'), t('improvement'), t('hoursMonth'), t('valueMonth'), t('evidence')], rows),
+      el('p', { class: 'note' }, t('capacityNote')),
+      el('div', { class: 'grid two' },
+        el('div', {}, el('h3', {}, t('paybackCurve')), curve),
+        el('div', { class: 'whatif' }, el('b', {}, t('whatIf')), el('label', {}, t('wiReach')), r1, el('label', {}, t('wiLicense')), r2, out, el('div', { class: 'note' }, t('wiNote')))));
+  }
+
+  function sCompare() {
+    var C = S.compare; if (!C) return null;
+    var rows = [];
+    function add(label, x, d, suf, invert) { if (!x) return; rows.push([label, x.before === null ? '—' : nf(x.before, d) + (suf || ''), x.after === null ? '—' : nf(x.after, d) + (suf || ''), delta(x.delta, d, '', invert)]); }
+    if (C.readiness) add(t('readiness'), C.readiness.score, 1);
+    if (C.people) {
+      add(t('adkarAvg'), C.people.adkarAverage, 2);
+      EL.forEach(function (e) { add(t('el_' + e), C.people[e], 2); });
+      add(t('net'), C.people.net, 1);
+      add(t('negative'), C.people.negative, 1, '%', true);
+    }
+    if (C.adoption) {
+      add(t('reach'), C.adoption.reach, 1, '%');
+      add(t('activation'), C.adoption.activation, 1, '%');
+      add(t('frequency'), C.adoption.frequency, 2);
+      add(t('retention'), C.adoption.retention, 1, '%');
+    }
+    return section('compare', t('s_compare'), el('p', { class: 'note' }, t('baselineWave') + ': ' + (D.meta.baselineWave || '—') + ' → ' + (D.meta.latestWave || '—')), table([t('metric'), t('before'), t('after'), t('change')], rows));
+  }
+
+  function sImpact() {
+    var I = S.impact; if (!I) return null;
+    return section('impact', t('s_impact'),
+      el('div', { class: 'grid' }, kpi(t('headcount'), nf(I.totalHeadcount)), kpi(t('highImpact'), pctTxt(I.highImpactShare))),
+      table([t('group'), t('headcount'), t('impactLevel'), t('aspects')], I.groups.map(function (g) {
+        return [gname(g.id), nf(g.headcount), el('span', { class: 'lvl lvl' + (g.impactLevel || 0) }, nf(g.impactLevel)), g.aspects.map(function (a) { return t('as_' + a); }).join(' · ') || '—'];
+      })));
+  }
+
+  function sResistance() {
+    var R = S.resistance; if (!R) return null;
+    return section('resistance', t('s_resistance'),
+      el('div', { class: 'grid' }, kpi(t('rOpen'), nf(R.summary.open)), kpi(t('rMonitoring'), nf(R.summary.monitoring)), kpi(t('rResolved'), nf(R.summary.resolved))),
+      table([t('group'), t('rootCause'), t('signal'), t('intervention'), t('owner'), t('status')], R.entries.map(function (e) {
+        return [gname(e.group), e.rootCause ? t('el_' + e.rootCause) : '—', e.signal || '—', e.intervention || '—', e.owner || '—', t('rs_' + e.status)];
+      })));
+  }
+
+  function sGovernance() {
+    var G = S.governance; if (!G) return null;
+    return section('governance', t('s_governance'),
+      el('h3', {}, t('pendingDecisions')),
+      G.pending.length ? table(['ID', t('proposal'), t('agent')], G.pending.map(function (a) { return [el('b', { class: 'num' }, a.id), el('div', {}, a.title || '', a.impact ? el('div', { class: 'note' }, a.impact) : null), a.agent]; })) : el('div', { class: 'note' }, t('noneYet')),
+      el('h3', {}, t('recentDecisions')),
+      G.decisions.length ? table(['ID', t('proposal'), t('status'), t('by')], G.decisions.map(function (d) { return [el('b', { class: 'num' }, d.id), d.title || '', el('span', { class: d.decision === 'approved' ? 'pos' : 'neg' }, t(d.decision)), (d.by || '') + ' · ' + fdate((d.at || '').slice(0, 10))]; })) : el('div', { class: 'note' }, t('noneYet')));
+  }
+
+  // ---------- shell ----------
+  function applyTheme() {
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
+    else document.documentElement.removeAttribute('data-theme');
+  }
+  function slides() { return Array.prototype.slice.call(document.querySelectorAll('.slide')); }
+  function showSlide(i) {
+    var all = slides(); if (!all.length) return;
+    slideIdx = Math.max(0, Math.min(all.length - 1, i));
+    all.forEach(function (s, k) { s.classList.toggle('active', k === slideIdx); });
+    document.getElementById('slide-count').textContent = (slideIdx + 1) + ' ' + t('slideOf') + ' ' + all.length;
+  }
+  function render() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = pick(D.meta.name) + ' — ' + t('report');
+    document.getElementById('tb-title').textContent = pick(D.meta.name);
+    document.getElementById('btn-lang').textContent = t('langSwitch');
+    document.getElementById('btn-theme').textContent = t('theme') + ' ◐';
+    document.getElementById('btn-print').textContent = t('print');
+    document.getElementById('btn-mode').textContent = presenting ? t('exitPresent') : t('present');
+    document.getElementById('btn-prev').textContent = t('prev');
+    document.getElementById('btn-next').textContent = t('next');
+    document.getElementById('footer').textContent = t('generated') + ' · ' + fdate(D.meta.generatedAt.slice(0, 10));
+    var app = document.getElementById('app');
+    app.textContent = '';
+    [sCover, sSummary, sJourney, sAdkar, sSentiment, sAdoption, sValue, sCompare, sImpact, sResistance, sGovernance].forEach(function (f) {
+      var s = f(); if (s) app.append(s);
+    });
+    if (presenting) showSlide(slideIdx);
+  }
+  function setPresent(on) {
+    presenting = on;
+    document.body.classList.toggle('present', on);
+    if (on) { showSlide(slideIdx); try { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); } catch (e) {} }
+    else { try { document.fullscreenElement && document.exitFullscreen(); } catch (e) {} }
+    document.getElementById('btn-mode').textContent = on ? t('exitPresent') : t('present');
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('btn-lang').addEventListener('click', function () { lang = lang === 'ar' ? 'en' : 'ar'; render(); });
+  document.getElementById('btn-theme').addEventListener('click', function () {
+    var dark = theme ? theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    theme = dark ? 'light' : 'dark'; store.set('theme', theme); applyTheme(); render();
+  });
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('btn-mode').addEventListener('click', function () { setPresent(!presenting); });
+  document.getElementById('btn-prev').addEventListener('click', function () { showSlide(slideIdx - 1); });
+  document.getElementById('btn-next').addEventListener('click', function () { showSlide(slideIdx + 1); });
+  document.addEventListener('keydown', function (ev) {
+    if (!presenting || /input|textarea|select/i.test(ev.target.tagName)) return;
+    var rtl = lang === 'ar';
+    var nextKeys = ['PageDown', ' ', rtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowDown'];
+    var prevKeys = ['PageUp', rtl ? 'ArrowRight' : 'ArrowLeft', 'ArrowUp'];
+    if (nextKeys.indexOf(ev.key) >= 0) { ev.preventDefault(); showSlide(slideIdx + 1); }
+    else if (prevKeys.indexOf(ev.key) >= 0) { ev.preventDefault(); showSlide(slideIdx - 1); }
+    else if (ev.key === 'Escape') setPresent(false);
+  });
+  applyTheme();
+  render();
+})();
+</script>
+</body>
+</html>

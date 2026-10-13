@@ -85,4 +85,19 @@ function analyze(processesDoc, samplesById, project) {
   };
 }
 
-module.exports = { MIN_SAMPLES, analyzeProcess, analyze };
+// What-if (embedded in the HTML report): value scales with adoption reach; licence cost scales by a factor.
+function whatIf({ valuePerMonth, reach, oneTime, licenseMonthly, amortizationMonths }, { targetReach, licenseFactor = 1 }) {
+  const scale = reach > 0 && targetReach !== null && targetReach !== undefined ? targetReach / reach : 1;
+  const v = valuePerMonth * scale;
+  const lic = licenseMonthly * licenseFactor;
+  const cost = lic + (oneTime || 0) / (amortizationMonths || 12);
+  const net = v - lic;
+  return {
+    valuePerMonth: round(v, 2),
+    monthlyCost: round(cost, 2),
+    roiPct: cost > 0 ? round(((v - cost) / cost) * 100, 1) : null,
+    paybackMonths: !oneTime ? 0 : net > 0 ? round(oneTime / net, 1) : null,
+  };
+}
+
+module.exports = { MIN_SAMPLES, analyzeProcess, analyze, whatIf };

@@ -15,6 +15,7 @@ plugin لـ Claude Code لتخطيط تغيير تبنّي الذكاء الاص
 | `/cmo:value` | processes, before/after, ROI, evidence / الأثر على العمل |
 | `/cmo:resistance` | resistance signals and log / المقاومة |
 | `/cmo:status` | readiness, ADKAR, sentiment, adoption, value / الحالة |
+| `/cmo:report` | interactive report & presentation / التقرير التفاعلي والعرض |
 | `/cmo:approvals` | decide proposals; decision log / الموافقات |
 
 **Agents / الوكلاء:** cmo-lead · change-strategist · sponsor-coach · survey-designer · sentiment-analyst · adoption-analyst · value-analyst · resistance-manager · enablement-lead · comms-lead · reporter

@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="__PMO_LANG__" dir="__PMO_DIR__">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__PMO_TITLE__</title>
+<style>
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --surface-2: #f0f2f5; --text: #17202a; --muted: #5d6b7a; --border: #dde2e8;
+  --accent: #1f5fbf; --green: #1e8e4e; --amber: #c27c0e; --red: #c6372f; --grey: #9aa5b1;
+  --pv: #7a8796; --ev: #1f5fbf; --ac: #c6372f; --scope: #9aa5b1;
+  --heat-low: #d7efe0; --heat-med: #f8e2b4; --heat-high: #f4c0bb; --heat-empty: #eef1f4;
+  --shadow: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.08);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0f141a; --surface: #171e26; --surface-2: #1f2832; --text: #e6ebf0; --muted: #9aa8b6; --border: #2c3846;
+  --accent: #6ea4f5; --green: #4cc27f; --amber: #f0b44c; --red: #f07368; --grey: #6b7887;
+  --pv: #8c99a8; --ev: #6ea4f5; --ac: #f07368; --scope: #6b7887;
+  --heat-low: #1d3b2a; --heat-med: #4a3a17; --heat-high: #4f2522; --heat-empty: #1f2832;
+  --shadow: none; color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141a; --surface: #171e26; --surface-2: #1f2832; --text: #e6ebf0; --muted: #9aa8b6; --border: #2c3846;
+    --accent: #6ea4f5; --green: #4cc27f; --amber: #f0b44c; --red: #f07368; --grey: #6b7887;
+    --pv: #8c99a8; --ev: #6ea4f5; --ac: #f07368; --scope: #6b7887;
+    --heat-low: #1d3b2a; --heat-med: #4a3a17; --heat-high: #4f2522; --heat-empty: #1f2832;
+    --shadow: none; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.55 "Segoe UI", Tahoma, "Noto Sans Arabic", "Noto Sans", system-ui, sans-serif; }
+.toolbar { position: sticky; top: 0; z-index: 10; display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.toolbar .title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.toolbar .actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+button { font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+main { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+.slide { scroll-margin-top: 72px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); min-width: 0; }
+.slide > h2 { margin: 0 0 14px; font-size: 1.25rem; }
+h3 { margin: 18px 0 8px; font-size: 1rem; color: var(--muted); font-weight: 600; }
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+.grid > * { min-width: 0; }
+.kpi { background: var(--surface-2); border-radius: 10px; padding: 12px; min-width: 0; }
+.kpi .label { color: var(--muted); font-size: .82rem; }
+.kpi .value { font-size: 1.35rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.kpi .sub { font-size: .8rem; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; unicode-bidi: isolate; }
+.pos { color: var(--green); } .neg { color: var(--red); }
+.rag { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: .85rem; }
+.rag::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.rag-green { color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); }
+.rag-amber { color: var(--amber); background: color-mix(in srgb, var(--amber) 16%, transparent); }
+.rag-red { color: var(--red); background: color-mix(in srgb, var(--red) 14%, transparent); }
+.rag-null { color: var(--grey); background: var(--surface-2); }
+.cover { display: grid; gap: 14px; }
+.cover h1 { margin: 0; font-size: 1.8rem; line-height: 1.25; }
+.cover .meta { color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.cover .big { font-size: 1.1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { padding: 7px 8px; border-bottom: 1px solid var(--border); text-align: start; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: .8rem; }
+.table-wrap { overflow-x: auto; }
+ul.clean { margin: 0; padding-inline-start: 18px; }
+.chart { width: 100%; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart text { fill: var(--muted); font-size: 11px; }
+.chart .grid-line { stroke: var(--border); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; color: var(--muted); margin-top: 6px; }
+.legend i { display: inline-block; width: 14px; height: 4px; border-radius: 2px; margin-inline-end: 6px; vertical-align: middle; }
+.ltr { direction: ltr; }
+.progress { height: 12px; border-radius: 6px; background: var(--surface-2); overflow: hidden; display: flex; }
+.progress > span { display: block; height: 100%; background: var(--accent); }
+/* Gantt */
+.gantt { display: grid; grid-template-columns: minmax(110px, 30%) 1fr; font-size: .82rem; }
+.gantt .lbl { padding: 6px 8px; border-bottom: 1px solid var(--border); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gantt .lbl.crit { font-weight: 650; }
+.gantt .track { position: relative; border-bottom: 1px solid var(--border); min-height: 30px; direction: ltr; }
+.gantt .head { position: relative; height: 22px; direction: ltr; color: var(--muted); font-size: .72rem; border-bottom: 1px solid var(--border); }
+.gantt .tick { position: absolute; top: 3px; transform: translateX(-50%); white-space: nowrap; }
+.bar { position: absolute; border-radius: 4px; }
+.bar.base { height: 4px; top: 22px; background: var(--grey); opacity: .7; }
+.bar.fc { height: 12px; top: 7px; background: color-mix(in srgb, var(--accent) 35%, transparent); border: 1px solid var(--accent); overflow: hidden; }
+.bar.fc.crit { background: color-mix(in srgb, var(--red) 30%, transparent); border-color: var(--red); }
+.bar.fc.done { background: color-mix(in srgb, var(--green) 45%, transparent); border-color: var(--green); }
+.bar.fc > span { display: block; height: 100%; background: currentColor; opacity: .55; }
+.bar.fc { color: var(--accent); } .bar.fc.crit { color: var(--red); } .bar.fc.done { color: var(--green); }
+.vline { position: absolute; top: 0; bottom: 0; width: 0; border-inline-start: 2px dashed var(--amber); pointer-events: none; }
+.vline.deadline { border-color: var(--red); }
+/* heat map */
+.heat { display: grid; grid-template-columns: 22px repeat(5, minmax(0, 1fr)); gap: 4px; direction: ltr; max-width: 420px; }
+.heat .cell { min-width: 0; padding: 0; aspect-ratio: 1.6; border-radius: 6px; display: grid; place-items: center; font-weight: 650; border: 2px solid transparent; cursor: pointer; background: var(--heat-empty); color: var(--text); }
+.heat .cell.low { background: var(--heat-low); } .heat .cell.medium { background: var(--heat-med); } .heat .cell.high { background: var(--heat-high); }
+.heat .cell.sel { border-color: var(--accent); }
+.heat .ax { display: grid; place-items: center; color: var(--muted); font-size: .75rem; }
+.lv { font-weight: 600; } .lv-high { color: var(--red); } .lv-medium { color: var(--amber); } .lv-low { color: var(--green); }
+.quad { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.quad > div { background: var(--surface-2); border-radius: 10px; padding: 10px; min-height: 90px; }
+.quad h4 { margin: 0 0 6px; font-size: .85rem; }
+.pill { display: inline-block; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; margin: 2px; font-size: .8rem; }
+.note { color: var(--muted); font-size: .85rem; }
+.whatif { background: var(--surface-2); border-radius: 10px; padding: 12px; margin-top: 12px; }
+.whatif input[type=range] { width: 100%; }
+.footer { color: var(--muted); font-size: .8rem; text-align: center; padding: 8px 16px 24px; }
+.slide-nav { display: none; }
+/* presentation mode */
+body.present .toolbar .hide-present { display: none; }
+body.present main { max-width: none; padding: 0; display: block; }
+body.present .slide { display: none; min-height: calc(100vh - 110px); border-radius: 0; border: 0; box-shadow: none; padding: 32px max(16px, 6vw); }
+body.present .slide.active { display: block; }
+body.present .slide > h2 { font-size: 1.8rem; }
+body.present .slide-nav { display: flex; position: fixed; bottom: 0; inset-inline: 0; justify-content: center; gap: 12px; align-items: center; padding: 10px; background: var(--surface); border-top: 1px solid var(--border); }
+body.present .footer { display: none; }
+/* CMO sections */
+.adk-table td, .adk-table th { text-align: center; }
+.adk-table td:first-child, .adk-table th:first-child { text-align: start; }
+.adk-table tr.overall td { font-weight: 650; }
+.adk { font-variant-numeric: tabular-nums; border-radius: 6px; }
+.adk.h1, .sw.h1 { background: color-mix(in srgb, var(--red) 34%, transparent); }
+.adk.h2, .sw.h2 { background: color-mix(in srgb, var(--amber) 34%, transparent); }
+.adk.h3, .sw.h3 { background: color-mix(in srgb, var(--amber) 14%, transparent); }
+.adk.h4, .sw.h4 { background: color-mix(in srgb, var(--green) 18%, transparent); }
+.adk.h5, .sw.h5 { background: color-mix(in srgb, var(--green) 36%, transparent); }
+.adk.barrier { outline: 3px solid var(--text); outline-offset: -3px; font-weight: 700; }
+.legend .sw { width: 14px; height: 14px; border-radius: 4px; }
+.legend .barrier-sw { outline: 2px solid var(--text); outline-offset: -2px; }
+.steps { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr)); }
+.step { border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; background: var(--surface-2); min-width: 0; }
+.step .stepnum { font-weight: 700; font-size: 1.1rem; }
+.step .steptitle { font-weight: 600; font-size: .9rem; }
+.step.st-done { border-color: var(--green); }
+.step.st-in-progress { border-color: var(--accent); }
+.step.st-missing { border-color: var(--red); border-style: dashed; }
+.divbars, .funnel { display: grid; gap: 6px; }
+.dbar, .frow { display: grid; grid-template-columns: minmax(80px, 34%) 1fr 70px; gap: 8px; align-items: center; font-size: .85rem; }
+.dl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dtrack, .ftrack { position: relative; height: 14px; background: var(--surface-2); border-radius: 7px; overflow: hidden; }
+.dmid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--grey); }
+.dfill { position: absolute; top: 2px; bottom: 2px; border-radius: 5px; }
+.ffill { position: absolute; top: 0; bottom: 0; left: 0; background: var(--accent); border-radius: 7px; }
+[dir="rtl"] .ffill { left: auto; right: 0; }
+.pos-bg { background: var(--green); } .neg-bg { background: var(--red); }
+blockquote { margin: 8px 0; padding: 8px 12px; border-inline-start: 4px solid var(--accent); background: var(--surface-2); border-radius: 6px; }
+.lvl { display: inline-block; min-width: 26px; text-align: center; border-radius: 6px; font-weight: 650; }
+.lvl4, .lvl5 { background: color-mix(in srgb, var(--red) 25%, transparent); }
+.lvl3 { background: color-mix(in srgb, var(--amber) 25%, transparent); }
+.whatif label { display: block; margin-top: 8px; font-size: .85rem; color: var(--muted); }
+@media (max-width: 640px) {
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .cover h1 { font-size: 1.4rem; }
+  .gantt { grid-template-columns: 96px 1fr; }
+}
+@media print {
+  .toolbar, .slide-nav, .whatif { display: none !important; }
+  body { background: #fff; }
+  main { display: block; max-width: none; }
+  .slide { display: block !important; break-after: page; box-shadow: none; border: 0; }
+}
+</style>
+</head>
+<body>
+<header class="toolbar">
+  <div class="title" id="tb-title"></div>
+  <div class="actions">
+    <button id="btn-lang" type="button"></button>
+    <button id="btn-theme" type="button" class="hide-present"></button>
+    <button id="btn-print" type="button" class="hide-present"></button>
+    <button id="btn-mode" type="button" class="primary"></button>
+  </div>
+</header>
+<main id="app"></main>
+<nav class="slide-nav">
+  <button id="btn-prev" type="button"></button>
+  <span id="slide-count" class="num"></span>
+  <button id="btn-next" type="button"></button>
+</nav>
+<div class="footer" id="footer"></div>
+<script id="pmo-data" type="application/json">__PMO_DATA__</script>
+<script id="pmo-ui" type="application/json">__PMO_UI__</script>
+<script>
+/*__PMO_ENGINE__*/
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('pmo-data').textContent);
+  var UI = JSON.parse(document.getElementById('pmo-ui').textContent);
+  var store = {
+    get: function (k) { try { return localStorage.getItem('pmo:' + k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem('pmo:' + k, v); } catch (e) {} }
+  };
+  // Each report opens in the language it was generated for; only the theme is remembered.
+  var lang = D.meta.lang;
+  var theme = store.get('theme');
+  var presenting = false;
+  var slideIdx = 0;
+  var riskFilter = null;
+
+  function t(k) { return (UI[lang] && UI[lang][k]) || UI.en[k] || k; }
+  function locale() { return lang === 'ar' ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-GB'; }
+  function nf(n, d) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    d = d || 0;
+    return new Intl.NumberFormat(locale(), { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+  }
+  function money(n) {
+    if (n === null || n === undefined || !isFinite(n)) return '—';
+    try { return new Intl.NumberFormat(locale(), { style: 'currency', currency: D.meta.currency, maximumFractionDigits: 0 }).format(n); }
+    catch (e) { return nf(n) + ' ' + D.meta.currency; }
+  }
+  function nv(n) { return nf(n, n !== null && n !== undefined && !Number.isInteger(n) ? 2 : 0); }
+  function word(prefix, v) { if (!v) return '—'; var k = prefix + v; var s = t(k); return s === k ? v : s; }
+  function range(a, b) {
+    var lo = Math.min(a, b), hi = Math.max(a, b);
+    return el('span', {}, el('bdi', {}, money(lo)), ' – ', el('bdi', {}, money(hi)));
+  }
+  function idx(n) { return nf(n, 2); }
+  function fdate(s) {
+    if (!s) return '—';
+    return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(s + 'T00:00:00Z'));
+  }
+  function tr(v) { return v === null || v === undefined ? '' : typeof v === 'string' ? v : (v[lang] || v.en || v.ar || ''); }
+  // Names written as "عربي / English" show the part matching the language.
+  function pick(s) {
+    if (typeof s !== 'string') return s === null || s === undefined ? '' : String(s);
+    var parts = s.split(' / ');
+    if (parts.length !== 2) return s;
+    var firstAr = /[؀-ۿ]/.test(parts[0]);
+    return lang === 'ar' ? (firstAr ? parts[0] : parts[1]) : (firstAr ? parts[1] : parts[0]);
+  }
+  function el(tag, attrs) {
+    var e = document.createElement(tag);
+    attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v === null || v === undefined || v === false) return;
+      if (k === 'class') e.className = v;
+      else if (k === 'text') e.textContent = v;
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v);
+    });
+    for (var i = 2; i < arguments.length; i++) append(e, arguments[i]);
+    return e;
+  }
+  function append(e, c) {
+    if (c === null || c === undefined || c === false) return;
+    if (Array.isArray(c)) { c.forEach(function (x) { append(e, x); }); return; }
+    e.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  }
+  function svg(tag, attrs) {
+    var e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    return e;
+  }
+  function rag(v) { return el('span', { class: 'rag rag-' + (v || 'null') }, t('rag_' + (v || 'null'))); }
+  function kpi(label, value, sub, cls) {
+    return el('div', { class: 'kpi' }, el('div', { class: 'label' }, label), el('div', { class: 'value num ' + (cls || '') }, value), sub ? el('div', { class: 'sub' }, sub) : null);
+  }
+  function signCls(n) { return n === null || n === undefined ? '' : n < 0 ? 'neg' : 'pos'; }
+  function daysText(n) {
+    if (n === null || n === undefined) return '—';
+    if (n === 0) return '0 ' + t('days');
+    return nf(Math.abs(n)) + ' ' + t('days') + ' ' + (n > 0 ? t('late') : t('early'));
+  }
+  function table(headers, rows) {
+    return el('div', { class: 'table-wrap' }, el('table', {},
+      el('thead', {}, el('tr', {}, headers.map(function (h) { return el('th', {}, h); }))),
+      el('tbody', {}, rows.map(function (r) { return el('tr', {}, r.map(function (c) { return el('td', {}, c); })); }))));
+  }
+  function section(id, title) {
+    var s = el('section', { class: 'slide', id: 's-' + id, 'aria-label': title }, el('h2', {}, title));
+    for (var i = 2; i < arguments.length; i++) append(s, arguments[i]);
+    return s;
+  }
+  function ms(s) { return Date.parse(s + 'T00:00:00Z'); }
+
+  // ---------- charts (inline SVG, always left-to-right time axis) ----------
+  function lineChart(opts) {
+    var W = 640, H = opts.height || 260, L = 64, R = 14, T = 12, B = 30;
+    var xs = [], ys = [];
+    opts.series.forEach(function (s) { s.points.forEach(function (p) { xs.push(p[0]); ys.push(p[1]); }); });
+    (opts.refY || []).forEach(function (r) { ys.push(r.y); });
+    if (!xs.length) return null;
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+    var y0 = opts.yMin !== undefined ? opts.yMin : Math.min(0, Math.min.apply(null, ys));
+    var y1 = Math.max.apply(null, ys); if (y1 === y0) y1 = y0 + 1; y1 = y1 + (y1 - y0) * 0.06;
+    if (x1 === x0) x1 = x0 + 1;
+    var sx = function (x) { return L + (x - x0) / (x1 - x0) * (W - L - R); };
+    var sy = function (y) { return H - B - (y - y0) / (y1 - y0) * (H - T - B); };
+    var g = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': opts.title || '' });
+    for (var i = 0; i <= 4; i++) {
+      var yv = y0 + (y1 - y0) * i / 4, yy = sy(yv);
+      g.append(svg('line', { x1: L, x2: W - R, y1: yy, y2: yy, class: 'grid-line' }));
+      var tx = svg('text', { x: L - 6, y: yy + 4, 'text-anchor': 'end' }); tx.textContent = opts.yFmt(yv); g.append(tx);
+    }
+    var ticks = opts.xTicks || [];
+    ticks.forEach(function (tk) {
+      var xt = svg('text', { x: sx(tk[0]), y: H - 10, 'text-anchor': 'middle' }); xt.textContent = tk[1]; g.append(xt);
+    });
+    (opts.refY || []).forEach(function (r) {
+      g.append(svg('line', { x1: L, x2: W - R, y1: sy(r.y), y2: sy(r.y), stroke: r.color, 'stroke-dasharray': '4 4', 'stroke-width': 1.5 }));
+    });
+    (opts.refX || []).forEach(function (r) {
+      g.append(svg('line', { x1: sx(r.x), x2: sx(r.x), y1: T, y2: H - B, stroke: r.color, 'stroke-dasharray': '4 4', 'stroke-width': 1.5 }));
+    });
+    opts.series.forEach(function (s) {
+      if (!s.points.length) return;
+      var d = s.points.map(function (p, k) { return (k ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + sy(p[1]).toFixed(1); }).join(' ');
+      g.append(svg('path', { d: d, fill: 'none', stroke: s.color, 'stroke-width': s.width || 2.5, 'stroke-dasharray': s.dash || '' }));
+      s.points.forEach(function (p) {
+        var c = svg('circle', { cx: sx(p[0]), cy: sy(p[1]), r: s.dot === false ? 0 : 3.5, fill: s.color });
+        var ti = svg('title', {}); ti.textContent = s.label + ' — ' + (opts.xFmt ? opts.xFmt(p[0]) : p[0]) + ': ' + opts.yFmt(p[1]);
+        c.append(ti); g.append(c);
+      });
+    });
+    var box = el('div', { class: 'chart ltr' });
+    box.append(g);
+    box.append(el('div', { class: 'legend', dir: lang === 'ar' ? 'rtl' : 'ltr' },
+      opts.series.map(function (s) { return el('span', {}, el('i', { style: 'background:' + s.color }), s.label); }),
+      (opts.refY || []).concat(opts.refX || []).filter(function (r) { return r.label; }).map(function (r) { return el('span', {}, el('i', { style: 'background:' + r.color }), r.label); })));
+    return box;
+  }
+  function barChart(labels, values, color, fmt) {
+    var W = 640, H = 220, L = 44, R = 10, T = 10, B = 28;
+    var max = Math.max.apply(null, values.concat([1]));
+    var bw = (W - L - R) / Math.max(values.length, 1);
+    var g = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img' });
+    for (var i = 0; i <= 4; i++) {
+      var y = H - B - (H - T - B) * i / 4;
+      g.append(svg('line', { x1: L, x2: W - R, y1: y, y2: y, class: 'grid-line' }));
+      var tx = svg('text', { x: L - 6, y: y + 4, 'text-anchor': 'end' }); tx.textContent = fmt(max * i / 4); g.append(tx);
+    }
+    values.forEach(function (v, k) {
+      var h = (H - T - B) * v / max, x = L + k * bw + bw * 0.18;
+      var r = svg('rect', { x: x, y: H - B - h, width: bw * 0.64, height: h, rx: 3, fill: color });
+      var ti = svg('title', {}); ti.textContent = labels[k] + ': ' + fmt(v); r.append(ti); g.append(r);
+      var lt = svg('text', { x: x + bw * 0.32, y: H - 10, 'text-anchor': 'middle' }); lt.textContent = labels[k]; g.append(lt);
+    });
+    var box = el('div', { class: 'chart ltr' }); box.append(g); return box;
+  }
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function monthTicks(a, b) {
+    var out = [], d = new Date(ms(a)); d.setUTCDate(1);
+    var end = ms(b);
+    var fmt = new Intl.DateTimeFormat(locale(), { month: 'short', timeZone: 'UTC' });
+    while (d.getTime() <= end) {
+      if (d.getTime() >= ms(a)) out.push([d.getTime(), fmt.format(d)]);
+      d.setUTCMonth(d.getUTCMonth() + 1);
+    }
+    return out;
+  }
+
+  // ---------- sections ----------
+  var S = D.sections, st = D.status;
+  var EL = ['awareness', 'desire', 'knowledge', 'ability', 'reinforcement'];
+
+  function pv(p) { return p === null || p === undefined ? '—' : p < 0.001 ? '< 0.001' : nf(p, 3); }
+  function pctTxt(v) { return v === null || v === undefined ? '—' : nf(v, 1) + '%'; }
+  function delta(v, d, suffix, invert) {
+    if (v === null || v === undefined) return '—';
+    var good = invert ? v < 0 : v > 0, bad = invert ? v > 0 : v < 0;
+    return el('span', { class: good ? 'pos' : bad ? 'neg' : '' }, (v > 0 ? '+' : '') + nf(v, d === undefined ? 1 : d) + (suffix || ''));
+  }
+  function gname(id) {
+    var g = (D.groups || []).filter(function (x) { return x.id === id; })[0];
+    return g ? pick(g.name) : id;
+  }
+  function themeName(id) {
+    var th = (D.themes || []).filter(function (x) { return x.id === id; })[0];
+    return th ? (lang === 'ar' ? th.ar : th.en) : id;
+  }
+  function ragScore(r) {
+    return el('span', { class: 'rag rag-' + (r.rag || 'null') }, r.score === null ? t('rag_null') : nf(r.score, 1) + ' — ' + t('rag_' + r.rag));
+  }
+
+  function sCover() {
+    var r = st.readiness.latest.overall, C = st.compare || {};
+    var ad = S.adoption ? S.adoption.latest.overall : null, v = S.value ? S.value.totals : null;
+    var sen = S.sentiment ? S.sentiment.latest.overall : null;
+    var barrier = S.adkar ? S.adkar.overall.barrier : null;
+    return section('cover', t('s_cover'), el('div', { class: 'cover' },
+      el('h1', {}, pick(D.meta.name)),
+      el('div', { class: 'meta' },
+        el('span', {}, t('wave') + ': ', el('b', {}, D.meta.latestWave || '—'), D.meta.latestDate ? ' · ' + fdate(D.meta.latestDate) : ''),
+        D.meta.usageDate ? el('span', {}, t('usageDate') + ': ' + fdate(D.meta.usageDate)) : null,
+        D.meta.sponsor ? el('span', {}, t('sponsor') + ': ' + pick(D.meta.sponsor)) : null,
+        D.meta.changeManager ? el('span', {}, t('cm') + ': ' + pick(D.meta.changeManager)) : null),
+      el('div', { class: 'big' }, t('readiness') + ' ', ragScore(r)),
+      el('div', { class: 'grid' },
+        kpi(t('readiness'), r.score === null ? '—' : nf(r.score, 1), C.readiness ? delta(C.readiness.score.delta, 1) : null),
+        ad ? kpi(t('reach'), pctTxt(ad.reach), C.adoption ? delta(C.adoption.reach.delta, 1, ' pp') : null) : null,
+        sen ? kpi(t('net'), nf(sen.net, 1), C.people ? delta(C.people.net.delta, 1) : null) : null,
+        S.adkar ? kpi(t('barrier'), barrier ? t('el_' + barrier) : t('noBarrier')) : null,
+        v ? kpi(t('hours'), nf(v.hoursPerMonth, 0), t('perMonth')) : null,
+        v ? kpi(t('roi'), v.roiPct === null ? '—' : nf(v.roiPct, 1) + '%', t('payback') + ': ' + (v.paybackMonths === null ? '—' : nf(v.paybackMonths, 1) + ' ' + t('months')), v.roiPct !== null && v.roiPct < 0 ? 'neg' : 'pos') : null)));
+  }
+
+  function sSummary() {
+    var n = D.narrative, kids = [];
+    if (n && n.summary) kids.push(el('p', { class: 'big' }, tr(n.summary)));
+    if (n && n.highlights.length) kids.push(el('h3', {}, t('highlights')), el('ul', { class: 'clean' }, n.highlights.map(function (h) { return el('li', {}, tr(h)); })));
+    if (n && n.recommendations.length) kids.push(el('h3', {}, t('recommendations')), el('ul', { class: 'clean' }, n.recommendations.map(function (h) { return el('li', {}, tr(h)); })));
+    var pend = S.governance ? S.governance.pending : [];
+    kids.push(el('h3', {}, t('decisionsNeeded')));
+    kids.push(pend.length || (n && n.decisions.length)
+      ? el('ul', { class: 'clean' }, pend.map(function (a) { return el('li', {}, el('b', { class: 'num' }, a.id), ' — ', a.title || ''); }), (n ? n.decisions : []).map(function (d) { return el('li', {}, tr(d)); }))
+      : el('div', { class: 'note' }, t('noneYet')));
+    if (D.omitted.length) kids.push(el('h3', {}, t('notIncluded')), el('div', { class: 'note' }, D.omitted.map(function (o) { return t('s_' + o.section) + ' (' + t('r_' + o.reason) + ')'; }).join(' · ')));
+    return section('summary', t('s_summary'), kids);
+  }
+
+  function sJourney() {
+    var J = S.journey; if (!J) return null;
+    var ICON = { done: '✅', 'in-progress': '🔄', planned: '⏳', missing: '❌' };
+    var phases = ['prepare', 'manage', 'sustain'].map(function (p) {
+      var x = J.phases[p];
+      return el('div', { class: 'kpi' }, el('div', { class: 'label' }, t('ph_' + p)),
+        el('div', { class: 'value num' }, x.percentDone === null ? '—' : nf(x.percentDone, 0) + '%'),
+        el('div', { class: 'progress' }, el('span', { style: 'width:' + (x.percentDone || 0) + '%' })),
+        el('div', { class: 'sub' }, nf(x.done) + ' / ' + nf(x.total)));
+    });
+    var steps = el('div', { class: 'steps' }, J.kotter.map(function (k) {
+      return el('div', { class: 'step st-' + k.status }, el('div', { class: 'stepnum num' }, k.step), el('div', { class: 'steptitle' }, t('k' + k.step)), el('div', { class: 'note' }, ICON[k.status] + ' ' + t('ks_' + k.status)));
+    }));
+    var acts = function (list) { return table(['ID', t('activity'), t('owner'), t('due')], list.map(function (o) { return [o.id, tr(o.title), o.owner || '—', fdate(o.due)]; })); };
+    return section('journey', t('s_journey'),
+      el('div', { class: 'grid' }, phases, kpi(t('planDone'), J.percentDone === null ? '—' : nf(J.percentDone, 0) + '%', nf(J.done) + ' / ' + nf(J.total))),
+      el('h3', {}, t('kotter')), steps,
+      J.gaps.length ? [el('h3', {}, t('gaps')), table([t('group'), t('barrier'), t('levers')], J.gaps.map(function (g) { return [gname(g.group), t('el_' + g.barrier), g.suggestedLevers.map(function (l) { return t('lv_' + l); }).join(' · ')]; }))] : null,
+      J.overdue.length ? [el('h3', {}, t('overdue')), acts(J.overdue)] : null,
+      J.upcoming.length ? [el('h3', {}, t('upcoming')), acts(J.upcoming)] : null);
+  }
+
+  function sAdkar() {
+    var A = S.adkar; if (!A) return null;
+    function cls(v) { return v === null || v === undefined ? '' : v < 2.5 ? 'h1' : v < 3 ? 'h2' : v < 3.5 ? 'h3' : v < 4 ? 'h4' : 'h5'; }
+    function row(name, g, isOverall) {
+      if (g.suppressed) return el('tr', {}, el('td', {}, name), el('td', { colspan: 7, class: 'note' }, t('suppressed')));
+      return el('tr', { class: isOverall ? 'overall' : '' }, el('td', {}, name),
+        EL.map(function (e) { var v = g.scores[e]; return el('td', { class: 'adk ' + cls(v) + (g.barrier === e ? ' barrier' : ''), title: g.barrier === e ? t('barrier') : '' }, nf(v, 2)); }),
+        el('td', { class: 'num' }, nf(g.average, 2)),
+        el('td', {}, g.baselineAverage === null || g.baselineAverage === undefined ? '—' : delta(round(g.average - g.baselineAverage, 2), 2)));
+    }
+    var head = el('tr', {}, el('th', {}, t('group')), EL.map(function (e) { return el('th', {}, t('el_' + e)); }), el('th', {}, t('avg')), el('th', {}, t('vsBaseline')));
+    var rows = [row(t('overall'), A.overall, true)].concat(A.groups.map(function (g) { return row(gname(g.id), g); }));
+    return section('adkar', t('s_adkar'),
+      el('div', { class: 'table-wrap' }, el('table', { class: 'adk-table' }, el('thead', {}, head), el('tbody', {}, rows))),
+      el('div', { class: 'legend' }, ['h1', 'h2', 'h3', 'h4', 'h5'].map(function (h, i) { return el('span', {}, el('i', { class: 'sw ' + h }), ['< 2.5', '2.5–3', '3–3.5', '3.5–4', '≥ 4'][i]); }), el('span', {}, el('i', { class: 'sw barrier-sw' }), t('barrier'))),
+      el('p', { class: 'note' }, t('barrierNote')));
+  }
+
+  function sSentiment() {
+    var X = S.sentiment; if (!X) return null;
+    var L = X.latest;
+    var bars = el('div', { class: 'divbars' }, Object.keys(L.groups).map(function (id) {
+      var g = L.groups[id];
+      if (g.suppressed) return el('div', { class: 'dbar' }, el('span', { class: 'dl' }, gname(id)), el('span', { class: 'note' }, t('suppressed')));
+      var v = g.net || 0;
+      return el('div', { class: 'dbar' }, el('span', { class: 'dl' }, gname(id)),
+        el('span', { class: 'dtrack ltr' }, el('span', { class: 'dmid' }), el('span', { class: 'dfill ' + (v < 0 ? 'neg-bg' : 'pos-bg'), style: (v < 0 ? 'right:50%;' : 'left:50%;') + 'width:' + Math.min(50, Math.abs(v) / 2) + '%' })),
+        el('span', { class: 'num' }, g.net === null ? '—' : nf(g.net, 1)));
+    }));
+    var pts = X.trend.map(function (w, i) { return [i, w.net]; }).filter(function (p) { return p[1] !== null; });
+    var trend = pts.length > 1 ? lineChart({
+      title: t('netTrend'), yMin: -100, yFmt: function (v) { return nf(v, 0); }, xFmt: function (i) { return X.trend[i] ? X.trend[i].id : i; },
+      xTicks: X.trend.map(function (w, i) { return [i, w.id]; }), refY: [{ y: 0, color: css('--grey') }],
+      series: [{ label: t('net'), color: css('--ev'), points: pts }]
+    }) : null;
+    var themes = table([t('theme'), t('count'), t('share'), t('net')], L.overall.themes.slice(0, 8).map(function (th) {
+      return [themeName(th.theme), nf(th.count), pctTxt(th.share), el('span', { class: th.net < 0 ? 'neg' : th.net > 0 ? 'pos' : '' }, nf(th.net, 0))];
+    }));
+    var q = D.narrative && D.narrative.quotes.length ? [el('h3', {}, t('quotes')), D.narrative.quotes.map(function (x) { return el('blockquote', {}, tr(x)); })] : null;
+    return section('sentiment', t('s_sentiment'),
+      el('div', { class: 'grid' },
+        kpi(t('net'), nf(L.overall.net, 1), X.baseline ? delta(round(L.overall.net - X.baseline.overall.net, 1), 1) : null),
+        kpi(t('negative'), pctTxt(L.overall.negative), X.baseline ? delta(round(L.overall.negative - X.baseline.overall.negative, 1), 1, ' pp', true) : null),
+        kpi(t('comments'), nf(L.overall.n), L.overall.pendingReview ? t('pending') + ': ' + nf(L.overall.pendingReview) : null)),
+      el('div', { class: 'grid two' }, el('div', {}, el('h3', {}, t('netByGroup')), bars), trend ? el('div', {}, el('h3', {}, t('netTrend')), trend) : null),
+      el('h3', {}, t('themes')), themes, q);
+  }
+
+  function sAdoption() {
+    var A = S.adoption; if (!A) return null;
+    var o = A.latest.overall;
+    var steps = [['licensed', o.licensed], ['activated', o.activated], ['weeklyActive', o.activeWeekly], ['powerUsers', o.powerUsers]];
+    var funnel = el('div', { class: 'funnel' }, steps.map(function (s) {
+      var w = o.licensed ? (s[1] / o.licensed) * 100 : 0;
+      return el('div', { class: 'frow' }, el('span', { class: 'dl' }, t(s[0])), el('span', { class: 'ftrack' }, el('span', { class: 'ffill', style: 'width:' + w + '%' })), el('span', { class: 'num' }, nf(s[1]) + ' (' + nf(w, 0) + '%)'));
+    }));
+    var trend = A.trend.length > 1 ? lineChart({
+      title: t('adoptionTrend'), yMin: 0, yFmt: function (v) { return nf(v, 0) + '%'; }, xFmt: function (v) { return fdate(new Date(v).toISOString().slice(0, 10)); },
+      xTicks: A.trend.map(function (p) { return [ms(p.date), fdate(p.date)]; }),
+      series: [
+        { label: t('reach'), color: css('--ev'), points: A.trend.map(function (p) { return [ms(p.date), p.reach]; }) },
+        { label: t('retention'), color: css('--green'), points: A.trend.filter(function (p) { return p.retention !== null; }).map(function (p) { return [ms(p.date), p.retention]; }) },
+        { label: t('activation'), color: css('--pv'), dash: '6 4', points: A.trend.map(function (p) { return [ms(p.date), p.activation]; }) }
+      ]
+    }) : null;
+    var rows = Object.keys(A.latest.groups).map(function (id) {
+      var g = A.latest.groups[id];
+      if (g.suppressed) return [gname(id), el('span', { class: 'note' }, t('suppressed')), '', '', ''];
+      return [gname(id), pctTxt(g.reach), pctTxt(g.activation), nf(g.frequency, 1), pctTxt(g.retention)];
+    });
+    return section('adoption', t('s_adoption'),
+      el('div', { class: 'grid' }, kpi(t('reach'), pctTxt(o.reach)), kpi(t('activation'), pctTxt(o.activation)), kpi(t('frequency'), nf(o.frequency, 1), t('daysWeek')), kpi(t('retention'), pctTxt(o.retention))),
+      el('div', { class: 'grid two' }, el('div', {}, el('h3', {}, t('funnel')), funnel), trend ? el('div', {}, el('h3', {}, t('adoptionTrend')), trend) : null),
+      el('h3', {}, t('byGroup')), table([t('group'), t('reach'), t('activation'), t('frequency'), t('retention')], rows));
+  }
+
+  function sValue() {
+    var V = S.value; if (!V) return null;
+    var T = V.totals, W = V.whatIf;
+    function src(s) { return s === 'measured' ? '🟢 ' + t('measured') : s === 'estimate' ? '🟡 ' + t('estimate') : '—'; }
+    function ev(e) {
+      var s = t('ev_' + e.status);
+      if (e.status === 'confirmed') s = '✔ ' + s;
+      if (e.status === 'confirmed' || e.status === 'inconclusive') s += ' (p ' + pv(e.p) + ')';
+      return el('span', { class: e.status === 'confirmed' ? 'pos' : e.status === 'inconclusive' ? 'neg' : '' }, s);
+    }
+    var rows = V.processes.map(function (p) {
+      return [pick(p.name), el('span', { class: 'num' }, nf(p.before.minutes, 1) + ' → ' + nf(p.after.minutes, 1) + ' ' + t('min')),
+        el('span', { class: 'note' }, src(p.before.source) + ' / ' + src(p.after.source)),
+        p.improvementPct === null ? '—' : el('span', { class: p.savedMinutes < 0 ? 'neg' : 'pos' }, nf(p.improvementPct, 1) + '%'),
+        el('span', { class: 'num' }, nf(p.hoursPerMonth, 1)), el('span', { class: 'num' }, money(p.valuePerMonth)), ev(p.evidence)];
+    });
+    var months = []; for (var m = 0; m <= 24; m++) months.push(m);
+    var curve = lineChart({
+      title: t('paybackCurve'), yMin: 0, yFmt: function (v) { return nf(v / 1000, 0) + 'k'; }, xFmt: function (x) { return x + ' ' + t('months'); },
+      xTicks: [0, 6, 12, 18, 24].map(function (x) { return [x, String(x)]; }),
+      series: [
+        { label: t('cumValue'), color: css('--green'), dot: false, points: months.map(function (x) { return [x, T.valuePerMonth * x]; }) },
+        { label: t('cumCost'), color: css('--ac'), dot: false, points: months.map(function (x) { return [x, W.oneTime + T.licenseMonthly * x]; }) }
+      ]
+    });
+    var out = el('div', { class: 'num' });
+    var r1 = el('input', { type: 'range', min: 10, max: 100, step: 0.1, value: W.reach || 50, 'aria-label': t('wiReach') });
+    var r2 = el('input', { type: 'range', min: 50, max: 150, step: 5, value: 100, 'aria-label': t('wiLicense') });
+    function upd() {
+      var res = whatIf({ valuePerMonth: T.valuePerMonth, reach: W.reach, oneTime: W.oneTime, licenseMonthly: T.licenseMonthly, amortizationMonths: W.amortizationMonths }, { targetReach: Number(r1.value), licenseFactor: Number(r2.value) / 100 });
+      out.textContent = t('wiReach') + ' ' + r1.value + '% · ' + t('wiLicense') + ' ' + r2.value + '% → ' + t('valueMonth') + ' ' + money(res.valuePerMonth) + ' · ' + t('roi') + ' ' + (res.roiPct === null ? '—' : nf(res.roiPct, 1) + '%') + ' · ' + t('payback') + ' ' + (res.paybackMonths === null ? '—' : nf(res.paybackMonths, 1) + ' ' + t('months'));
+    }
+    r1.addEventListener('input', upd); r2.addEventListener('input', upd); upd();
+    return section('value', t('s_value'),
+      el('div', { class: 'grid' },
+        kpi(t('hours'), nf(T.hoursPerMonth, 0), t('perMonth')), kpi(t('valueMonth'), money(T.valuePerMonth)), kpi(t('monthlyCost'), money(T.monthlyCost)),
+        kpi(t('roi'), T.roiPct === null ? '—' : nf(T.roiPct, 1) + '%', null, T.roiPct !== null && T.roiPct < 0 ? 'neg' : 'pos'),
+        kpi(t('payback'), T.paybackMonths === null ? '—' : nf(T.paybackMonths, 1) + ' ' + t('months')),
+        kpi(t('measuredShare'), pctTxt(T.measuredValueShare))),
+      table([t('process'), t('beforeAfter'), t('source'), t('improvement'), t('hoursMonth'), t('valueMonth'), t('evidence')], rows),
+      el('p', { class: 'note' }, t('capacityNote')),
+      el('div', { class: 'grid two' },
+        el('div', {}, el('h3', {}, t('paybackCurve')), curve),
+        el('div', { class: 'whatif' }, el('b', {}, t('whatIf')), el('label', {}, t('wiReach')), r1, el('label', {}, t('wiLicense')), r2, out, el('div', { class: 'note' }, t('wiNote')))));
+  }
+
+  function sCompare() {
+    var C = S.compare; if (!C) return null;
+    var rows = [];
+    function add(label, x, d, suf, invert) { if (!x) return; rows.push([label, x.before === null ? '—' : nf(x.before, d) + (suf || ''), x.after === null ? '—' : nf(x.after, d) + (suf || ''), delta(x.delta, d, '', invert)]); }
+    if (C.readiness) add(t('readiness'), C.readiness.score, 1);
+    if (C.people) {
+      add(t('adkarAvg'), C.people.adkarAverage, 2);
+      EL.forEach(function (e) { add(t('el_' + e), C.people[e], 2); });
+      add(t('net'), C.people.net, 1);
+      add(t('negative'), C.people.negative, 1, '%', true);
+    }
+    if (C.adoption) {
+      add(t('reach'), C.adoption.reach, 1, '%');
+      add(t('activation'), C.adoption.activation, 1, '%');
+      add(t('frequency'), C.adoption.frequency, 2);
+      add(t('retention'), C.adoption.retention, 1, '%');
+    }
+    return section('compare', t('s_compare'), el('p', { class: 'note' }, t('baselineWave') + ': ' + (D.meta.baselineWave || '—') + ' → ' + (D.meta.latestWave || '—')), table([t('metric'), t('before'), t('after'), t('change')], rows));
+  }
+
+  function sImpact() {
+    var I = S.impact; if (!I) return null;
+    return section('impact', t('s_impact'),
+      el('div', { class: 'grid' }, kpi(t('headcount'), nf(I.totalHeadcount)), kpi(t('highImpact'), pctTxt(I.highImpactShare))),
+      table([t('group'), t('headcount'), t('impactLevel'), t('aspects')], I.groups.map(function (g) {
+        return [gname(g.id), nf(g.headcount), el('span', { class: 'lvl lvl' + (g.impactLevel || 0) }, nf(g.impactLevel)), g.aspects.map(function (a) { return t('as_' + a); }).join(' · ') || '—'];
+      })));
+  }
+
+  function sResistance() {
+    var R = S.resistance; if (!R) return null;
+    return section('resistance', t('s_resistance'),
+      el('div', { class: 'grid' }, kpi(t('rOpen'), nf(R.summary.open)), kpi(t('rMonitoring'), nf(R.summary.monitoring)), kpi(t('rResolved'), nf(R.summary.resolved))),
+      table([t('group'), t('rootCause'), t('signal'), t('intervention'), t('owner'), t('status')], R.entries.map(function (e) {
+        return [gname(e.group), e.rootCause ? t('el_' + e.rootCause) : '—', e.signal || '—', e.intervention || '—', e.owner || '—', t('rs_' + e.status)];
+      })));
+  }
+
+  function sGovernance() {
+    var G = S.governance; if (!G) return null;
+    return section('governance', t('s_governance'),
+      el('h3', {}, t('pendingDecisions')),
+      G.pending.length ? table(['ID', t('proposal'), t('agent')], G.pending.map(function (a) { return [el('b', { class: 'num' }, a.id), el('div', {}, a.title || '', a.impact ? el('div', { class: 'note' }, a.impact) : null), a.agent]; })) : el('div', { class: 'note' }, t('noneYet')),
+      el('h3', {}, t('recentDecisions')),
+      G.decisions.length ? table(['ID', t('proposal'), t('status'), t('by')], G.decisions.map(function (d) { return [el('b', { class: 'num' }, d.id), d.title || '', el('span', { class: d.decision === 'approved' ? 'pos' : 'neg' }, t(d.decision)), (d.by || '') + ' · ' + fdate((d.at || '').slice(0, 10))]; })) : el('div', { class: 'note' }, t('noneYet')));
+  }
+
+  // ---------- shell ----------
+  function applyTheme() {
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
+    else document.documentElement.removeAttribute('data-theme');
+  }
+  function slides() { return Array.prototype.slice.call(document.querySelectorAll('.slide')); }
+  function showSlide(i) {
+    var all = slides(); if (!all.length) return;
+    slideIdx = Math.max(0, Math.min(all.length - 1, i));
+    all.forEach(function (s, k) { s.classList.toggle('active', k === slideIdx); });
+    document.getElementById('slide-count').textContent = (slideIdx + 1) + ' ' + t('slideOf') + ' ' + all.length;
+  }
+  function render() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = pick(D.meta.name) + ' — ' + t('report');
+    document.getElementById('tb-title').textContent = pick(D.meta.name);
+    document.getElementById('btn-lang').textContent = t('langSwitch');
+    document.getElementById('btn-theme').textContent = t('theme') + ' ◐';
+    document.getElementById('btn-print').textContent = t('print');
+    document.getElementById('btn-mode').textContent = presenting ? t('exitPresent') : t('present');
+    document.getElementById('btn-prev').textContent = t('prev');
+    document.getElementById('btn-next').textContent = t('next');
+    document.getElementById('footer').textContent = t('generated') + ' · ' + fdate(D.meta.generatedAt.slice(0, 10));
+    var app = document.getElementById('app');
+    app.textContent = '';
+    [sCover, sSummary, sJourney, sAdkar, sSentiment, sAdoption, sValue, sCompare, sImpact, sResistance, sGovernance].forEach(function (f) {
+      var s = f(); if (s) app.append(s);
+    });
+    if (presenting) showSlide(slideIdx);
+  }
+  function setPresent(on) {
+    presenting = on;
+    document.body.classList.toggle('present', on);
+    if (on) { showSlide(slideIdx); try { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); } catch (e) {} }
+    else { try { document.fullscreenElement && document.exitFullscreen(); } catch (e) {} }
+    document.getElementById('btn-mode').textContent = on ? t('exitPresent') : t('present');
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('btn-lang').addEventListener('click', function () { lang = lang === 'ar' ? 'en' : 'ar'; render(); });
+  document.getElementById('btn-theme').addEventListener('click', function () {
+    var dark = theme ? theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    theme = dark ? 'light' : 'dark'; store.set('theme', theme); applyTheme(); render();
+  });
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('btn-mode').addEventListener('click', function () { setPresent(!presenting); });
+  document.getElementById('btn-prev').addEventListener('click', function () { showSlide(slideIdx - 1); });
+  document.getElementById('btn-next').addEventListener('click', function () { showSlide(slideIdx + 1); });
+  document.addEventListener('keydown', function (ev) {
+    if (!presenting || /input|textarea|select/i.test(ev.target.tagName)) return;
+    var rtl = lang === 'ar';
+    var nextKeys = ['PageDown', ' ', rtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowDown'];
+    var prevKeys = ['PageUp', rtl ? 'ArrowRight' : 'ArrowLeft', 'ArrowUp'];
+    if (nextKeys.indexOf(ev.key) >= 0) { ev.preventDefault(); showSlide(slideIdx + 1); }
+    else if (prevKeys.indexOf(ev.key) >= 0) { ev.preventDefault(); showSlide(slideIdx - 1); }
+    else if (ev.key === 'Escape') setPresent(false);
+  });
+  applyTheme();
+  render();
+})();
+</script>
+</body>
+</html>

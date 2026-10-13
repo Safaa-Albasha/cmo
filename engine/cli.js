@@ -4,6 +4,7 @@ const path = require('path');
 const { CmoError, loadProject, readJson } = require('./io');
 const approvals = require('./approvals');
 const { analyzeImpact } = require('./impact');
+const { writeReport } = require('./report');
 const { format } = require('./i18n');
 const { validate } = require('./validate');
 const { status, settings, findWave, waveMetrics } = require('./status');
@@ -108,6 +109,8 @@ const COMMANDS = {
   plan: (dir, o) => status(loadValid(dir), { today: str(o.today) }).plan,
   impact: (dir) => analyzeImpact(loadValid(dir).groups),
   'timing-form': (dir) => generateTimingForm(dir),
+  report: (dir, o) =>
+    writeReport(dir, { wave: str(o.wave), lang: str(o.lang), today: str(o.today), narrativeFile: str(o.narrative) ? path.resolve(o.narrative) : null, out: str(o.out) ? path.resolve(o.out) : undefined }),
   init: (dir, o) =>
     createProject(dir, {
       name: str(o.name),

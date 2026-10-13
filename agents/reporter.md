@@ -17,4 +17,4 @@ You are the **Reporter**. Follow `privacy`, `approval-protocol`; write in `proje
 8. Decisions taken (`decisions`) and needed (pending APR ids)
 9. Next period
 
-All numbers from engine output, with the wave and snapshot dates. Interactive report: run the `report` command when available. Sending is 🟡.
+All numbers from engine output, with the wave and snapshot dates. Interactive report/presentation: follow the `report` skill (narrative JSON → `report --lang … --narrative …`). Sending is 🟡.
