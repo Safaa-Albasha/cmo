@@ -3,6 +3,58 @@
   "sponsor": {
     "name": "الرئيس التنفيذي للعمليات / COO"
   },
-  "coalition": [],
-  "champions": []
+  "coalition": [
+    {
+      "id": "CO-1",
+      "name": "الرئيس التنفيذي للعمليات / COO",
+      "role": "Primary sponsor"
+    },
+    {
+      "id": "CO-2",
+      "name": "المدير المالي / CFO",
+      "role": "Finance sponsor"
+    },
+    {
+      "id": "CO-3",
+      "name": "مدير تقنية المعلومات / CIO",
+      "role": "Technology sponsor"
+    },
+    {
+      "id": "CO-4",
+      "name": "مدير الموارد البشرية / CHRO",
+      "role": "People sponsor"
+    }
+  ],
+  "champions": [
+    {
+      "id": "CH-1",
+      "group": "FIN",
+      "name": "Champion FIN"
+    },
+    {
+      "id": "CH-2",
+      "group": "HR",
+      "name": "Champion HR"
+    },
+    {
+      "id": "CH-3",
+      "group": "OPS",
+      "name": "Champion OPS"
+    },
+    {
+      "id": "CH-4",
+      "group": "SALES",
+      "name": "Champion SALES"
+    },
+    {
+      "id": "CH-5",
+      "group": "IT",
+      "name": "Champion IT"
+    },
+    {
+      "id": "CH-6",
+      "group": "LEGAL",
+      "name": "Champion LEGAL"
+    }
+  ]
 }

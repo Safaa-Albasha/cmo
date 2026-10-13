@@ -50,6 +50,8 @@ function googleAppsScript(title, items) {
     if (it.kind === 'dropdown') lines.push(`  form.addListItem().setTitle(${J(it.title)}).setChoiceValues(${J(it.options)}).setRequired(${it.required});`);
     else if (it.kind === 'choice') lines.push(`  form.addMultipleChoiceItem().setTitle(${J(it.title)}).setChoiceValues(${J(it.options)}).setRequired(${it.required});`);
     else if (it.kind === 'scale') lines.push(`  form.addScaleItem().setTitle(${J(it.title)}).setBounds(1, 5).setLabels(${J(it.low)}, ${J(it.high)}).setRequired(${it.required});`);
+    else if (it.kind === 'number')
+      lines.push(`  form.addTextItem().setTitle(${J(it.title)}).setRequired(${it.required}).setValidation(FormApp.createTextValidation().requireNumber().build());`);
     else lines.push(`  form.addParagraphTextItem().setTitle(${J(it.title)}).setRequired(false);`);
   }
   lines.push(
@@ -91,6 +93,7 @@ function markdown(title, items) {
     out.push(`${i + 1}. ${it.title}${it.required ? ' *' : ''}`);
     for (const o of it.options) out.push(`   - ${o}`);
     if (it.kind === 'text') out.push('   - (نص حر / free text)');
+    if (it.kind === 'number') out.push('   - (رقم / number)');
   });
   return out.join('\n') + '\n';
 }

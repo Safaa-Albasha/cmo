@@ -5,37 +5,64 @@
       "id": "FIN",
       "name": "المالية / Finance",
       "headcount": 60,
-      "impactLevel": 4
+      "impactLevel": 4,
+      "aspects": [
+        "processes",
+        "skills",
+        "data-handling"
+      ]
     },
     {
       "id": "HR",
       "name": "الموارد البشرية / Human Resources",
       "headcount": 40,
-      "impactLevel": 3
+      "impactLevel": 3,
+      "aspects": [
+        "processes",
+        "skills"
+      ]
     },
     {
       "id": "OPS",
       "name": "العمليات وخدمة العملاء / Operations & Customer Service",
       "headcount": 150,
-      "impactLevel": 5
+      "impactLevel": 5,
+      "aspects": [
+        "processes",
+        "systems-tools",
+        "performance-measures",
+        "skills"
+      ]
     },
     {
       "id": "SALES",
       "name": "المبيعات / Sales",
       "headcount": 100,
-      "impactLevel": 4
+      "impactLevel": 4,
+      "aspects": [
+        "processes",
+        "systems-tools",
+        "skills"
+      ]
     },
     {
       "id": "IT",
       "name": "تقنية المعلومات / IT",
       "headcount": 45,
-      "impactLevel": 2
+      "impactLevel": 2,
+      "aspects": [
+        "systems-tools",
+        "data-handling"
+      ]
     },
     {
       "id": "LEGAL",
       "name": "الشؤون القانونية / Legal",
       "headcount": 4,
-      "impactLevel": 3
+      "impactLevel": 3,
+      "aspects": [
+        "data-handling"
+      ]
     }
   ]
 }

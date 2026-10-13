@@ -6,6 +6,20 @@ const value = require('./value');
 const readiness = require('./readiness');
 const { compareFields } = require('./compare');
 const { CmoError } = require('./io');
+const { analyzePlan } = require('./plan');
+const { analyzeImpact } = require('./impact');
+
+function summarizeResistance(doc) {
+  const entries = (doc && doc.entries) || [];
+  const count = (s) => entries.filter((e) => (e.status || 'open') === s).length;
+  const byRootCause = {};
+  const byGroup = {};
+  for (const e of entries.filter((x) => (x.status || 'open') !== 'resolved')) {
+    if (e.rootCause) byRootCause[e.rootCause] = (byRootCause[e.rootCause] || 0) + 1;
+    if (e.group) byGroup[e.group] = (byGroup[e.group] || 0) + 1;
+  }
+  return { open: count('open'), monitoring: count('monitoring'), resolved: count('resolved'), byRootCause, byGroup };
+}
 
 const DEFAULTS = { barrier: 3, confidence: 0.7, readinessGreen: 70, readinessAmber: 50 };
 const WEIGHTS = { adkar: 0.5, sentiment: 0.2, adoption: 0.3 };
@@ -62,7 +76,7 @@ function readinessFor(people, usage, groupIds, cfg) {
 const flatPeople = (m) =>
   m ? { adkarAverage: m.adkar.overall.average, ...m.adkar.overall.scores, net: m.sentiment.overall.net, negative: m.sentiment.overall.negative } : null;
 
-function status(data, { wave } = {}) {
+function status(data, { wave, today } = {}) {
   const p = data.project;
   const cfg = settings(p);
   const notes = [];
@@ -88,6 +102,11 @@ function status(data, { wave } = {}) {
   const readinessNow = readinessFor(latest, lastUsage, ids, cfg);
   const readinessBefore = baseline || (firstUsage && firstUsage !== lastUsage) ? readinessFor(baseline, firstUsage, ids, cfg) : null;
 
+  const barriers = latest
+    ? Object.fromEntries(Object.entries(latest.adkar.groups).filter(([, g]) => !g.suppressed).map(([id, g]) => [id, g.barrier]))
+    : {};
+  const planSummary = data.plan ? analyzePlan(data.plan, { today: today || new Date().toISOString().slice(0, 10), barriers }) : null;
+
   const peopleFields = ['adkarAverage', 'awareness', 'desire', 'knowledge', 'ability', 'reinforcement', 'net', 'negative'];
   const usageFields = ['reach', 'activation', 'frequency', 'depth', 'retention'];
   return {
@@ -103,6 +122,9 @@ function status(data, { wave } = {}) {
       adoption: firstUsage && lastUsage && firstUsage !== lastUsage ? compareFields(firstUsage.overall, lastUsage.overall, usageFields) : null,
       readiness: readinessBefore ? compareFields({ score: readinessBefore.overall.score }, { score: readinessNow.overall.score }, ['score']) : null,
     },
+    plan: planSummary,
+    impact: data.groups ? analyzeImpact(data.groups) : null,
+    resistance: summarizeResistance(data.resistance),
     pending: latest ? { unlabeled: latest.unlabeled, pendingReview: latest.sentiment.overall.pendingReview } : null,
     notes,
   };

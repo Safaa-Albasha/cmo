@@ -48,3 +48,17 @@ test('unknown group is a warning', () => {
   d.waves[0].responses[0].group = 'NOPE';
   assert.deepStrictEqual(validate(d).warnings.map((w) => w.code), ['UNKNOWN_GROUP']);
 });
+
+test('plan, resistance, sponsors and aspects', () => {
+  const d = base();
+  d.groups.groups[0].aspects = 'processes';
+  d.plan = { activities: [
+    { id: 'X', phase: 'later', kotterStep: 9, adkar: ['nope'], lever: 'magic', status: 'maybe', due: '2026-13-01', groups: ['NOPE'] },
+    { id: 'X', phase: 'manage', status: 'planned' },
+  ] };
+  d.resistance = { entries: [{ id: 'RS1', group: 'FIN', rootCause: 'fear', status: 'stuck' }] };
+  d.sponsors = { champions: [{ id: 'C1' }, { id: 'C1' }] };
+  const r = validate(d);
+  assert.deepStrictEqual(codes(r), ['DATE_INVALID', ...Array(7).fill('ENUM_INVALID'), 'ID_DUPLICATE', 'ID_DUPLICATE', 'NUMBER_RANGE']);
+  assert.deepStrictEqual(r.warnings.map((w) => w.code), ['UNKNOWN_GROUP']);
+});

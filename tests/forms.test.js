@@ -57,3 +57,17 @@ test('createWave and generateSurvey write files', () => {
   assert.throws(() => createWave(dir, { wave: 'baseline', type: 'baseline', date: '2026-02-01' }), (e) => e.code === 'WAVE_EXISTS');
   assert.throws(() => createWave(dir, { wave: 'p', type: 'x', date: '2026-02-01' }), (e) => e.code === 'ENUM_INVALID');
 });
+
+test('timing form round-trips through samples import', () => {
+  const dir = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cmo-')), '.cmo');
+  fs.cpSync(path.join(__dirname, '..', 'examples', 'ai-adoption', '.cmo'), dir, { recursive: true });
+  const { generateTimingForm } = require('../engine/survey');
+  const { importSamples } = require('../engine/samples');
+  const r = generateTimingForm(dir);
+  const gs = fs.readFileSync(r.files[0], 'utf8');
+  assert.match(gs, /requireNumber\(\)/);
+  assert.match(gs, /\[PROCESS\]/);
+  const csv = path.join(path.dirname(dir), 't.csv');
+  fs.writeFileSync(csv, 'Timestamp,[PROCESS] العملية / Process,[PHASE] المرحلة / Phase,[MINUTES] الوقت (دقائق) / Minutes,[ERRORS] هل حدث خطأ؟ / Any errors?\n2026-09-01,صياغة الوصف الوظيفي / Job description drafting,بعد الذكاء الاصطناعي / With AI,35,لا / No\n');
+  assert.deepStrictEqual(importSamples(dir, { from: csv }).counts, { PR4: { before: 0, after: 1 } });
+});

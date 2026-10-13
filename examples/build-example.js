@@ -32,12 +32,12 @@ const write = (rel, data) => {
 };
 
 const GROUPS = [
-  { id: 'FIN', name: 'المالية / Finance', headcount: 60, impactLevel: 4 },
-  { id: 'HR', name: 'الموارد البشرية / Human Resources', headcount: 40, impactLevel: 3 },
-  { id: 'OPS', name: 'العمليات وخدمة العملاء / Operations & Customer Service', headcount: 150, impactLevel: 5 },
-  { id: 'SALES', name: 'المبيعات / Sales', headcount: 100, impactLevel: 4 },
-  { id: 'IT', name: 'تقنية المعلومات / IT', headcount: 45, impactLevel: 2 },
-  { id: 'LEGAL', name: 'الشؤون القانونية / Legal', headcount: 4, impactLevel: 3 },
+  { id: 'FIN', name: 'المالية / Finance', headcount: 60, impactLevel: 4, aspects: ['processes', 'skills', 'data-handling'] },
+  { id: 'HR', name: 'الموارد البشرية / Human Resources', headcount: 40, impactLevel: 3, aspects: ['processes', 'skills'] },
+  { id: 'OPS', name: 'العمليات وخدمة العملاء / Operations & Customer Service', headcount: 150, impactLevel: 5, aspects: ['processes', 'systems-tools', 'performance-measures', 'skills'] },
+  { id: 'SALES', name: 'المبيعات / Sales', headcount: 100, impactLevel: 4, aspects: ['processes', 'systems-tools', 'skills'] },
+  { id: 'IT', name: 'تقنية المعلومات / IT', headcount: 45, impactLevel: 2, aspects: ['systems-tools', 'data-handling'] },
+  { id: 'LEGAL', name: 'الشؤون القانونية / Legal', headcount: 4, impactLevel: 3, aspects: ['data-handling'] },
 ];
 
 // ADKAR means [A, D, K, Ab, R] per wave.
@@ -99,10 +99,41 @@ const project = {
 
 write('project.json', project);
 write('groups.json', { schemaVersion: 1, groups: GROUPS });
-write('plan.json', TPL('plan.json'));
+// Plan progress as of mid-October 2026.
+const PROGRESS = {
+  P01: ['done', '2026-02-01', '2026-02-15', 'COO'], P02: ['done', '2026-02-01', '2026-02-20', 'COO'], P03: ['done', '2026-02-10', '2026-02-28', 'COO'],
+  P04: ['done', '2026-02-10', '2026-02-28', 'Change manager'], P05: ['done', '2026-02-15', '2026-03-20', 'Legal & IT'], P06: ['done', '2026-02-20', '2026-03-05', 'Change manager'],
+  M01: ['done', '2026-03-08', '2026-03-10', 'COO'], M02: ['done', '2026-03-10', '2026-04-15', 'HR'], M03: ['done', '2026-03-15', '2026-05-31', 'L&D'],
+  M04: ['done', '2026-04-01', '2026-06-30', 'Champions'], M05: ['done', '2026-04-01', '2026-07-31', 'IT'], M06: ['in-progress', '2026-05-01', '2026-10-31', 'Comms'],
+  M07: ['in-progress', '2026-05-01', '2026-11-30', 'Change manager'], S01: ['planned', '2026-09-01', '2026-09-30', 'HR'], S02: ['planned', '2026-09-15', '2026-11-30', 'COO'],
+  S03: ['planned', '2026-10-01', '2026-12-15', 'Champions'], S04: ['planned', '2026-12-01', '2026-12-31', 'Change manager'],
+};
+const planTpl = TPL('plan.json');
+for (const a of planTpl.activities) {
+  const [status, start, due, owner] = PROGRESS[a.id];
+  Object.assign(a, { status, start, due, owner });
+}
+write('plan.json', planTpl);
 write('surveys/bank.json', TPL('bank.json'));
-write('sponsors.json', { schemaVersion: 1, sponsor: { name: project.sponsor }, coalition: [], champions: [] });
-write('resistance.json', { schemaVersion: 1, entries: [] });
+write('sponsors.json', {
+  schemaVersion: 1,
+  sponsor: { name: project.sponsor },
+  coalition: [
+    { id: 'CO-1', name: 'الرئيس التنفيذي للعمليات / COO', role: 'Primary sponsor' },
+    { id: 'CO-2', name: 'المدير المالي / CFO', role: 'Finance sponsor' },
+    { id: 'CO-3', name: 'مدير تقنية المعلومات / CIO', role: 'Technology sponsor' },
+    { id: 'CO-4', name: 'مدير الموارد البشرية / CHRO', role: 'People sponsor' },
+  ],
+  champions: GROUPS.map((g, i) => ({ id: `CH-${i + 1}`, group: g.id, name: `Champion ${g.id}` })),
+});
+write('resistance.json', {
+  schemaVersion: 1,
+  entries: [
+    { id: 'RS-1', group: 'OPS', rootCause: 'reinforcement', signal: 'Workload: saved time turned into extra tasks', intervention: 'Protect saved time; recognise adopters; add AI use to team KPIs', owner: 'OPS director', status: 'open', opened: '2026-07-05' },
+    { id: 'RS-2', group: 'FIN', rootCause: 'desire', signal: 'Fear of job loss in reconciliation team', intervention: 'CFO town hall on future roles; reskilling path', owner: 'CFO', status: 'monitoring', opened: '2026-03-10' },
+    { id: 'RS-3', group: 'SALES', rootCause: 'reinforcement', signal: 'Managers do not follow up on AI use', intervention: 'Manager coaching guide; monthly AI showcase', owner: 'Sales director', status: 'open', opened: '2026-07-05' },
+  ],
+});
 write('approvals.json', { schemaVersion: 1, approvals: [] });
 write('decisions.json', { schemaVersion: 1, decisions: [] });
 

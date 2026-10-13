@@ -1,4 +1,35 @@
 {
   "schemaVersion": 1,
-  "entries": []
+  "entries": [
+    {
+      "id": "RS-1",
+      "group": "OPS",
+      "rootCause": "reinforcement",
+      "signal": "Workload: saved time turned into extra tasks",
+      "intervention": "Protect saved time; recognise adopters; add AI use to team KPIs",
+      "owner": "OPS director",
+      "status": "open",
+      "opened": "2026-07-05"
+    },
+    {
+      "id": "RS-2",
+      "group": "FIN",
+      "rootCause": "desire",
+      "signal": "Fear of job loss in reconciliation team",
+      "intervention": "CFO town hall on future roles; reskilling path",
+      "owner": "CFO",
+      "status": "monitoring",
+      "opened": "2026-03-10"
+    },
+    {
+      "id": "RS-3",
+      "group": "SALES",
+      "rootCause": "reinforcement",
+      "signal": "Managers do not follow up on AI use",
+      "intervention": "Manager coaching guide; monthly AI showcase",
+      "owner": "Sales director",
+      "status": "open",
+      "opened": "2026-07-05"
+    }
+  ]
 }

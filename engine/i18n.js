@@ -37,6 +37,17 @@ const MESSAGES = {
   PROCESS_UNKNOWN: { en: 'Row {row}: process "{value}" is not in processes.json', ar: 'الصف {row}: العملية "{value}" غير موجودة في processes.json' },
   IMPORT_MODE: { en: 'Usage file not recognised: need per-user columns (user + last activity date) or per-group columns (group + licensed)', ar: 'ملف الاستخدام غير مفهوم: يلزم أعمدة لكل مستخدم (المستخدم وتاريخ آخر نشاط) أو لكل مجموعة (المجموعة وعدد المرخّص لهم)' },
   ROSTER_REQUIRED: { en: 'This usage report has no department column — pass --roster <file with user and department>', ar: 'تقرير الاستخدام لا يحتوي عمود القسم؛ أضف ‎--roster بملف فيه المستخدم والقسم' },
+  OP_INVALID: { en: 'Unknown operation "{op}". Use add, update or set', ar: 'عملية غير معروفة "{op}". استخدم add أو update أو set' },
+  FILE_NOT_ALLOWED: { en: 'Operation "{op}" is not allowed on {file}', ar: 'العملية "{op}" غير مسموحة على {file}' },
+  ITEM_NOT_FOUND: { en: '{file}: no item with id "{id}"', ar: '{file}: لا يوجد عنصر بالمعرّف "{id}"' },
+  APPROVAL_RESOLVED: { en: 'Approval {id} is already {status}', ar: 'طلب الموافقة {id} تمت معالجته مسبقًا ({status})' },
+  PROPOSAL_STALE: { en: 'Approval {id} is stale: the data changed since it was proposed. Reject it and propose again', ar: 'طلب الموافقة {id} قديم: تغيّرت البيانات بعد اقتراحه. ارفضه واقترحه من جديد' },
+  PROCESSES_REQUIRED: { en: 'Register processes in processes.json before generating the timing form', ar: 'سجّل العمليات في processes.json قبل توليد نموذج قياس الوقت' },
+  GUARD_DENY_FILE: { en: 'CMO guard: {file} is a controlled record. Propose the change (engine propose) and approve it with /cmo:approvals', ar: 'حارس CMO: الملف {file} سجل محمي. اقترح التغيير (engine propose) ووافق عليه عبر /cmo:approvals' },
+  GUARD_DENY_SHELL: { en: 'CMO guard: shell commands may not modify or delete controlled .cmo records. Use the engine and /cmo:approvals', ar: 'حارس CMO: لا يُسمح لأوامر الطرفية بتعديل أو حذف سجلات .cmo المحمية. استخدم المحرّك و/cmo:approvals' },
+  GUARD_DENY_SECRET: { en: 'CMO guard: .cmo/.salt protects respondent anonymity and must not be read, copied or changed', ar: 'حارس CMO: الملف ‎.cmo/.salt يحمي سرية المشاركين ولا يجوز قراءته أو نسخه أو تغييره' },
+  GUARD_ASK_APPLY: { en: 'CMO approval: confirm that the change manager decided this ({cmd})', ar: 'موافقة CMO: أكّد أن مدير التغيير اتخذ هذا القرار ({cmd})' },
+  GUARD_ASK_MCP: { en: 'CMO: {tool} writes to or sends via an external tool. Confirm before it runs', ar: 'CMO: الأداة {tool} تكتب أو ترسل عبر نظام خارجي. أكّد قبل التنفيذ' },
 };
 
 function format(code, params = {}) {

@@ -9,11 +9,14 @@
         "awareness"
       ],
       "lever": "sponsorship",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "صياغة دافع العمل لتبنّي الذكاء الاصطناعي وخلق الإلحاح",
         "en": "Build the AI business case and create urgency"
-      }
+      },
+      "start": "2026-02-01",
+      "due": "2026-02-15",
+      "owner": "COO"
     },
     {
       "id": "P02",
@@ -21,11 +24,14 @@
       "kotterStep": 2,
       "adkar": [],
       "lever": "sponsorship",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "تشكيل التحالف القيادي للتغيير",
         "en": "Form the guiding coalition"
-      }
+      },
+      "start": "2026-02-01",
+      "due": "2026-02-20",
+      "owner": "COO"
     },
     {
       "id": "P03",
@@ -35,11 +41,14 @@
         "awareness"
       ],
       "lever": "sponsorship",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "تحديد الرؤية ومؤشرات النجاح",
         "en": "Define the vision and success metrics"
-      }
+      },
+      "start": "2026-02-10",
+      "due": "2026-02-28",
+      "owner": "COO"
     },
     {
       "id": "P04",
@@ -47,11 +56,14 @@
       "kotterStep": null,
       "adkar": [],
       "lever": "assessment",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "تقييم أثر التغيير على كل مجموعة",
         "en": "Assess change impact per group"
-      }
+      },
+      "start": "2026-02-10",
+      "due": "2026-02-28",
+      "owner": "Change manager"
     },
     {
       "id": "P05",
@@ -61,11 +73,14 @@
         "knowledge"
       ],
       "lever": "governance",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "سياسة الاستخدام المقبول للذكاء الاصطناعي وحوكمته",
         "en": "AI acceptable-use policy and governance"
-      }
+      },
+      "start": "2026-02-15",
+      "due": "2026-03-20",
+      "owner": "Legal & IT"
     },
     {
       "id": "P06",
@@ -73,11 +88,14 @@
       "kotterStep": null,
       "adkar": [],
       "lever": "assessment",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "الاستبيان الأساسي وخطوط أساس العمليات",
         "en": "Baseline survey and process baselines"
-      }
+      },
+      "start": "2026-02-20",
+      "due": "2026-03-05",
+      "owner": "Change manager"
     },
     {
       "id": "M01",
@@ -88,11 +106,14 @@
         "desire"
       ],
       "lever": "communications",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "إطلاق تنفيذي وتوصيل الرؤية",
         "en": "Executive kickoff and vision communication"
-      }
+      },
+      "start": "2026-03-08",
+      "due": "2026-03-10",
+      "owner": "COO"
     },
     {
       "id": "M02",
@@ -102,11 +123,14 @@
         "desire"
       ],
       "lever": "coaching",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "شبكة سفراء الذكاء الاصطناعي في كل قسم",
         "en": "AI champions network in every department"
-      }
+      },
+      "start": "2026-03-10",
+      "due": "2026-04-15",
+      "owner": "HR"
     },
     {
       "id": "M03",
@@ -116,11 +140,14 @@
         "knowledge"
       ],
       "lever": "training",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "تدريب حسب الدور ومكتبة أوامر لكل قسم",
         "en": "Role-based training and a prompt library per department"
-      }
+      },
+      "start": "2026-03-15",
+      "due": "2026-05-31",
+      "owner": "L&D"
     },
     {
       "id": "M04",
@@ -130,11 +157,14 @@
         "ability"
       ],
       "lever": "training",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "ورش حالات الاستخدام لكل قسم",
         "en": "Use-case workshops per department"
-      }
+      },
+      "start": "2026-04-01",
+      "due": "2026-06-30",
+      "owner": "Champions"
     },
     {
       "id": "M05",
@@ -144,11 +174,14 @@
         "ability"
       ],
       "lever": "coaching",
-      "status": "planned",
+      "status": "done",
       "title": {
         "ar": "ساعات دعم مفتوحة ودعم من الزملاء",
         "en": "Office hours and peer support"
-      }
+      },
+      "start": "2026-04-01",
+      "due": "2026-07-31",
+      "owner": "IT"
     },
     {
       "id": "M06",
@@ -159,11 +192,14 @@
         "reinforcement"
       ],
       "lever": "communications",
-      "status": "planned",
+      "status": "in-progress",
       "title": {
         "ar": "عرض الإنجازات السريعة",
         "en": "Showcase quick wins"
-      }
+      },
+      "start": "2026-05-01",
+      "due": "2026-10-31",
+      "owner": "Comms"
     },
     {
       "id": "M07",
@@ -171,11 +207,14 @@
       "kotterStep": null,
       "adkar": [],
       "lever": "resistance",
-      "status": "planned",
+      "status": "in-progress",
       "title": {
         "ar": "استبيانات المتابعة وإدارة المقاومة",
         "en": "Pulse surveys and resistance management"
-      }
+      },
+      "start": "2026-05-01",
+      "due": "2026-11-30",
+      "owner": "Change manager"
     },
     {
       "id": "S01",
@@ -189,7 +228,10 @@
       "title": {
         "ar": "التقدير والحوافز",
         "en": "Recognition and incentives"
-      }
+      },
+      "start": "2026-09-01",
+      "due": "2026-09-30",
+      "owner": "HR"
     },
     {
       "id": "S02",
@@ -203,7 +245,10 @@
       "title": {
         "ar": "دمج الذكاء الاصطناعي في العمليات ومؤشرات الأداء",
         "en": "Embed AI in processes and KPIs"
-      }
+      },
+      "start": "2026-09-15",
+      "due": "2026-11-30",
+      "owner": "COO"
     },
     {
       "id": "S03",
@@ -217,7 +262,10 @@
       "title": {
         "ar": "توسيع حالات الاستخدام الناجحة",
         "en": "Scale successful use cases"
-      }
+      },
+      "start": "2026-10-01",
+      "due": "2026-12-15",
+      "owner": "Champions"
     },
     {
       "id": "S04",
@@ -231,7 +279,10 @@
       "title": {
         "ar": "تقرير القيمة والدروس المستفادة",
         "en": "Value report and lessons learned"
-      }
+      },
+      "start": "2026-12-01",
+      "due": "2026-12-31",
+      "owner": "Change manager"
     }
   ]
 }

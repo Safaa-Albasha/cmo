@@ -1,6 +1,9 @@
 'use strict';
 const { isDate, parseDate } = require('./util');
 const { format } = require('./i18n');
+const { ELEMENTS } = require('./adkar');
+const { PHASES: PLAN_PHASES, LEVERS, STATUSES } = require('./plan');
+const RESISTANCE_STATUS = ['open', 'monitoring', 'resolved'];
 
 const TYPES = ['ai-adoption', 'generic'];
 const LANGS = ['ar', 'en'];
@@ -100,6 +103,30 @@ function validate(data) {
       if (!PHASES.includes(s.phase)) err('ENUM_INVALID', { file: `samples/${id}.json`, field: 'phase', allowed: PHASES.join(', ') });
       range(`samples/${id}.json`, 'minutes', s.minutes, 0, BIG);
     }
+
+  for (const g of groups) if (g.aspects !== undefined && !Array.isArray(g.aspects)) err('ENUM_INVALID', { file: 'groups.json', field: `${g.id}.aspects`, allowed: 'array' });
+
+  const acts = (data.plan && data.plan.activities) || [];
+  dupes('plan.json', acts);
+  for (const a of acts) {
+    const P = 'plan.json';
+    if (!PLAN_PHASES.includes(a.phase)) err('ENUM_INVALID', { file: P, field: `${a.id}.phase`, allowed: PLAN_PHASES.join(', ') });
+    if (a.kotterStep !== null && a.kotterStep !== undefined) range(P, `${a.id}.kotterStep`, a.kotterStep, 1, 8);
+    if ((a.adkar || []).some((e) => !ELEMENTS.includes(e))) err('ENUM_INVALID', { file: P, field: `${a.id}.adkar`, allowed: ELEMENTS.join(', ') });
+    if (a.lever && !LEVERS.includes(a.lever)) err('ENUM_INVALID', { file: P, field: `${a.id}.lever`, allowed: LEVERS.join(', ') });
+    if (a.status && !STATUSES.includes(a.status)) err('ENUM_INVALID', { file: P, field: `${a.id}.status`, allowed: STATUSES.join(', ') });
+    for (const f of ['start', 'due']) if (a[f] && !isDate(a[f])) err('DATE_INVALID', { file: P, field: `${a.id}.${f}` });
+    for (const g of a.groups || []) if (groups.length && !groupIds.has(g)) warn('UNKNOWN_GROUP', { file: P, group: g });
+  }
+
+  const entries = (data.resistance && data.resistance.entries) || [];
+  dupes('resistance.json', entries);
+  for (const e of entries) {
+    if (e.rootCause && !ELEMENTS.includes(e.rootCause)) err('ENUM_INVALID', { file: 'resistance.json', field: `${e.id}.rootCause`, allowed: ELEMENTS.join(', ') });
+    if (e.status && !RESISTANCE_STATUS.includes(e.status)) err('ENUM_INVALID', { file: 'resistance.json', field: `${e.id}.status`, allowed: RESISTANCE_STATUS.join(', ') });
+    if (e.group && groups.length && !groupIds.has(e.group)) warn('UNKNOWN_GROUP', { file: 'resistance.json', group: e.group });
+  }
+  for (const k of ['coalition', 'champions']) dupes('sponsors.json', (data.sponsors && data.sponsors[k]) || []);
 
   return { ok: errors.length === 0, errors, warnings };
 }

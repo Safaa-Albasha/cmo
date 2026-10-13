@@ -35,4 +35,24 @@ function generateSurvey(dir, { wave }) {
   return { wave, items: items.length, files };
 }
 
-module.exports = { createWave, generateSurvey };
+function generateTimingForm(dir) {
+  const data = loadProject(dir);
+  const procs = (data.processes && data.processes.processes) || [];
+  if (!procs.length) throw new CmoError('PROCESSES_REQUIRED');
+  const items = [
+    { id: 'PROCESS', kind: 'dropdown', title: '[PROCESS] العملية / Process', options: procs.map((p) => p.name), required: true },
+    { id: 'PHASE', kind: 'choice', title: '[PHASE] المرحلة / Phase', options: ['قبل الذكاء الاصطناعي / Before AI', 'بعد الذكاء الاصطناعي / With AI'], required: true },
+    { id: 'MINUTES', kind: 'number', title: '[MINUTES] الوقت (دقائق) / Minutes', options: [], required: true },
+    { id: 'ERRORS', kind: 'choice', title: '[ERRORS] هل حدث خطأ؟ / Any errors?', options: ['نعم / Yes', 'لا / No'], required: false },
+  ];
+  const title = `${data.project.name} — قياس وقت العمليات / Process timing`;
+  const base = path.join(dir, 'drafts', 'timing-form');
+  fs.mkdirSync(path.dirname(base), { recursive: true });
+  const files = [`${base}-google.gs`, `${base}-msforms.docx`, `${base}.md`];
+  fs.writeFileSync(files[0], forms.googleAppsScript(title, items), 'utf8');
+  fs.writeFileSync(files[1], forms.msFormsDocx(title, items));
+  fs.writeFileSync(files[2], forms.markdown(title, items), 'utf8');
+  return { processes: procs.length, files };
+}
+
+module.exports = { createWave, generateSurvey, generateTimingForm };

@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 const path = require('path');
-const { CmoError, loadProject } = require('./io');
+const { CmoError, loadProject, readJson } = require('./io');
+const approvals = require('./approvals');
+const { analyzeImpact } = require('./impact');
 const { format } = require('./i18n');
 const { validate } = require('./validate');
 const { status, settings, findWave, waveMetrics } = require('./status');
@@ -9,7 +11,7 @@ const adoption = require('./adoption');
 const value = require('./value');
 const { createProject } = require('./init');
 const fs = require('fs');
-const { createWave, generateSurvey } = require('./survey');
+const { createWave, generateSurvey, generateTimingForm } = require('./survey');
 const { importResponses } = require('./responses');
 const { importUsage } = require('./usage');
 const { importSamples } = require('./samples');
@@ -80,6 +82,32 @@ const COMMANDS = {
   comments: (dir, o) => labels.comments(dir, pickWaveId(dir, o.wave), { limit: Number(o.limit) || 50, offset: Number(o.offset) || 0 }),
   label: (dir, o) => labels.addLabels(dir, pickWaveId(dir, o.wave), readJsonArg(o), { reviewed: o.reviewed === true }),
   review: (dir, o) => labels.reviewQueue(dir, pickWaveId(dir, o.wave)),
+  propose: (dir, o) => approvals.propose(dir, readJsonArg(o)),
+  approvals: (dir, o) => approvals.list(dir, str(o.status) || 'pending'),
+  apply: (dir, o) => {
+    const opts = { by: str(o.by) || null, note: str(o.note) || null };
+    if (str(o.ids)) {
+      const results = o.ids.split(',').map((s) => s.trim()).filter(Boolean).map((id) => {
+        try {
+          return { id, ok: true, decision: approvals.apply(dir, id, o.decision, opts).decision };
+        } catch (e) {
+          if (!(e instanceof CmoError)) throw e;
+          const m = format(e.code, e.params);
+          return { id, ok: false, error: { code: e.code, message_en: m.en, message_ar: m.ar } };
+        }
+      });
+      return { results };
+    }
+    if (!str(o.id)) throw new CmoError('ARG_MISSING', { arg: 'id' });
+    return approvals.apply(dir, o.id, o.decision, opts);
+  },
+  decisions: (dir) => {
+    const doc = readJson(dir, 'decisions.json', { optional: true });
+    return doc ? doc.decisions : [];
+  },
+  plan: (dir, o) => status(loadValid(dir), { today: str(o.today) }).plan,
+  impact: (dir) => analyzeImpact(loadValid(dir).groups),
+  'timing-form': (dir) => generateTimingForm(dir),
   init: (dir, o) =>
     createProject(dir, {
       name: str(o.name),
