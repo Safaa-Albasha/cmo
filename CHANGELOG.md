@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 — 2026-10-13
+
+- Example project includes its (public, fictional) privacy salt so imports work when trying the example.
+
 ## 1.0.0 — 2026-10-13
 
 First release.

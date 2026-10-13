@@ -214,6 +214,8 @@ write('samples/PR1.json', { schemaVersion: 1, samples: samples([['before', 8, 35
 write('samples/PR2.json', { schemaVersion: 1, samples: samples([['before', 12, 24, 6, 0.08], ['after', 12, 8.5, 3, 0.04]]) });
 write('samples/PR3.json', { schemaVersion: 1, samples: samples([['before', 6, 18, 4, 0.05], ['after', 3, 11, 2, 0.03]]) });
 write('samples/PR5.json', { schemaVersion: 1, samples: samples([['before', 6, 30, 12, 0], ['after', 6, 26, 12, 0]]) });
+// The example's salt is public on purpose (fictional data) so imports work when trying the example.
+fs.writeFileSync(path.join(OUT, '.salt'), SALT);
 for (const d of ['drafts', 'reports']) {
   fs.mkdirSync(path.join(OUT, d), { recursive: true });
   fs.writeFileSync(path.join(OUT, d, '.gitkeep'), '');
