@@ -17,6 +17,7 @@ const { importResponses } = require('./responses');
 const { importUsage } = require('./usage');
 const { importSamples } = require('./samples');
 const labels = require('./labels');
+const promise = require('./promise');
 
 function parseArgs(argv) {
   const [cmd, ...rest] = argv;
@@ -109,6 +110,7 @@ const COMMANDS = {
   plan: (dir, o) => status(loadValid(dir), { today: str(o.today) }).plan,
   impact: (dir) => analyzeImpact(loadValid(dir).groups),
   'timing-form': (dir) => generateTimingForm(dir),
+  'privacy-sheet': (dir) => promise.writeSheet(dir),
   doctor: (dir) => {
     const project = { dir, exists: fs.existsSync(path.join(dir, 'project.json')), valid: null, errors: 0, salt: fs.existsSync(path.join(dir, '.salt')), waves: 0, usageSnapshots: 0, processes: 0, pendingApprovals: 0 };
     if (project.exists) {

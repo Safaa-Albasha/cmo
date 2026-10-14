@@ -5,6 +5,7 @@ const { CmoError, writeJson, loadProject } = require('./io');
 const { isDate } = require('./util');
 const { findWave } = require('./status');
 const forms = require('./forms');
+const promise = require('./promise');
 
 const TYPES = ['baseline', 'pulse'];
 
@@ -25,14 +26,17 @@ function generateSurvey(dir, { wave }) {
   const groups = (data.groups && data.groups.groups) || [];
   if (!groups.length) throw new CmoError('GROUPS_REQUIRED');
   const items = forms.surveyItems(data.bank, groups, w.meta.questions);
+  const f = promise.facts(data.project, data.bank, w.meta.questions);
+  const intro = promise.intro(data.project, { minutes: f.minutes, comments: f.hasComments });
   const title = `${data.project.name} — ${wave}`;
   const base = path.join(dir, 'drafts', `survey-${wave}`);
   fs.mkdirSync(path.dirname(base), { recursive: true });
   const files = [`${base}-google.gs`, `${base}-msforms.docx`, `${base}.md`];
-  fs.writeFileSync(files[0], forms.googleAppsScript(title, items), 'utf8');
-  fs.writeFileSync(files[1], forms.msFormsDocx(title, items));
-  fs.writeFileSync(files[2], forms.markdown(title, items), 'utf8');
-  return { wave, items: items.length, files };
+  fs.writeFileSync(files[0], forms.googleAppsScript(title, items, intro), 'utf8');
+  fs.writeFileSync(files[1], forms.msFormsDocx(title, items, intro));
+  fs.writeFileSync(files[2], forms.markdown(title, items, intro), 'utf8');
+  const sheet = promise.writeSheet(dir);
+  return { wave, items: items.length, files, privacySheet: sheet.files };
 }
 
 function generateTimingForm(dir) {
@@ -45,13 +49,14 @@ function generateTimingForm(dir) {
     { id: 'MINUTES', kind: 'number', title: '[MINUTES] الوقت (دقائق) / Minutes', options: [], required: true },
     { id: 'ERRORS', kind: 'choice', title: '[ERRORS] هل حدث خطأ؟ / Any errors?', options: ['نعم / Yes', 'لا / No'], required: false },
   ];
+  const intro = promise.intro(data.project, { comments: false });
   const title = `${data.project.name} — قياس وقت العمليات / Process timing`;
   const base = path.join(dir, 'drafts', 'timing-form');
   fs.mkdirSync(path.dirname(base), { recursive: true });
   const files = [`${base}-google.gs`, `${base}-msforms.docx`, `${base}.md`];
-  fs.writeFileSync(files[0], forms.googleAppsScript(title, items), 'utf8');
-  fs.writeFileSync(files[1], forms.msFormsDocx(title, items));
-  fs.writeFileSync(files[2], forms.markdown(title, items), 'utf8');
+  fs.writeFileSync(files[0], forms.googleAppsScript(title, items, intro), 'utf8');
+  fs.writeFileSync(files[1], forms.msFormsDocx(title, items, intro));
+  fs.writeFileSync(files[2], forms.markdown(title, items, intro), 'utf8');
   return { processes: procs.length, files };
 }
 

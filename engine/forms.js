@@ -12,11 +12,6 @@ const OPTION_LABELS = {
   weekly: { ar: 'أسبوعيًا', en: 'Weekly' },
   daily: { ar: 'يوميًا', en: 'Daily' },
 };
-const INTRO = {
-  ar: 'هذا الاستبيان سري: لا نجمع الأسماء، والنتائج تُعرض على مستوى الأقسام فقط (5 أشخاص على الأقل). يستغرق 3 دقائق.',
-  en: 'Confidential: no names are collected and results are reported by department only (at least 5 people). Takes 3 minutes.',
-};
-
 const both = (t) => (t && t.ar && t.en ? `${t.ar} / ${t.en}` : (t && (t.ar || t.en)) || '');
 const optionText = (bank, v) => both((bank.optionLabels && bank.optionLabels[v]) || OPTION_LABELS[v] || { ar: v, en: v });
 const scaleText = (bank, n) => `${n} - ${both(bank.scale[String(n)])}`;
@@ -35,14 +30,16 @@ function surveyItems(bank, groups, questionIds) {
 }
 
 const J = (v) => JSON.stringify(v);
+// Survey intro comes from the project's privacy settings (see promise.js); never a hard-coded group size.
+const introText = (intro) => both(intro || require('./promise').intro({}));
 
-function googleAppsScript(title, items) {
+function googleAppsScript(title, items, intro) {
   const lines = [
     '// Paste into https://script.google.com (New project), then Run ▶ createSurvey and allow access.',
     '// Creates an anonymous Google Form and a linked responses sheet; links appear in View ▶ Logs.',
     'function createSurvey() {',
     `  var form = FormApp.create(${J(title)});`,
-    `  form.setDescription(${J(both(INTRO))});`,
+    `  form.setDescription(${J(introText(intro))});`,
     '  form.setCollectEmail(false);',
     '  form.setProgressBar(true);',
   ];
@@ -70,9 +67,9 @@ const para = (text, bold) =>
   `<w:p><w:pPr><w:bidi/></w:pPr><w:r><w:rPr>${bold ? '<w:b/>' : ''}<w:rtl/></w:rPr><w:t xml:space="preserve">${esc(text)}</w:t></w:r></w:p>`;
 
 // Quick Import reads numbered questions with lettered options; text questions have no options.
-function msFormsDocx(title, items) {
+function msFormsDocx(title, items, intro) {
   const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const body = [para(title, true), para(both(INTRO))];
+  const body = [para(title, true), para(introText(intro))];
   items.forEach((it, i) => {
     body.push(para(`${i + 1}. ${it.title}`));
     it.options.forEach((o, k) => body.push(para(`${LETTERS[k] || k + 1}. ${o}`)));
@@ -87,8 +84,8 @@ function msFormsDocx(title, items) {
   });
 }
 
-function markdown(title, items) {
-  const out = [`# ${title}`, '', both(INTRO), ''];
+function markdown(title, items, intro) {
+  const out = [`# ${title}`, '', introText(intro), ''];
   items.forEach((it, i) => {
     out.push(`${i + 1}. ${it.title}${it.required ? ' *' : ''}`);
     for (const o of it.options) out.push(`   - ${o}`);

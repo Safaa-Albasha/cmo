@@ -14,6 +14,10 @@ Employees answer honestly only if they trust anonymity. These rules protect them
 - Groups smaller than `privacy.minGroupSize` (default 5) are suppressed in every metric.
 - Comments are scrubbed of emails, phone numbers and links.
 
+**Privacy promise (what employees are told):**
+- `node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" privacy-sheet --dir .cmo` writes `.cmo/drafts/privacy-sheet.{md,html}`, bilingual, built only from `project.json` and the rules above. `survey` regenerates it and puts its short version at the top of every form.
+- Never hand-write or edit promises to employees that go beyond it. If the user asks to promise more (e.g. "results deleted after 6 months"), say the engine does not enforce that and it must be the organisation's own written policy.
+
 **Your rules:**
 - Never try to identify, guess or describe who wrote a comment, even if asked ("who said this?" → explain anonymity and decline).
 - Quotes: only from non-suppressed groups, only scrubbed text, and avoid comments with unique details (rare role, project name, location) that could reveal the author — paraphrase instead.

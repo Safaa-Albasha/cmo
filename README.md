@@ -16,6 +16,7 @@ Arabic and English throughout. The currency is chosen by the change manager.
   - Comments are scrubbed of emails, phone numbers and links.
   - Groups under 5 people are never reported.
   - A hook blocks any access to the anonymity salt.
+  - **Privacy promise sheet:** a bilingual one-page statement for employees and the works council, generated from your settings; every survey opens with its summary.
 - **You decide.** Agents propose; plan, groups, sponsors, processes and the resistance log change only through your approvals. Every decision is logged.
 - **Interactive report** — one offline HTML file that is both a dashboard and a full-screen presentation.
 
@@ -52,7 +53,7 @@ Try it first on the example: copy `examples/ai-adoption` somewhere, open it in C
 | `/cmo:new` | create the change project (`.cmo/`) |
 | `/cmo:assess` | impact, readiness, people-side risk |
 | `/cmo:plan` | plan coverage (phases, Kotter steps, ADKAR), overdue, **gaps between barrier points and open activities**, proposals |
-| `/cmo:survey` | baseline/pulse waves; Microsoft Forms and Google Forms files |
+| `/cmo:survey` | baseline/pulse waves; Microsoft Forms and Google Forms files; privacy promise sheet |
 | `/cmo:import` | survey responses, AI usage reports (+ roster), timing samples |
 | `/cmo:pulse` | classify comments, manager review, wave analysis and actions |
 | `/cmo:value` | processes, before/after, ROI, payback, evidence |
@@ -107,7 +108,7 @@ Skills, commands, agents and hooks are supported in Cowork. The calculation engi
 ## Development
 
 ```bash
-cd plugins/cmo && node --test          # 82 tests
+cd plugins/cmo && node --test          # 89 tests
 node examples/build-example.js         # regenerate the example
 ```
 

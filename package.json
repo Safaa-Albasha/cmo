@@ -1,6 +1,6 @@
 {
   "name": "cmo-plugin",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "license": "MIT",
   "description": "Engine and tests for the cmo Claude Code plugin",
