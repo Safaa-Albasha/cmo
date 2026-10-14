@@ -17,6 +17,7 @@ Arabic and English throughout. The currency is chosen by the change manager.
   - Groups under 5 people are never reported.
   - A hook blocks any access to the anonymity salt.
   - **Privacy promise sheet:** a bilingual one-page statement for employees and the works council, generated from your settings; every survey opens with its summary.
+- **Reminders when you open the project:** one line of what is due (survey, usage data, comments, approvals, overdue plan work). Silent when all is up to date. Dates follow the project's time zone (default Asia/Dubai).
 - **You decide.** Agents propose; plan, groups, sponsors, processes and the resistance log change only through your approvals. Every decision is logged.
 - **Interactive report** — one offline HTML file that is both a dashboard and a full-screen presentation.
 
@@ -82,7 +83,7 @@ Saved time is capacity: it becomes financial savings only when redeployed. Slowe
 ## Data (`.cmo/`)
 
 **Controlled (change only through approval):**
-- `project.json`
+- `project.json` (incl. `timezone`, default `Asia/Dubai`, and reminder `cadence`)
 - `groups.json`
 - `plan.json`
 - `sponsors.json`
@@ -108,7 +109,7 @@ Skills, commands, agents and hooks are supported in Cowork. The calculation engi
 ## Development
 
 ```bash
-cd plugins/cmo && node --test          # 89 tests
+cd plugins/cmo && node --test          # 98 tests
 node examples/build-example.js         # regenerate the example
 ```
 

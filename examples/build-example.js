@@ -83,6 +83,7 @@ const project = {
   description: 'Rollout of Microsoft 365 Copilot and Claude to 400 employees',
   language: 'ar',
   currency: 'SAR',
+  timezone: 'Asia/Dubai',
   startDate: '2026-02-01',
   endDate: '2026-12-31',
   sponsor: 'الرئيس التنفيذي للعمليات / COO',

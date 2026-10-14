@@ -625,7 +625,7 @@ blockquote { margin: 8px 0; padding: 8px 12px; border-inline-start: 4px solid va
     document.getElementById('btn-mode').textContent = presenting ? t('exitPresent') : t('present');
     document.getElementById('btn-prev').textContent = t('prev');
     document.getElementById('btn-next').textContent = t('next');
-    document.getElementById('footer').textContent = t('generated') + ' · ' + fdate(D.meta.generatedAt.slice(0, 10));
+    document.getElementById('footer').textContent = t('generated') + ' · ' + fdate(D.meta.today);
     var app = document.getElementById('app');
     app.textContent = '';
     [sCover, sSummary, sJourney, sAdkar, sSentiment, sAdoption, sValue, sCompare, sImpact, sResistance, sGovernance].forEach(function (f) {

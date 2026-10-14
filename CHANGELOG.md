@@ -4,6 +4,8 @@
 
 - **Privacy promise sheet** (`privacy-sheet`, also written by `survey`): a bilingual one-page statement for employees and the works council, generated only from the project settings and the rules the engine enforces. It covers what is collected, the minimum group size, how names and emails are dropped after making pseudonyms, comment cleaning, and who sees what. Offline HTML (print and dark mode) plus Markdown.
 - Every survey and timing form now opens with the short version of the promise, with an estimated answering time.
+- **Session reminders:** a SessionStart hook prints one bilingual line of what is due — survey wave overdue, usage data old, comments to classify or review, approvals pending, plan activities overdue, barrier points with no open activity — and nothing when all is up to date or outside a `.cmo/` project. Also `nudges` in the engine. Cadence in `project.json` `cadence` (`pulseDays` 60, `usageDays` 35 by default).
+- **Time zone:** `project.json` `timezone` (IANA, default `Asia/Dubai`; `init --timezone`). "Today" for overdue work, reports and reminders is the date in that zone, not UTC — previously work in the UAE between midnight and 4 a.m. counted as the day before. The report footer shows that date.
 - **Fix:** the survey intro said "at least 5 people" even when `privacy.minGroupSize` was set to another value; it now uses the configured size. Arabic counted nouns agree with the number (5 أشخاص, 12 شخصًا).
 
 ## 1.0.1 — 2026-10-13

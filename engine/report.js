@@ -34,7 +34,7 @@ function normalizeNarrative(n) {
 }
 
 function buildReportData(data, { wave, lang, narrative, today } = {}) {
-  const todayStr = today || new Date().toISOString().slice(0, 10);
+  const todayStr = today || util.today(settings(data.project).timezone);
   const st = status(data, { wave, today: todayStr });
   const p = data.project;
   const cfg = settings(p);

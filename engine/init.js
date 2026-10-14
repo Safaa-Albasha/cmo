@@ -4,6 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { CmoError, writeJson } = require('./io');
 const { validate } = require('./validate');
+const { DEFAULT_TIMEZONE } = require('./util');
 
 const REQUIRED = ['name', 'type', 'language', 'currency', 'startDate', 'endDate'];
 const TEMPLATES = path.join(__dirname, '..', 'templates');
@@ -22,6 +23,7 @@ function createProject(dir, o) {
     currency: o.currency,
     startDate: o.startDate,
     endDate: o.endDate,
+    timezone: o.timezone || DEFAULT_TIMEZONE,
     sponsor: o.sponsor || '',
     changeManager: o.changeManager || '',
     privacy: { minGroupSize: 5 },

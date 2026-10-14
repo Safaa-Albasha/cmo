@@ -6,6 +6,7 @@ const value = require('./value');
 const readiness = require('./readiness');
 const { compareFields } = require('./compare');
 const { CmoError } = require('./io');
+const util = require('./util');
 const { analyzePlan } = require('./plan');
 const { analyzeImpact } = require('./impact');
 
@@ -30,6 +31,7 @@ function settings(project) {
     th,
     weights: { ...WEIGHTS, ...(project.weights || {}) },
     min: (project.privacy && project.privacy.minGroupSize) || 5,
+    timezone: project.timezone || util.DEFAULT_TIMEZONE,
     rag: { green: th.readinessGreen, amber: th.readinessAmber },
   };
 }
@@ -105,7 +107,7 @@ function status(data, { wave, today } = {}) {
   const barriers = latest
     ? Object.fromEntries(Object.entries(latest.adkar.groups).filter(([, g]) => !g.suppressed).map(([id, g]) => [id, g.barrier]))
     : {};
-  const planSummary = data.plan ? analyzePlan(data.plan, { today: today || new Date().toISOString().slice(0, 10), barriers }) : null;
+  const planSummary = data.plan ? analyzePlan(data.plan, { today: today || util.today(cfg.timezone), barriers }) : null;
 
   const peopleFields = ['adkarAverage', 'awareness', 'desire', 'knowledge', 'ability', 'reinforcement', 'net', 'negative'];
   const usageFields = ['reach', 'activation', 'frequency', 'depth', 'retention'];

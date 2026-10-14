@@ -14,11 +14,12 @@ Reply in the user's language, one question at a time.
    - Report language `ar` / `en`.
    - Currency — open question chosen by the change manager (ISO code recommended, e.g. SAR, AED, KWD, USD; any label accepted).
    - Start and end dates (YYYY-MM-DD).
+   - Time zone — default **Asia/Dubai**; ask only if the team is elsewhere (IANA name, e.g. Asia/Riyadh, Asia/Kuwait, Europe/London). "Today" for overdue work, reports and reminders is the date in this zone.
    - Sponsor and change manager names (optional).
 3. Confirm, then run:
 
 ```bash
-node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" init --dir .cmo --name "<name>" --type <ai-adoption|generic> --language <ar|en> --currency <CUR> --start <date> --end <date> --sponsor "<sponsor>" --cm "<change manager>" --description "<description>"
+node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" init --dir .cmo --name "<name>" --type <ai-adoption|generic> --language <ar|en> --currency <CUR> --start <date> --end <date> --timezone <Area/City> --sponsor "<sponsor>" --cm "<change manager>" --description "<description>"
 ```
 
 4. On `error` show the message in the project language. On success explain next steps:

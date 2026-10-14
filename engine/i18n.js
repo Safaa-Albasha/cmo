@@ -9,6 +9,7 @@ const MESSAGES = {
   DATE_ORDER: { en: '{file}: "{start}" must be on or before "{end}"', ar: '{file}: "{start}" يجب أن يكون في أو قبل "{end}"' },
   NUMBER_RANGE: { en: '{file}: "{field}" must be a number between {min} and {max}', ar: '{file}: "{field}" يجب أن يكون رقمًا بين {min} و{max}' },
   ID_DUPLICATE: { en: '{file}: duplicate id "{id}"', ar: '{file}: المعرّف "{id}" مكرر' },
+  TIMEZONE_INVALID: { en: '{file}: "timezone" "{value}" is not a valid IANA time zone, e.g. Asia/Dubai, Asia/Riyadh, Europe/London', ar: '{file}: المنطقة الزمنية "{value}" غير صحيحة، مثال: Asia/Dubai أو Asia/Riyadh أو Europe/London' },
   CURRENCY_INVALID: { en: '{file}: "currency" must be a short text (max 20 characters), e.g. SAR, KWD, USD or a label', ar: '{file}: "currency" يجب أن يكون نصًا قصيرًا (20 حرفًا كحد أقصى)، مثل SAR أو KWD أو USD أو تسمية' },
   UNKNOWN_GROUP: { en: '{file}: group "{group}" is not in groups.json', ar: '{file}: المجموعة "{group}" غير موجودة في groups.json' },
   UNKNOWN_QUESTION: { en: '{file}: question "{id}" is not in the question bank', ar: '{file}: السؤال "{id}" غير موجود في بنك الأسئلة' },

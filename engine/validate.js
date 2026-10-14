@@ -1,5 +1,5 @@
 'use strict';
-const { isDate, parseDate } = require('./util');
+const { isDate, parseDate, isTimeZone } = require('./util');
 const { format } = require('./i18n');
 const { ELEMENTS } = require('./adkar');
 const { PHASES: PLAN_PHASES, LEVERS, STATUSES } = require('./plan');
@@ -40,6 +40,9 @@ function validate(data) {
   for (const f of ['startDate', 'endDate']) if (p[f] && !isDate(p[f])) err('DATE_INVALID', { file: F, field: f });
   if (isDate(p.startDate) && isDate(p.endDate) && parseDate(p.startDate) > parseDate(p.endDate))
     err('DATE_ORDER', { file: F, start: 'startDate', end: 'endDate' });
+  if (p.timezone !== undefined && !isTimeZone(p.timezone)) err('TIMEZONE_INVALID', { file: F, value: String(p.timezone) });
+  range(F, 'cadence.pulseDays', p.cadence && p.cadence.pulseDays, 7, 365);
+  range(F, 'cadence.usageDays', p.cadence && p.cadence.usageDays, 7, 365);
   range(F, 'privacy.minGroupSize', p.privacy && p.privacy.minGroupSize, 3, 1000);
   for (const t of p.tools || []) {
     range(F, `tools.${t.id}.licenses`, t.licenses, 0, BIG);

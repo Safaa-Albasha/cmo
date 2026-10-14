@@ -1,10 +1,27 @@
 {
-  "description": "CMO guard: protects controlled .cmo records and the privacy salt, confirms external writes",
+  "description": "CMO hooks: guard protects controlled .cmo records and the privacy salt, confirms external writes; session start shows what is due",
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Read|Write|Edit|MultiEdit|NotebookEdit|Bash|PowerShell|mcp__.*",
-        "hooks": [{ "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.js\"", "timeout": 10 }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session.js\"",
+            "timeout": 10
+          }
+        ]
       }
     ]
   }
