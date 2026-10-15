@@ -19,6 +19,7 @@ const { importSamples } = require('./samples');
 const labels = require('./labels');
 const promise = require('./promise');
 const { nudges } = require('./nudges');
+const { writeCard } = require('./card');
 
 function parseArgs(argv) {
   const [cmd, ...rest] = argv;
@@ -127,7 +128,9 @@ const COMMANDS = {
     return { node: { version: process.version, ok: Number(process.versions.node.split('.')[0]) >= 18 }, platform: process.platform, project };
   },
   report: (dir, o) =>
-    writeReport(dir, { wave: str(o.wave), lang: str(o.lang), today: str(o.today), narrativeFile: str(o.narrative) ? path.resolve(o.narrative) : null, out: str(o.out) ? path.resolve(o.out) : undefined }),
+    o.format === 'card'
+      ? writeCard(dir, { today: str(o.today), lang: str(o.lang), out: str(o.out) ? path.resolve(o.out) : undefined })
+      : writeReport(dir, { wave: str(o.wave), lang: str(o.lang), today: str(o.today), narrativeFile: str(o.narrative) ? path.resolve(o.narrative) : null, out: str(o.out) ? path.resolve(o.out) : undefined }),
   init: (dir, o) =>
     createProject(dir, {
       name: str(o.name),

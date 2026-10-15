@@ -6,6 +6,8 @@
 - Every survey and timing form now opens with the short version of the promise, with an estimated answering time.
 - **Session reminders:** a SessionStart hook prints one bilingual line of what is due — survey wave overdue, usage data old, comments to classify or review, approvals pending, plan activities overdue, barrier points with no open activity — and nothing when all is up to date or outside a `.cmo/` project. Also `nudges` in the engine. Cadence in `project.json` `cadence` (`pulseDays` 60, `usageDays` 35 by default).
 - **Time zone:** `project.json` `timezone` (IANA, default `Asia/Dubai`; `init --timezone`). "Today" for overdue work, reports and reminders is the date in that zone, not UTC — previously work in the UAE between midnight and 4 a.m. counted as the day before. The report footer shows that date.
+- **Sponsor card** (`report --format card`): one offline screen for the sponsor — readiness, weekly use, hours saved, value/ROI/payback, each value figure with its evidence badge — and one ask chosen by the engine (pending approval → uncovered barrier point → overdue activity). Plus a ~60-second spoken script in Arabic and English. Numbers only from `status`.
+- **`/cmo:link-pmo` (preview):** explains the planned PMO ↔ CMO bridge (readiness gate for go-live, milestones → change activities), checks for a `.pmo` project and records the user's answers in `.cmo/drafts/link-pmo-interest.md`. Nothing is linked yet.
 - **Fix:** the survey intro said "at least 5 people" even when `privacy.minGroupSize` was set to another value; it now uses the configured size. Arabic counted nouns agree with the number (5 أشخاص, 12 شخصًا).
 
 ## 1.0.1 — 2026-10-13

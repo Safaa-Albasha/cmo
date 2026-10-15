@@ -60,7 +60,8 @@ Try it first on the example: copy `examples/ai-adoption` somewhere, open it in C
 | `/cmo:value` | processes, before/after, ROI, payback, evidence |
 | `/cmo:resistance` | resistance signals and log |
 | `/cmo:status` | readiness, ADKAR, sentiment, adoption, value, plan |
-| `/cmo:report` | interactive report and presentation |
+| `/cmo:report` | interactive report and presentation; one-screen **sponsor card** + 60-second script (`--format card`) |
+| `/cmo:link-pmo` | **preview** of the PMO ↔ CMO bridge (readiness gate for go-live); records your interest |
 | `/cmo:approvals` | decide proposals; decision log |
 
 **Agents:** cmo-lead · change-strategist · sponsor-coach · survey-designer · sentiment-analyst · adoption-analyst · value-analyst · resistance-manager · enablement-lead · comms-lead · reporter.
@@ -109,7 +110,7 @@ Skills, commands, agents and hooks are supported in Cowork. The calculation engi
 ## Development
 
 ```bash
-cd plugins/cmo && node --test          # 98 tests
+cd plugins/cmo && node --test          # 104 tests
 node examples/build-example.js         # regenerate the example
 ```
 

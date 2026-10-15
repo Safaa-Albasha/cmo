@@ -20,6 +20,7 @@ node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" status --dir .cmo
    - **Business value:** hours saved/month, value/month in project currency, ROI %, payback months; per process mark 🟢 measured / 🟡 estimate and evidence (`confirmed` ✔, `inconclusive`, `preliminary`, `estimate`).
    - **What to do next:** 3 actions tied to the barrier points and top negative themes.
    - Mention `notes` (missing data) plainly.
+   - End with: for the sponsor, a one-screen card → `report --format card` (`/cmo:report`).
 4. Glossary: Awareness الوعي · Desire الرغبة · Knowledge المعرفة · Ability القدرة · Reinforcement التعزيز · barrier point نقطة العائق · net sentiment صافي المشاعر · reach نسبة الاستخدام النشط · readiness الجاهزية · payback فترة الاسترداد.
 
 Do not modify files.

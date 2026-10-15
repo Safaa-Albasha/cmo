@@ -31,3 +31,13 @@ node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" report --dir .cmo --lang <ar|en> --na
    Output `path` (`.cmo/reports/<date>-change-report.html`), `sections`, `omitted` (mention reasons).
 5. Tell the user: open in any browser (offline); **عرض / Present** for slides (arrows, Esc); language and theme buttons; **Print / PDF**; what-if sliders (active use %, licence cost) recompute value, ROI and payback with the engine's own formula.
 6. Sending to stakeholders is 🟡: prepare text and recipients, confirm first.
+
+## Sponsor card (60 seconds) / ملخص الراعي
+For a sponsor who has one minute, or between steering committees:
+```bash
+node "${CLAUDE_PLUGIN_ROOT}/engine/cli.js" report --format card --dir .cmo [--lang ar|en] [--today YYYY-MM-DD]
+```
+- `.cmo/reports/<date>-sponsor-card.html` — one screen: readiness, weekly use, hours saved/month, value/ROI/payback, and **one ask**. Every value figure carries its evidence badge (statistically confirmed ≥ 80% of value from confirmed processes · preliminary ≥ 50% measured · estimate). Screenshot it or print to PDF to share on WhatsApp/Teams.
+- `.cmo/reports/<date>-sponsor-brief.md` — the same as a ~60-second spoken script in Arabic and English (≤ 150 words each).
+- The ask is chosen by the engine: first pending approval → a barrier point with no open activity → an overdue activity → "no decision needed".
+- Do not reword numbers or drop the evidence label when passing it on; never present an estimate as a saving. Sending is 🟡.
